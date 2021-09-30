@@ -193,7 +193,7 @@ public class ReserveController extends HttpServlet {
 	         session.removeAttribute("carReserve");
 	         session.removeAttribute("startDay");
 	         session.removeAttribute("endDay");
-	         session.removeAttribute("airRes");
+	         session.removeAttribute("airRes");//
 	         
 	      } else if(action.equals("reserve_delete")) {
 
