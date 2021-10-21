@@ -1,7 +1,7 @@
 package knh.dao;
 
 public class bb {
-
+ private int b;
 }
 /*echo "# jeju-travel" >> README.md
 git init
