@@ -36,5 +36,6 @@ public class LodgingController extends HttpServlet{
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 	    dispatcher.forward(req, resp);
+	    
 	}
 }
