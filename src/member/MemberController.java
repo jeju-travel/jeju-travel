@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import member.MemberDao;
 
 
-@WebServlet(name = "MemberConroller", urlPatterns = { "/join", "/idcheck"})
+@WebServlet(name = "/MemberConroller", urlPatterns = { "/join", "/idcheck"})
 public class MemberController extends HttpServlet {
 
 	@Override	

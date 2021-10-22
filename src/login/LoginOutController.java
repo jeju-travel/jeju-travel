@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import member.MemberDaoImpl;
 
 
-@WebServlet(name = "LoginOutConroller", urlPatterns = { "/login_input", "/login", "/logout"})
+@WebServlet(name = "/LoginOutConroller", urlPatterns = { "/login_input", "/login", "/logout"})
 public class LoginOutController extends HttpServlet {
 
 	@Override
