@@ -17,7 +17,7 @@
 </head>
 <body>
 <form method="post" action="reserveAirlineCheck">
-	<h3>제주 여행</h3>
+	<h3>제주 여행s</h3>
 	출발 날짜 <input type="date" name="startDay" value=<%= sf.format(calStart.getTime()) %>><BR>
 	도착 날짜 <input type="date" name="endDay" value=<%= sf.format(calEnd.getTime()) %>><br>
 	<input type="submit" value="검색">
