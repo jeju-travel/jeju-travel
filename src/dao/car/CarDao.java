@@ -15,6 +15,9 @@ public interface CarDao {
 	List<Car> CarselectAll();
 	
 	Car selectByCarno(int car_no);	
+	
+	void Carupdate(Car car);
+	void Cardelete(int car_no);
 	/*
 	//아이디 중복체크시 필요한 메소드
 	int selectCntById(String customer);

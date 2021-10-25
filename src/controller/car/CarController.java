@@ -17,7 +17,7 @@ import formerror.CarError;
 import model.Car;
 import validator.memo.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/memo_update","/memo_delete"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/car_select"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -46,8 +46,9 @@ public class CarController extends HttpServlet {
 			String capacity = req.getParameter("capacity");
 			String car_fuel = req.getParameter("car_fuel");
 			String car_loc = req.getParameter("car_loc");
-			//car img하면 추가 한줄.  밑에도 추가, carForm에도 img추가	,err에도 추가	
-			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc);	
+			String car_img = req.getParameter("car_img");
+			
+			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_img);	
 			//여기서 체크해서 유효성 검사
 			CarValidator validator = new CarValidator();
 			CarError carError = validator.validate(carForm);
@@ -60,7 +61,7 @@ public class CarController extends HttpServlet {
 				car.setCapacity(Integer.parseInt(carForm.getCapacity()));
 				car.setCar_fuel(carForm.getCar_fuel());
 				car.setCar_loc(carForm.getCar_loc());
-				//car img
+				car.setCar_img(carForm.getCar_img());
 				CarDao cardao = new CarDaoImpl();
 				
 				cardao.insert(car);
@@ -78,52 +79,101 @@ public class CarController extends HttpServlet {
 			
 			
 		}else if(action.equals("car_detail")) {
+			
 			int car_no = Integer.parseInt(req.getParameter("car_no"));
+		
 			CarDao dao = new CarDaoImpl();
 			Car car = dao.selectByCarno(car_no);
+			List<Car> carList = dao.CarselectAll();
 			
-			req.setAttribute("car", car);			
+			req.setAttribute("car", car);	
+			req.setAttribute("carList", carList);
 			
-		}/*else if(action.equals("memo_update")) {
-			int memoid = Integer.parseInt(req.getParameter("memoid"));
-			String name= req.getParameter("name");
-			int age = Integer.parseInt(req.getParameter("age"));
+		}else if(action.equals("car_update")) {			
+			String car_name = req.getParameter("car_name");
+			String car_type = req.getParameter("car_type");
+			String car_price =req.getParameter("car_price");
+			String capacity = req.getParameter("capacity");
+			String car_fuel = req.getParameter("car_fuel");
+			String car_loc = req.getParameter("car_loc");
+			String car_img = req.getParameter("car_img");			
 			
-			Memo memo = new Memo(memoid,name,age);
-			MemoDao dao = new MemoDaoImpl();
-			dao.update(memo);
-			req.setAttribute("message", "잘수정되었습니다");			
+			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_img);
+			CarValidator validator = new CarValidator();
+			CarError carError = validator.validate(carForm);
 			
-		}else if(action.equals("memo_delete")) {
-	         int memoid = Integer.parseInt(req.getParameter("memoid"));
+			if(!carError.isResult()) { //(!오류가 없으면)
+				Car car=new Car();
+				int car_no = Integer.parseInt(req.getParameter("car_no"));
+				
+				car.setCar_name(carForm.getCar_name());
+				car.setCar_type(carForm.getCar_type());
+				car.setCar_price(Integer.parseInt(carForm.getCar_price()));
+				car.setCapacity(Integer.parseInt(carForm.getCapacity()));
+				car.setCar_fuel(carForm.getCar_fuel());
+				car.setCar_loc(carForm.getCar_loc());
+				car.setCar_img(carForm.getCar_img());
+				car.setCar_no(car_no);
+				CarDao cardao = new CarDaoImpl();
+				
+				cardao.Carupdate(car);
+				req.setAttribute("message", "잘 수정 되었습니다.");	
+			}else {
+				int car_no = Integer.parseInt(req.getParameter("car_no"));
+				
+				CarDao dao = new CarDaoImpl();
+				Car car = dao.selectByCarno(car_no);
+				List<Car> carList = dao.CarselectAll();
+				
+				req.setAttribute("car", car);	
+				req.setAttribute("carList", carList);
+				
+				req.setAttribute("carError",carError);//오류 보내기			
+				req.setAttribute("carForm", carForm);
+			}		
+					
+			
+		}else if(action.equals("car_delete")) {
+	         int car_no = Integer.parseInt(req.getParameter("car_no"));
 	         
-	         MemoDao dao = new MemoDaoImpl();
-	         dao.delete(memoid);
+	         CarDao dao = new CarDaoImpl();
+	         dao.Cardelete(car_no);
 	         
-	         req.setAttribute("message", "잘 삭제되었습니다.");
 	         	       
-	    }*/
+	    }else if(action.equals("car_select")) {
+	    	String borrow_car = req.getParameter("borrow_car");
+			String return_car = req.getParameter("return_car");
+	    	
+	    	CarDao dao = new CarDaoImpl();
+			List<Car> carList = dao.CarselectAll();
+			
+			req.setAttribute("carList", carList);			
+			req.setAttribute("borrow_car", borrow_car);
+			req.setAttribute("return_car", return_car);
+	    }
 		String dispatcherUrl = null;
-		//String dispatcherUrl = "jsp/memo/"; 하고 dispatcherUrl+"memsave.jsp"; 가능함
+	
 		if(action.equals("car_input")) {			
 			dispatcherUrl = "car/carinsert.jsp";  	
 			
 		}else if(action.equals("car_save")) {			
-			dispatcherUrl = "car/carinsert.jsp";
+			dispatcherUrl = "/car/carinsert.jsp";
 			
 		}else if(action.equals("car_search")) {
 			dispatcherUrl = "car/carselect.jsp";				
 			
 		}else if(action.equals("car_detail")) {
-			dispatcherUrl = "car/carupde.jsp";	
+			dispatcherUrl = "car/cardetail.jsp";	
 			
-		}/*else if(action.equals("memo_update")) {
-			dispatcherUrl = "/jsp/memo/result.jsp";	
+		}else if(action.equals("car_update")) {
+			dispatcherUrl = "car/cardetail.jsp";	
 			
-		}else if(action.equals("memo_delete")) {
-			dispatcherUrl = "/jsp/memo/result.jsp";
-	        
-	    }*/
+		}else if(action.equals("car_delete")) {
+			dispatcherUrl = "car_search";	
+			
+	    }else if(action.equals("car_select")) {
+	    	dispatcherUrl = "carlist.jsp";
+	    }
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 		dispatcher.forward(req, resp);

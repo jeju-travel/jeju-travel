@@ -7,11 +7,11 @@ public class CarForm {
 	private String capacity;
 	private String car_fuel;
 	private String car_loc;
-	
+	private String car_img;
 	public CarForm() {}
 
 	public CarForm(String car_name, String car_type, String car_price, String capacity, String car_fuel,
-			String car_loc) {
+			String car_loc,String car_img) {
 		super();
 		this.car_name = car_name;
 		this.car_type = car_type;
@@ -19,6 +19,7 @@ public class CarForm {
 		this.capacity = capacity;
 		this.car_fuel = car_fuel;
 		this.car_loc = car_loc;
+		this.car_img = car_img;
 	}
 
 	public String getCar_name() {
@@ -67,6 +68,14 @@ public class CarForm {
 
 	public void setCar_loc(String car_loc) {
 		this.car_loc = car_loc;
+	}
+
+	public String getCar_img() {
+		return car_img;
+	}
+
+	public void setCar_img(String car_img) {
+		this.car_img = car_img;
 	}
 
 	@Override

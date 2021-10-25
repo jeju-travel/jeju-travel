@@ -12,17 +12,21 @@
     <title>메인화면</title>
 </head>
 <style>
+    html{
+		height: 100%;
+	}
     body{
-        margin: auto;
-        width: 80%;
-    }    
-    main{        
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    main{ 
         position: absolute;
         top: 50%;
         left: 50%;
-        margin:-150px 0 0 -150px;
-        text-align: center;
-    }
+        margin:-150px 0 0 -150px;  
+        text-align: center;    
+    } 
     .main_center{
         display: flex;  
     }
@@ -31,20 +35,19 @@
     }
     
 </style>
-<body>
-    
-    <main>
+<body>    
+    <main>   		
         <h3>제주여행</h3><br>
-        <h5>항공예약</h5>
+        <h5>렌트카예약</h5>
         <div class="main_center">   
-            <form action="#" method="post">     
+            <form action="carlist.jsp" method="post">     
                     <div class="main_memu">
-                        <input type="submit" class="btn btn-primary" value="항공예약o">
+                        <input type="submit" class="btn btn-primary" value="렌트카예약o">
                     </div>
             </form>
             <form action="#" method="post">
                     <div class="main_memu">
-                        <input type="submit" class="btn btn-primary" value="항공예약x">
+                        <input type="submit" class="btn btn-primary" value="렌트카예약x">
                     </div>
             </form>   
         </div>

@@ -109,8 +109,7 @@ public class CarDaoImpl implements CarDao {
 				car.setCar_img(resultset.getString("car_img"));
 				
 				carList.add(car);
-			}
-			System.out.println(carList.get(1).getCar_name());
+			}			
 		
 			
 		} catch (Exception e) {
@@ -157,6 +156,52 @@ public class CarDaoImpl implements CarDao {
 			JDBCUtil.close(resultset, pStatement, connection);
 		}
 		return car;
+	}
+	@Override
+	public void Carupdate(Car car) {
+		Connection connection =null;
+		PreparedStatement pStatement = null;
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.CAR_UPDATE_SQL);				
+			
+			pStatement.setString(1, car.getCar_name());
+			pStatement.setString(2, car.getCar_type());
+			pStatement.setInt(3, car.getCar_price());
+			pStatement.setInt(4, car.getCapacity());
+			pStatement.setString(5, car.getCar_fuel());
+			pStatement.setString(6, car.getCar_loc());
+			pStatement.setString(7, car.getCar_img());			
+			pStatement.setInt(8, car.getCar_no());	
+			
+			pStatement.executeUpdate();			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+	}
+	@Override
+	public void Cardelete(int car_no) {
+		Connection connection =null;
+		PreparedStatement pStatement = null;
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.CAR_DELETE_SQL);			
+				
+			pStatement.setInt(1, car_no);			
+		
+			pStatement.executeUpdate();
+			
+			pStatement.close();
+			
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
 	}
 	/*@Override
 	public void writeinsert(Bbs bbs) {
