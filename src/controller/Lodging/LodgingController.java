@@ -90,6 +90,8 @@ public class LodgingController extends HttpServlet{
 			req.setAttribute("message", "삭제되었습니다.");
 		}
 		
+		//커밋 테스트
+		
 		//화면구성
 		String dispatcherUrl = null;
 		
