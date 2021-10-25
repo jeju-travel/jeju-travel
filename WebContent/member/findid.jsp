@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기 결과</title>
+<title>아이디 찾기 결과</title>
 
 <style>
 body{
@@ -46,12 +46,12 @@ form{
 </head>
 <body>
 
-		<h1>비밀번호 찾기 결과</h1>
+		<h1>아이디 찾기 결과</h1>
 		<hr>
-	<c:if test="${pw == null}">
+	<c:if test="${id == null}">
 		
-		<h3>비밀번호 찾기 실패</h3>
-		<label>정보와 일치하는 비밀번호가 없습니다.</label>
+		<h3>아이디 찾기 실패</h3>
+		<label>정보와 일치하는 아이디가 없습니다.</label>
 		<div>
 		<form action="join">
 			<input type="submit" value="회원가입" class="btn btn_p">
@@ -61,17 +61,19 @@ form{
 		</form>
 		</div>
 	</c:if>
-	<c:if test="${pw != null}">
-		<h3>비밀번호 찾기 성공</h3>
+	<c:if test="${id != null}">
+		<h3>아이디 찾기 성공</h3>
 	
-		<h5>고객님의 정보와 일치하는 비밀번호 : ${pw}</h3>
+		<h5>고객님의 정보와 일치하는 아이디 : ${id}</h3>
 		
 		<div>
 		<form action="login_input">
 		<input type="submit" value="로그인" class="btn btn_p">
 		</form>
 		
-
+		<form action="findpw">
+		<input type="button" value="비밀번호 찾기" class="btn btn_p">
+		</form>
 		</div>
 	</c:if>
 

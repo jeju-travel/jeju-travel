@@ -1,4 +1,6 @@
-package Controller.Lodging;
+package controller.Lodging;
+
+
 
 import java.io.IOException;
 

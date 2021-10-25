@@ -8,13 +8,38 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
-
+<script src="https://kit.fontawesome.com/d42fd504d6.js"
+	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		
+		$('.pw i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+		
+		
+		$('.pw2 i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+		
 		$("input[type= 'submit']").click(function() {
 
 			var pw = $("input[name='pw']").val();
@@ -48,7 +73,7 @@
 		$("#checkid").click(function() {
 			//사용자가 입력값 얻어오기
 			var input_value = $("input[name='id']").val();
-			alert(input_value);
+			//alert(input_value);
 
 			//입력여부 검사
 			if (!input_value) {
@@ -65,14 +90,14 @@
 			}, function(data) {
 				//alert(data)
 				var result_text = $(data).find("result").text();
-				alert(result_text);
+				//alert(result_text);
 
 				var result = eval(result_text);
 
 				if (result) {
-					$(".console").html("<h6>사용할수 있는 아이디 입니다.</h6>");
+					$(".console").html('<h6 style="color:green;">사용 가능한할수  아이디 입니다.</h6>');
 				} else {
-					$(".console").html("<h6>사용할수 없는 아이디 입니다.</h6>");
+					$(".console").html('<h6 style="color:red">중복된 아이디 입니다.</h6>');
 
 				}
 			});
@@ -103,7 +128,7 @@ input, select{
 	margin: 10px;
 }
 
-input[type="text"], input[type="password"], select{
+input[type="text"], input[type="password"], input[type="tel"], input[type="email"], select{
 	width: 190px;
 	height: 30px;
 }
@@ -139,16 +164,22 @@ input[type="text"], input[type="password"], select{
 	<h2>회원가입</h3>
 	<h4>정보입력</h6>
 	<hr>
-	<form action="">
+	<form action="save">
 		<div>
 			<label>아이디</label><input type="text" name="id"/>
 			<input type="button" value="중복체크" class="btn btn_p" id="checkid"/>
+			
 		</div>
-		<div>
-			<label>비밀번호</label><input type="password" name="pw">
+		<div class="console"></div>
+		<div class="pw">
+			<label>비밀번호</label>
+			<input type="password" name="pw">
+				<i class="fa fa-eye fa-lg"></i>
 		</div>
-		<div>
-			<label>비밀번호 확인</label><input type="password" name="pw2">
+		<div class="pw2">
+			<label>비밀번호 확인</label>
+			<input type="password" name="pw2">
+				<i class="fa fa-eye fa-lg"></i>
 		</div>
 		<div>
 			<label>이름</label><input type="text" name="name">
@@ -164,13 +195,14 @@ input[type="text"], input[type="password"], select{
 			<label>답변</label><input type="text" name="answer">
 		</div>
 		<div>
-			<label>전화번호</label><input type="text" name="phone">
+			<label>전화번호</label>
+			<input type="tel" id="phone" name="phone" placeholder="010-0000-0000" pattern="(010)-[0-9]{4}-[0-9]{4}" required>
 		</div>
 		<div>
-			<label>이메일</label><input type="text" name="email">
+			<label>이메일</label><input type="email" name="email">
 		</div>
 		<input type="submit" value="회원가입" class="btn btn_p" />
-		<input type="button" value="취소"  class="btn btn_cancle"/> 
+		<input type="button" value="취소"  class="btn btn_cancle" onClick="location.href='index.jsp'"/> 
 	</form>
 
 

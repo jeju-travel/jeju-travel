@@ -78,14 +78,15 @@ label{
 		<input type="text" name="id" placeholder="아이디" /><br> <input
 			type="password" name="pw" placeholder="비밀번호" /><br> <input
 			type="submit" value="로그인" class="btn btn_p" id="btn" />
+			<p>${message}</p>
 		<div>
 			<input type="checkbox"><label> 아이디 저장</label>
 		</div>
 	</form>
 	<hr>
 	<div>
-		<label><a href="findpw.jsp">아이디 찾기</a></label> | <label><a
-			href="findpw.jsp">비밀번호 찾기</a></label><label><a href="input_member">회원가입</a></label>
+		<a href="findidpw"><label>아이디 찾기</label> | <label>
+		비밀번호 찾기</label></a><label><a href="join">회원가입</a></label>
 	</div>
 </body>
 </html>
