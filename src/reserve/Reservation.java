@@ -2,13 +2,24 @@ package reserve;
 
 public class Reservation {
 	
-	int resNo;
-	int memNo;
-	String startDay;
-	String endDay;
-	String state;
+	private int resNo;
+	private int memNo;
+	private String startDay;
+	private String endDay;
+	private String state;
+	private String items;
 	
-	
+	public String getItems() {
+		return items;
+	}
+
+	public void setItems(String items) {
+		this.items = items;
+	}
+
+	public Reservation() {
+		
+	}
 	
 	public Reservation(int resNo, int memNo, String startDay, String endDay, String state) {
 		super();
@@ -58,6 +69,14 @@ public class Reservation {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation [resNo=" + resNo + ", memNo=" + memNo + ", startDay=" + startDay + ", endDay=" + endDay
+				+ ", state=" + state + "]";
+	}
+
+
 	
 	
 	

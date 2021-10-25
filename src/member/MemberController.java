@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.MemberDao;
+import reserve.Reservation;
+import reserve.ReserveDao;
+import reserve.ReserveDaoImpl;
 
 @WebServlet(name = "MemberConroller", urlPatterns = { "/join", "/idcheck", "/save", "/mypage", "/detail", "/update",
 		"/delete" })
@@ -71,6 +75,39 @@ public class MemberController extends HttpServlet {
 			dao.insert(member);
 		} else if (action.equals("mypage")) {
 
+			HttpSession session = req.getSession();
+			int memNo = (int)session.getAttribute("member");
+			
+			System.out.println("memno:" + memNo);
+			
+			
+			List<Reservation> reslist = null;
+			
+			ReserveDao dao = new ReserveDaoImpl();
+			reslist = dao.selectByMemNo(memNo);
+			
+			
+			for (Reservation res : reslist) {
+				
+				//예약 항목 뽑아오기
+				int num[] = dao.selectItemNoByResNo(res.getResNo());
+				
+				String items = "";
+				
+				for(int i=0; i<3; i ++) {
+					if(num[i] != 0) {
+						//예약번호를 넣어서 항목이름 뽑아오기
+					
+						items += "	결과값	" ;
+					}
+				}
+				
+				res.setItems(items);
+			}
+			
+			req.setAttribute("reslist", reslist);
+
+		
 		} else if (action.equals("detail")) {
 
 			HttpSession session = req.getSession();
