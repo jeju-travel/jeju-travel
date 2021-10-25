@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +25,7 @@
     }
     .header_top{
         display: flex;
-    }
-    .login_memu{
-        font-size: 10px;
-        display: flex;        
-    }
-    .login_memu li{
-        padding: 8px 12px;
-    }
+    }    
     
     #header_btn{        
         padding: 10px;
@@ -51,58 +45,54 @@
     h4{
         padding: 8px 12px;
     }
+    /* .car_select{
+    	text-align:center;
+    } */
 </style>
 <body>
     <header class="header_nav">
         <div class="header_top">
             <h3>렌트카 검색 리스트</h3>         
-        </div>
-        <ul class="login_memu">
-            <li><a href="#">회원가입</a></li>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">마이페이지</a></li>
-        </ul>
-       
+        </div>  
     </header>
     <hr>
 
-    <form action="#" method="post">
+    <form action="car_select" method="post">
         <div class="date_main">
             <div class="date_side1">
                 대여일<br/>
                 <input type="date">
-                <select name="" id="">
-                    <option value="">오전</option>
-                    <option value="">오후</option>                    
+                <select name="borrow_car">
+                    <option value="오전">오전</option>
+                    <option value="오후">오후</option>                    
                 </select>
                 <br/>
                 
                 차종 <br/>               
-                <select name="" id="">
-                    <option value="">전체</option>
-                    <option value="">소형차</option>
-                    <option value="">중형차</option>
-                    <option value="">대형차</option>
-                    <option value="">전기차</option>
+                <select name="car_type">
+                    <option value="전체">전체</option>
+                    <option value="소형차">소형차</option>
+                    <option value="중형차">중형차</option>
+                    <option value="대형차">대형차</option>
                 </select>
             </div>
             
             <div class="date_side2">
                 반납일<br/>
                 <input type="date">
-                <select name="" id="">
-                    <option value="">오전</option>
-                    <option value="">오후</option>                    
+                <select name="return_car">
+                    <option value="오전">오전</option>
+                    <option value="오후">오후</option>                    
                 </select>
                 <br/>
                 연료<br/>
-                <select name="" id="">
-                    <option value="">전체</option>
-                    <option value="">가솔린</option>
-                    <option value="">LPG</option>
-                    <option value="">디젤</option>
-                    <option value="">전기차</option>
-                </select>
+               <select name="car_fuel">
+					<option value="전체">전체</option>
+					<option value="휘발유">휘발유</option>
+					<option value="경유">경유</option>
+					<option value="가솔린">가솔린</option>
+					<option value="전기차">전기차</option>
+               </select>
             </div>
             
         </div>
@@ -112,5 +102,41 @@
     <hr>
     <h4>차량 검색결과</h4>
     <hr>
+    
+    <div class="container mt-3" id="car_select">
+		<c:if test="${!empty carList}">
+			<table class="table table-hover">
+				<tr>
+					<th>차량이름</th>
+					<th>가격</th>
+					<th>최대탑승</th>
+					<th>차종</th>
+					<th>연료</th>
+					<th>대여시간</th>
+					<th>반납시간</th>
+					<th>별점</th>
+					<th>예약</th>
+				</tr>								
+				<c:forEach var="car" items="${carList}">
+					<form action="car_select" method="post">
+					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
+						<tr>
+							<td>${car.car_name}</td>
+							<td>${car.car_price}</td>
+							<td>${car.capacity}</td>
+							<td>${car.car_type}</td>
+							<td>${car.car_fuel}</td>
+							<td>${borrow_car}</td>
+							<td>${return_car}</td>						
+							<td>별점</td>
+							<td><input type="submit" class="btn btn-primary sm" value="예약하기"></a>
+						</tr>
+					</form>	
+				</c:forEach>
+				
+			</table>
+		</c:if>
+		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>
+	</div>
 </body>
 </html>
