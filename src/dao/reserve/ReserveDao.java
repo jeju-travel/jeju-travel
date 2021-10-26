@@ -2,7 +2,7 @@ package dao.reserve;
 
 import java.util.List;
 
-import model.Reservation;
+import model.manager.Reservation;
 
 public interface ReserveDao {
 

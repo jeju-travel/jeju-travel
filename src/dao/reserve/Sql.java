@@ -13,7 +13,7 @@ public class Sql {
 			"inner join CAR_RESERVE c on\r\n" + 
 			"r.reserve_no = c.reserve_no \r\n" + 
 			"inner join ROOM_RESERVE room on \r\n" + 
-			"r.reserve_no = room.room_reserve_no\r\n" + 
+			"r.reserve_no = room.reserve_no\r\n" + 
 			"where r.reserve_no = ?";
 	
 	public static final String RES_SELECT_BY_NO = 

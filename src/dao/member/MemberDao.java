@@ -4,8 +4,8 @@ package dao.member;
 
 import java.util.List;
 
-import model.Admin;
-import model.Member;
+import model.manager.Admin;
+import model.manager.Member;
 
 public interface MemberDao {
 

@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
-import model.Admin;
-import model.Member;
+import model.manager.Admin;
+import model.manager.Member;
 import util.JDBCUtil;
 
 
@@ -51,18 +51,18 @@ public class LoginOutController extends HttpServlet {
 			MemberDao dao = new MemberDaoImpl();
 			
 			Member member = dao.login(id, pw);
-			//Admin admin = dao.adminlogin(id,pw);
-			Admin admin = new Admin();
+			Admin admin = dao.adminLogin(id,pw);
+			
 			
 			if(member.getId() != null) {
 				HttpSession session = req.getSession();
-				session.setAttribute("member", member.getNo());
+				session.setAttribute("member", member.getId());
 				System.out.println("id: " + member.getId() + " pw: " +member.getPw() );
 			}else if(admin.getId() != null){
 				
 				HttpSession session = req.getSession();
-				session.setAttribute("admin", member.getNo());
-				System.out.println("id: " + member.getId() + " pw: " +member.getPw() );
+				session.setAttribute("admin", admin.getId());
+				System.out.println("id: " + admin.getId() + " pw: " +admin.getPw() );
 			}else {
 				
 				req.setAttribute("message", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
@@ -73,6 +73,7 @@ public class LoginOutController extends HttpServlet {
 		} else if(action.equals("logout")) {
 			HttpSession session = req.getSession();
 			session.removeAttribute("member");
+			session.removeAttribute("admin");
 		}else if(action.equals("findidpw")) {
 			
 		}else if(action.equals("findid")) {
@@ -110,6 +111,8 @@ public class LoginOutController extends HttpServlet {
 			//String id = (String)session.getAttribute("member");
 			if(session.getAttribute("member") != null) {
 				dispatchUrl = "/index.jsp";
+			}else if(session.getAttribute("admin") != null){
+				dispatchUrl = "jsp/member/admin.jsp";
 			}else {
 				dispatchUrl = "/jsp/member/login.jsp";				
 			}

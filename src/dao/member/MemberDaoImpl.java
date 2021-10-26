@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import dao.member.Sql;
-import model.Admin;
-import model.Member;
+import model.manager.Admin;
+import model.manager.Member;
 import util.JDBCUtil;
 
 
@@ -394,7 +394,7 @@ public Admin adminLogin(String id, String pw) {
 			admin.setId(resultSet.getString("admin_id"));
 			admin.setName(resultSet.getString("admin_name"));
 			admin.setNo(resultSet.getInt("admin_no"));
-			admin.setPw(resultSet.getString("admint_pw"));
+			admin.setPw(resultSet.getString("admin_pw"));
 			
 			
 		}

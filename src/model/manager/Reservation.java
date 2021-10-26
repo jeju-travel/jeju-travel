@@ -8,7 +8,7 @@ public class Reservation {
 	private String endDay;
 	private String state;
 	private String items;
-	
+
 	public String getItems() {
 		return items;
 	}

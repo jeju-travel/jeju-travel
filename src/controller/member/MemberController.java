@@ -11,12 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.air.AirlineDao;
+import dao.air.AirlineDaoImpl;
+import dao.car.CarDao;
+import dao.car.CarDaoImpl;
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
-import model.Member;
-import model.Reservation;
+import model.air.Airline;
+import model.car.Car;
+import model.manager.Member;
+import model.manager.Reservation;
 
 @WebServlet(name = "MemberConroller", urlPatterns = { "/join", "/idcheck", "/save", "/mypage", "/detail", "/update",
 		"/delete" })
@@ -78,15 +84,16 @@ public class MemberController extends HttpServlet {
 		} else if (action.equals("mypage")) {
 
 			HttpSession session = req.getSession();
-			int memNo = (int)session.getAttribute("member");
+			String memId = (String)session.getAttribute("member");
 			
-			System.out.println("memno:" + memNo);
+			System.out.println("memno:" + memId);
 			
 			
 			List<Reservation> reslist = null;
-			
+			MemberDao m_dao = new MemberDaoImpl();
 			ReserveDao dao = new ReserveDaoImpl();
-			reslist = dao.selectByMemNo(memNo);
+			Member member = m_dao.selectById(memId);
+			reslist = dao.selectByMemNo(member.getNo());
 			
 			
 			for (Reservation res : reslist) {
@@ -103,9 +110,12 @@ public class MemberController extends HttpServlet {
 						switch(i) {
 						//항공 이름 가져오기
 						case 0:
+							AirlineDao airDao = new AirlineDaoImpl();
+							Airline air =  airDao.selectByNo(num[0]);
 							
+							items += air.getAirName()+ "  " ;
 							
-							items += "	결과값	" ;
+							res.setAirNo(air.getAirNo());
 							break;
 						//숙소 이름 가져오기
 						case 1:
@@ -115,9 +125,13 @@ public class MemberController extends HttpServlet {
 							break;
 						//차 이름 가져오기	
 						case 2:
+							CarDao carDao = new CarDaoImpl();
+							Car car = carDao.selectByCarno(num[2]);
 							
+							System.out.println(car.toString());
+							items += "  " + car.getCar_name() + "  " ;
 							
-							items += "	결과값	" ;
+							res.setCarNo(car.getCar_no());
 							break;
 						}
 							
@@ -135,10 +149,10 @@ public class MemberController extends HttpServlet {
 		} else if (action.equals("detail")) {
 
 			HttpSession session = req.getSession();
-			int mem_no = (Integer) (session.getAttribute("member"));
+			String mem_id = (String) (session.getAttribute("member"));
 
 			MemberDao dao = new MemberDaoImpl();
-			Member member = dao.selectByNo(mem_no);
+			Member member = dao.selectById(mem_id);
 
 			req.setAttribute("mem", member);
 
