@@ -1,5 +1,5 @@
 package dao.Review;
 
 public interface ReivewDao {
-	public void insertCarReview(Car)
+	//public void insertCarReview(Car)
 }

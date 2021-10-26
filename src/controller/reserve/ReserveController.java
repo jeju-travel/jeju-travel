@@ -78,13 +78,13 @@ public class ReserveController extends HttpServlet {
 		// 주소 이동
 		String dispatchUrl = null;
 		if (action.equals("res_detail")) {
-			dispatchUrl = "/reserve/res_detail.jsp";
+			dispatchUrl = "/jsp/reserve/res_detail.jsp";
 		} else if(action.equals("review")) {
-			dispatchUrl = "/reserve/review.jsp";
+			dispatchUrl = "/jsp/reserve/review.jsp";
 		} else if(action.equals("shopping_cart")) {
-			dispatchUrl = "/reserve/shoppingbasket.jsp";
+			dispatchUrl = "/jsp/reserve/shoppingbasket.jsp";
 		}  else if(action.equals("review_insert")){
-			dispatchUrl = "/member.mypage.jsp";
+			dispatchUrl = "/jsp/member.mypage.jsp";
 			
 		}
 

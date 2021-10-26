@@ -8,6 +8,7 @@ import java.util.List;
 import dao.member.Sql;
 import model.Admin;
 import model.Member;
+import util.JDBCUtil;
 
 
 
@@ -362,51 +363,51 @@ public Member selectByNo(int no) {
 		return pw;
 	}
 
-	
-public Member AdminLogin(String id, String pw) {
-		
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-		ResultSet resultSet = null;
-		
-		Member member = new Member();
-	
-		
-		try {
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.ADMIN_LOGIN);
 
-			
-			pStatement.setString(1,id);
-			pStatement.setString(2,pw);
-			
 
-			resultSet = pStatement.executeQuery();
 
-			if (resultSet.next()) {
-				
-				
-				
-				Admin.setNo(resultSet.getInt("admin_no"));
-			
-				Admin.setId(resultSet.getString("id"));
-				Admin.setPw(resultSet.getString("pw"));
-				
-				Admin.setName(resultSet.getString("name"));
+@Override
+public Admin adminLogin(String id, String pw) {
 	
-				
-				
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(resultSet, pStatement, connection);
+	Connection connection = null;
+	PreparedStatement pStatement = null;
+	ResultSet resultSet = null;
+	
+	Admin admin = new Admin();
+	
+
+	
+	try {
+		connection = JDBCUtil.getConnection();
+		pStatement = connection.prepareStatement(Sql.ADMIN_LOGIN);
+
+		
+		pStatement.setString(1,id);
+		pStatement.setString(2,pw);
+		
+
+		resultSet = pStatement.executeQuery();
+
+		if (resultSet.next()) {
+			
+	
+			admin.setId(resultSet.getString("admin_id"));
+			admin.setName(resultSet.getString("admin_name"));
+			admin.setNo(resultSet.getInt("admin_no"));
+			admin.setPw(resultSet.getString("admint_pw"));
+			
+			
 		}
-
-		
-			
-		return member;
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		JDBCUtil.close(resultSet, pStatement, connection);
 	}
+
+	
+		
+	return admin;
+
+}
 
 }

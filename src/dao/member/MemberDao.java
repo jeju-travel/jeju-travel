@@ -4,6 +4,7 @@ package dao.member;
 
 import java.util.List;
 
+import model.Admin;
 import model.Member;
 
 public interface MemberDao {
@@ -22,7 +23,7 @@ public interface MemberDao {
 	
 	public Member login(String id, String pw);
 
-	public Member adminLogin(String id, String pw);
+	public Admin adminLogin(String id, String pw);
 	
 	public int selectCntById(String id);
 	
