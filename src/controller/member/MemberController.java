@@ -172,18 +172,18 @@ public class MemberController extends HttpServlet {
 		// 주소 이동
 		String dispatchUrl = null;
 		if (action.equals("join")) {
-			dispatchUrl = "/member/join.jsp";
+			dispatchUrl = "/jsp/member/join.jsp";
 		} else if (action.equals("idcheck")) {
 			dispatchUrl = "/ajax/idcheck.jsp";
 
 		} else if (action.equals("save")) {
 			dispatchUrl = "/index.jsp";
 		} else if (action.equals("mypage")) {
-			dispatchUrl = "/member/mypage.jsp";
+			dispatchUrl = "/jsp/member/mypage.jsp";
 		} else if (action.equals("detail")) {
-			dispatchUrl = "/member/detail.jsp";
+			dispatchUrl = "/jsp/member/detail.jsp";
 		} else if (action.equals("update")) {
-			dispatchUrl = "/member/mypage.jsp";
+			dispatchUrl = "/jsp/member/mypage.jsp";
 		} else if(action.equals("delete")) {
 			dispatchUrl = "index.jsp";
 		}

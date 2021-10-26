@@ -15,6 +15,7 @@ import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import model.Admin;
 import model.Member;
+import util.JDBCUtil;
 
 
 @WebServlet(name = "LoginOutConroller", urlPatterns = { "/login_input", "/login", "/logout",  "/findidpw", "/findid", "/findpw"})
@@ -50,7 +51,8 @@ public class LoginOutController extends HttpServlet {
 			MemberDao dao = new MemberDaoImpl();
 			
 			Member member = dao.login(id, pw);
-			Admin admin = dao.adminlogin(id,pw);
+			//Admin admin = dao.adminlogin(id,pw);
+			Admin admin = new Admin();
 			
 			if(member.getId() != null) {
 				HttpSession session = req.getSession();
@@ -101,7 +103,7 @@ public class LoginOutController extends HttpServlet {
 		// 주소 이동
 		String dispatchUrl = null;
 		if (action.equals("login_input")) {
-			dispatchUrl = "/member/login.jsp";
+			dispatchUrl = "/jsp/member/login.jsp";
 		} else if (action.equals("login")) {
 			
 			HttpSession session = req.getSession();
@@ -109,16 +111,16 @@ public class LoginOutController extends HttpServlet {
 			if(session.getAttribute("member") != null) {
 				dispatchUrl = "/index.jsp";
 			}else {
-				dispatchUrl = "/member/login.jsp";				
+				dispatchUrl = "/jsp/member/login.jsp";				
 			}
 		} else if(action.equals("logout")) {
 			dispatchUrl = "/index.jsp";
 		}else if(action.equals("findidpw")) {
-			dispatchUrl = "member/findidpw.jsp";
+			dispatchUrl = "/jsp/member/findidpw.jsp";
 		}else if(action.equals("findid")) {
-			dispatchUrl = "member/findid.jsp";
+			dispatchUrl = "/jsp/member/findid.jsp";
 		}else if(action.equals("findpw")) {
-			dispatchUrl = "member/findpw.jsp";
+			dispatchUrl = "/jsp/member/findpw.jsp";
 		}
 		
 		
