@@ -24,7 +24,11 @@ import knh.model.Airline;
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
 		, "/goAddAirline", "/updateAirline", "/showAirline", "/updateSetAirline"
+<<<<<<< HEAD
 		, "/deleteFromAirline", "/basketAirline", "/reserveAll", "/writeAirReview"})
+=======
+		, "/deleteFromAirline"})
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 public class AirController extends HttpServlet{
 
 	@Override
@@ -109,6 +113,7 @@ public class AirController extends HttpServlet{
 			int airNo = Integer.parseInt(req.getParameter("airNum"));
 			
 			dao.delete(airNo);
+<<<<<<< HEAD
 			
 		}else if(action.equals("basketAirline")) {
 			AirlineDao dao = new AirlineDaoImpl();
@@ -151,6 +156,8 @@ public class AirController extends HttpServlet{
 			}
 			
 			req.setAttribute("airlineList", airlineList);
+=======
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 		}
 		
 		
@@ -172,12 +179,15 @@ public class AirController extends HttpServlet{
 			dispatcherUrl = "showAirline";
 		}else if(action.equals("deleteFromAirline")) {
 			dispatcherUrl = "showAirline";
+<<<<<<< HEAD
 		}else if(action.equals("basketAirline")) {
 			dispatcherUrl = "/air/basket.jsp";
 		}else if(action.equals("reserveAll")) {
 			dispatcherUrl = "/mainTemp.jsp";
 		}else if(action.equals("writeAirReview")) {
 			dispatcherUrl = "/air/writeAirReview.jsp";
+=======
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 		}
 		
 		
