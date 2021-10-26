@@ -75,3 +75,5 @@ from member m, reservation r, air_reserve ar
 where m.member_no = r.member_no AND r.reserve_no = ar.reserve_no
 and m.member_no = 999
 
+
+
