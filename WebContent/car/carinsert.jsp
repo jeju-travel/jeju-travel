@@ -32,7 +32,7 @@
 <body>
     <main>
         <form  action="car_save" method="post">
-            <h2>렌트카 추가</h2>
+            <h2>렌트카추가</h2>
             <hr>           
             <div calss="size"> 
                 <table class="table_main">	
@@ -88,7 +88,7 @@
 		${message}<br/>
 	
 		<c:if test="${errors!=null }">
-			<p>입력값 오류</p>
+			<p>잘 저장 되었습니다</p>
 			<ul>
 				<c:forEach var="error" items="${errors}">
 					<li>${error}</li>
