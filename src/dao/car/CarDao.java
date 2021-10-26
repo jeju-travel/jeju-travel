@@ -5,6 +5,8 @@ import java.util.List;
 import model.Car;
 import model.CarReserve;
 import model.CarReview;
+import model.Carhoroscope;
+
 public interface CarDao {
 	void insert(Car car);
 	
@@ -13,6 +15,8 @@ public interface CarDao {
 	void CarReview(CarReview carreview);
 	
 	List<Car> CarselectAll();
+	List<Carhoroscope> Carhoroscope();
+	
 	
 	Car selectByCarno(int car_no);	
 	

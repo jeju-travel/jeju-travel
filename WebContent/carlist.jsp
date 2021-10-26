@@ -61,7 +61,7 @@
         <div class="date_main">
             <div class="date_side1">
                 대여일<br/>
-                <input type="date">
+                <input type="date" name="date1">
                 <select name="borrow_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
@@ -79,7 +79,7 @@
             
             <div class="date_side2">
                 반납일<br/>
-                <input type="date">
+                <input type="date" name="date2" readonly>
                 <select name="return_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
@@ -112,13 +112,14 @@
 					<th>최대탑승</th>
 					<th>차종</th>
 					<th>연료</th>
-					<th>대여시간</th>
-					<th>반납시간</th>
-					<th>별점</th>
+					<th>대여</th>
+					<th>반납</th>
 					<th>예약</th>
-				</tr>								
+					<th>별점</th>					
+				</tr>		
+										
 				<c:forEach var="car" items="${carList}">
-					<form action="car_select" method="post">
+					<form action="#" method="post">
 					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 						<tr>
 							<td>${car.car_name}</td>
@@ -127,13 +128,16 @@
 							<td>${car.car_type}</td>
 							<td>${car.car_fuel}</td>
 							<td>${borrow_car}</td>
-							<td>${return_car}</td>						
-							<td>별점</td>
-							<td><input type="submit" class="btn btn-primary sm" value="예약하기"></a>
+							<td>${return_car}</td>
+							<td><input type="submit" class="btn btn-primary btn-sm" value="예약하기"></a>
+							<c:forEach var="carhoroscope" items="${carhoroscopeList}">								
+								<c:if test="${carhoroscope.car_no eq car.car_no}">	
+									<td>${carhoroscope.car_horoscope}</td>	
+								</c:if>							
+							</c:forEach>							
 						</tr>
 					</form>	
 				</c:forEach>
-				
 			</table>
 		</c:if>
 		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>

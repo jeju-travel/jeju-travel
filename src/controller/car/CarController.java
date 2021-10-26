@@ -15,6 +15,7 @@ import dao.car.CarDaoImpl;
 import form.car.CarForm;
 import formerror.CarError;
 import model.Car;
+import model.Carhoroscope;
 import validator.memo.CarValidator;
 
 @WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/car_select"})
@@ -141,13 +142,19 @@ public class CarController extends HttpServlet {
 	         
 	         	       
 	    }else if(action.equals("car_select")) {
+	    	String date1 = req.getParameter("date1");
+	    	String date2 = req.getParameter("date2");
+	    	System.out.println(date1);
 	    	String borrow_car = req.getParameter("borrow_car");
 			String return_car = req.getParameter("return_car");
 	    	
 	    	CarDao dao = new CarDaoImpl();
+	    	List<Carhoroscope> carhoroscopeList = dao.Carhoroscope();
+	    	    	
 			List<Car> carList = dao.CarselectAll();
-			
-			req.setAttribute("carList", carList);			
+									
+			req.setAttribute("carList", carList);
+			req.setAttribute("carhoroscopeList", carhoroscopeList);	
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
 	    }

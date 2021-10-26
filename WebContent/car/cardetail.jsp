@@ -9,6 +9,28 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var car_type = "${car.car_type}";
+	$('select option').each(function(){
+		if(car_type==$(this).val()){
+			$(this).attr('selected', 'selected');
+		}
+	});
+	
+	var car_fuel = "${car.car_fuel}";
+	$('select option').each(function(){
+		if(car_fuel==$(this).val()){
+			$(this).attr('selected', 'selected');
+		}
+	});
+	
+	
+});
+
+</script>
 <style>
     html{
 		height: 100%;

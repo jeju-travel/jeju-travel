@@ -10,6 +10,7 @@ import java.util.List;
 import model.Car;
 import model.CarReserve;
 import model.CarReview;
+import model.Carhoroscope;
 
 
 
@@ -203,6 +204,38 @@ public class CarDaoImpl implements CarDao {
 			JDBCUtil.close(null, pStatement, connection);
 		}
 	}
+	
+	@Override
+	public List<Carhoroscope> Carhoroscope() {
+		List<Carhoroscope> carhoroscopeList = new ArrayList<>();
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultset = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.CAR_REVIEW_HOROSCOPE);
+			resultset = pStatement.executeQuery();				
+			
+			while(resultset.next()) {				
+				
+				Carhoroscope carhoroscope = new Carhoroscope();
+				carhoroscope.setCar_no(resultset.getInt("car_no"));
+				carhoroscope.setCar_horoscope(resultset.getDouble("car_horoscope"));				
+				
+				carhoroscopeList.add(carhoroscope);
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultset, pStatement, connection);
+		}
+		
+		return carhoroscopeList;
+	}
+	
 	/*@Override
 	public void writeinsert(Bbs bbs) {
 		Connection connection =null;
