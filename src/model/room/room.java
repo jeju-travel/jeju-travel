@@ -1,4 +1,4 @@
-package Room;
+package model.room;
 
 public class room {
 
