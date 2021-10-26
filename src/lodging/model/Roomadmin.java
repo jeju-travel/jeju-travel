@@ -1,6 +1,6 @@
-package model;
+package lodging.model;
 
-public class Room {
+public class Roomadmin {
 	private int room_no;
 	private String room_name;
 	private int room_price;
@@ -10,9 +10,9 @@ public class Room {
 	private int lodging_no;
 	private String room_image;
 	
-	public Room() {}
+	public Roomadmin() {}
 	
-	public Room(int room_no, String room_name, int room_price, int room_personnel, String room_configuration,
+	public Roomadmin(int room_no, String room_name, int room_price, int room_personnel, String room_configuration,
 			String room_service, int lodging_no, String room_image) {
 		super();
 		this.room_no = room_no;
@@ -25,7 +25,7 @@ public class Room {
 		this.room_image = room_image;
 	}
 	
-	public Room(String room_name, int room_price, int room_personnel, String room_configuration, String room_service,
+	public Roomadmin(String room_name, int room_price, int room_personnel, String room_configuration, String room_service,
 			int lodging_no, String room_image) {
 		super();
 		this.room_name = room_name;
