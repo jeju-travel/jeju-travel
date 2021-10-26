@@ -61,6 +61,7 @@
             <tr>
             	<td class="lodgingtext"> 숙소 이미지 : </td>
             	<td><input type="text" size="60px" name="lodgingimage" placeholder=" 숙소 이미지를 넣어주세요!"></td>
+           	</tr>
         </table>
         <!-- a링크 이용하여 이전,삭제 변경 -->
     <!-- <center> -->

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import dao.Lodgingadmin.JDBCUtil;
-import lodging.model.Lodgingadmin;
+import model.Lodging.Lodgingadmin;
 
 public class test {
 

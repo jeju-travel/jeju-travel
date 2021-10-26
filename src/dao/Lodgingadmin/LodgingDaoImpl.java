@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.Lodgingadmin.JDBCUtil;
 import dao.Lodgingadmin.Sql;
-import lodging.model.Lodgingadmin;
+import model.Lodging.Lodgingadmin;
 
 public class LodgingDaoImpl implements LodgingDao{
 
