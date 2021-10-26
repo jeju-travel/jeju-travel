@@ -1,4 +1,4 @@
-package lodging.model;
+package model.Lodging;
 
 public class Room_reserve {
 	private int room_reserve_no;

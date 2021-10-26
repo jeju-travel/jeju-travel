@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.Roomadmin.JDBCUtil;
 import dao.Roomadmin.Sql;
-import lodging.model.Roomadmin;
+import model.Lodging.Roomadmin;
 
 public class RoomDaoImpl implements RoomDao{
 

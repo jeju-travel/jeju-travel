@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
-import lodging.model.Lodgingadmin;
+import model.Lodging.Lodgingadmin;
 
 @WebServlet(name="LodgingControlleradmin", urlPatterns= {"/lodging_input","/lodging_save","/lodging_list","/lodging_detail","/lodging_update","/lodging_delete"})
 public class LodgingControlleradmin extends HttpServlet{
@@ -95,17 +95,17 @@ public class LodgingControlleradmin extends HttpServlet{
 		String dispatcherUrl = null;
 		
 		if(action.equals("lodging_input")) {
-			dispatcherUrl = "/lodging_admin/lodgingsave.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/lodgingsave.jsp";
 		}else if(action.equals("lodging_save")) {
-			dispatcherUrl = "/lodging_admin/result.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/result.jsp";
 		}else if(action.equals("lodging_list")) {
-			dispatcherUrl = "/lodging_admin/lodginglist.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/lodginglist.jsp";
 		}else if(action.equals("lodging_detail")) {
-			dispatcherUrl = "/lodging_admin/lodgingdetail.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/lodgingdetail.jsp";
 		}else if(action.equals("lodging_update")) {
-			dispatcherUrl = "/lodging_admin/result.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/result.jsp";
 		}else if(action.equals("lodging_delete")) {
-			dispatcherUrl = "/lodging_admin/result.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/result.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);

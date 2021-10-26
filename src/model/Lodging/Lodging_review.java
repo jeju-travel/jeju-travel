@@ -1,4 +1,4 @@
-package lodging.model;
+package model.Lodging;
 
 public class Lodging_review {
 	private int lodging_review_no;

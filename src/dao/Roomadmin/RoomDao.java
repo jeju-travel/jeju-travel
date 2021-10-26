@@ -2,7 +2,7 @@ package dao.Roomadmin;
 
 import java.util.List;
 
-import lodging.model.Roomadmin;
+import model.Lodging.Roomadmin;
 
 public interface RoomDao {
 	//Ãß°¡

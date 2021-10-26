@@ -12,8 +12,8 @@ public class JDBCUtil {
 	public static final String driver = "oracle.jdbc.driver.OracleDriver";
 	public static final String url = "jdbc:oracle:thin:@192.168.35.185:1521:xe";
 	//로그인
-	public static final String user = "SEUNGHYUN";
-	public static final String password = "1207";
+	public static final String user = "SCOTT";
+	public static final String password = "tiger";
 	
 	//커넥션 객체를 리턴
 	//연결하는 부분

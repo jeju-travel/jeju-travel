@@ -1,4 +1,4 @@
-package lodging.model;
+package model.Lodging;
 
 public class Roomadmin {
 	private int room_no;

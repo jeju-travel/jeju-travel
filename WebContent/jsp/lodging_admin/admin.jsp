@@ -27,23 +27,29 @@
     h1{
         text-align: center;
     }
-    .mainadminlink{
-    	background-color:black;
-    }
     
 </style>
 </head>
 <body>
-	<form method="post" action="adminmain">
+	<form method="post" action="lodging_index">
 		<h1>관리자 모드 <메인></h1>
         
         <!-- a링크 이용하여 이전,삭제 변경 -->
+    <div class="mainadminairlink">
+    	<a href="air_input">항공 추가</a><br/>
+    	<a href="air_detail">항공 수정 및 삭제</a>
+    </div>
     <!-- <center> -->
-    <div class="mainadminlink">
+    <div class="mainadminlodginglink">
         <!--  <button type="submit" class="btn btn-primary">이전</button> -->
-        
-        <a href="lodging_input">숙소 추가</a>
-        <a href="lodging_detail">숙소 수정 및 삭제</a>
+        <a href="lodging_save">숙소 추가</a><br/>
+        <a href="room_input">객실 추가</a><br/>
+        <a href="lodging_detail">숙소 수정 및 삭제</a><br/>
+        <a href="room_detail">객실 수정 및 삭제</a><br/>
+    </div>
+    <div class="mainadmincarlink">
+    	<a href="car_input">렌트카 추가</a><br/>
+    	<a href="car_detail">렌트카 수정 및 삭제</a>
     </div>
     <!-- </center> -->
 	</form>
