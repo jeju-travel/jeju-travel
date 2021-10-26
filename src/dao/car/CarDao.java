@@ -2,10 +2,10 @@ package dao.car;
 
 import java.util.List;
 
-import model.Car;
-import model.CarReserve;
-import model.CarReview;
-import model.Carhoroscope;
+import model.car.Car;
+import model.car.CarReserve;
+import model.car.CarReview;
+import model.car.Carhoroscope;
 
 public interface CarDao {
 	void insert(Car car);

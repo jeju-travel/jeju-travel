@@ -1,4 +1,4 @@
-package formerror;
+package formerror.car;
 
 public class CarError {
 	private String car_nameErr;

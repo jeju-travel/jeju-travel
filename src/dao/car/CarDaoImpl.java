@@ -6,11 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import model.Car;
-import model.CarReserve;
-import model.CarReview;
-import model.Carhoroscope;
+import model.car.Car;
+import model.car.CarReserve;
+import model.car.CarReview;
+import model.car.Carhoroscope;
 
 
 
@@ -71,10 +70,11 @@ public class CarDaoImpl implements CarDao {
 		try {
 			connection = JDBCUtil.getConnection();
 			pStatement = connection.prepareStatement(Sql.CAR_REVIEW_INSERT_SQL);					
-
-			pStatement.setString(1, carreview.getCar_content());
-			pStatement.setInt(2, carreview.getCar_horoscope());			
-			pStatement.setInt(3, carreview.getCar_reserve_no());
+			
+			pStatement.setString(1, carreview.getWriter());
+			pStatement.setString(2, carreview.getCar_content());			
+			pStatement.setInt(3, carreview.getCar_horoscope());			
+			pStatement.setInt(4, carreview.getCar_no());
 			
 			pStatement.executeUpdate();			
 			

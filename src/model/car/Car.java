@@ -1,4 +1,6 @@
-package model;
+package model.car;
+
+import java.util.List;
 
 public class Car {
 	private int car_no;
@@ -8,8 +10,7 @@ public class Car {
 	private int capacity;
 	private String car_fuel;
 	private String car_loc;
-	private String car_img;
-	
+	private String car_img;	
 	public Car() {}
 
 	public Car(int car_no, String car_name, String car_type, int car_price, int capacity, String car_fuel,
@@ -24,8 +25,8 @@ public class Car {
 		this.car_loc = car_loc;
 		this.car_img = car_img;
 	}
-	
-	
+		
+
 	public int getCar_no() {
 		return car_no;
 	}
@@ -89,6 +90,7 @@ public class Car {
 	public void setCar_img(String car_img) {
 		this.car_img = car_img;
 	}
+	
 
 	@Override
 	public String toString() {

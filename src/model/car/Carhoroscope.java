@@ -1,4 +1,4 @@
-package model;
+package model.car;
 
 public class Carhoroscope {
 	private int car_no;

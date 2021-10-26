@@ -1,10 +1,10 @@
-package validator.memo;
+package validator.car;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import form.car.CarForm;
-import formerror.CarError;
+import formerror.car.CarError;
 
 public class CarValidator {
 	/*

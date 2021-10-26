@@ -22,13 +22,12 @@ public class Sql {
 			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?,?)";
 	//·»Æ®Ä« ¸®ºä
 	public static final String CAR_REVIEW_INSERT_SQL=
-			"insert into car_review values(seq_car_review_no.nextval,?,?,?)";	
+			"insert into car_review values(seq_car_review_no.nextval,?,?,?,?)";	
 	
 	public static final String CAR_REVIEW_HOROSCOPE =
 			"select car.car_no,avg(car_horoscope) as car_horoscope\r\n" + 
-			"from car car, CAR_RESERVE car_reserve, car_review car_review\r\n" + 
-			"where car.car_no = car_reserve.car_no \r\n" + 
-			"AND	car_reserve.car_reserve_no = car_review.car_reserve_no\r\n" + 
+			"from car car, car_review car_review\r\n" + 
+			"where car.car_no = car_review.car_no\r\n" + 
 			"group by car.car_no";
 			
 	/*public static final String CUSTOMER_CNT_SQL=

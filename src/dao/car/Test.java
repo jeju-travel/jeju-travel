@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import model.Car;
-import model.CarReserve;
-import model.CarReview;
+import model.car.Car;
+import model.car.CarReserve;
+import model.car.CarReview;
 
 
 public class Test {
@@ -43,8 +43,9 @@ public class Test {
 		//------------렌트카 CAR_REVIEW db insert문-------------
 		
 		carReview.setCar_content("여기는 리뷰작성내용");
+		carReview.setWriter("id");
 		carReview.setCar_horoscope(4);
-		carReview.setCar_reserve_no(1);
+		carReview.setCar_no(1);
 		cardao.CarReview(carReview);
 		
 		/*System.out.println(dao.selectCntById("id"));

@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
 import form.car.CarForm;
-import formerror.CarError;
-import model.Car;
-import model.Carhoroscope;
-import validator.memo.CarValidator;
+import formerror.car.CarError;
+import model.car.Car;
+import model.car.Carhoroscope;
+import validator.car.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/car_select"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car_select"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -144,7 +144,7 @@ public class CarController extends HttpServlet {
 	    }else if(action.equals("car_select")) {
 	    	String date1 = req.getParameter("date1");
 	    	String date2 = req.getParameter("date2");
-	    	System.out.println(date1);
+	    	System.out.println(date2);
 	    	String borrow_car = req.getParameter("borrow_car");
 			String return_car = req.getParameter("return_car");
 	    	
@@ -179,7 +179,7 @@ public class CarController extends HttpServlet {
 			dispatcherUrl = "car_search";	
 			
 	    }else if(action.equals("car_select")) {
-	    	dispatcherUrl = "carlist.jsp";
+	    	dispatcherUrl = "../jsp/carlist.jsp";
 	    }
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
