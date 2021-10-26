@@ -5,6 +5,7 @@ public class AirReserve {
 	private int airReserveNo;
 	private String takeOff;
 	private String landing;
+	private int personnel;
 	private int reserveNo;
 	private int airNo;
 	
@@ -31,6 +32,15 @@ public class AirReserve {
 	public void setLanding(String landing) {
 		this.landing = landing;
 	}
+	
+	public int getPersonnel() {
+		return personnel;
+	}
+
+	public void setPersonnel(int personnel) {
+		this.personnel = personnel;
+	}
+
 	public int getReserveNo() {
 		return reserveNo;
 	}

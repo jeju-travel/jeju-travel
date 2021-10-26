@@ -2,6 +2,7 @@ package knh.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import knh.dao.AirReserveDao;
+import knh.dao.AirReserveDaoImpl;
+import knh.dao.AirReviewDao;
+import knh.dao.AirReviewDaoImpl;
 import knh.dao.AirlineDao;
 import knh.dao.AirlineDaoImpl;
 import knh.model.Airline;
@@ -19,7 +24,11 @@ import knh.model.Airline;
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
 		, "/goAddAirline", "/updateAirline", "/showAirline", "/updateSetAirline"
+<<<<<<< HEAD
+		, "/deleteFromAirline", "/basketAirline", "/reserveAll", "/writeAirReview"})
+=======
 		, "/deleteFromAirline"})
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 public class AirController extends HttpServlet{
 
 	@Override
@@ -104,6 +113,51 @@ public class AirController extends HttpServlet{
 			int airNo = Integer.parseInt(req.getParameter("airNum"));
 			
 			dao.delete(airNo);
+<<<<<<< HEAD
+			
+		}else if(action.equals("basketAirline")) {
+			AirlineDao dao = new AirlineDaoImpl();
+			
+			int airNo = Integer.parseInt(req.getParameter("airNo"));
+			int personnel = Integer.parseInt(req.getParameter("personnel"));
+			
+			Airline airline = dao.selectByNo(airNo);
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("reserveAirline", airline);
+			session.setAttribute("airPersonnel", personnel);
+			
+		}else if(action.equals("reserveAll")) {
+			
+			int airNo = Integer.parseInt(req.getParameter("reserve_airNo"));
+			HttpSession session = req.getSession();
+			int personnel = (int) session.getAttribute("airPersonnel");
+
+			AirlineDao dao = new AirlineDaoImpl();
+			Airline airline = dao.selectByNo(airNo);
+			
+			AirReserveDao reserveDao = new AirReserveDaoImpl();
+			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, 1001, airNo);
+			
+			session.removeAttribute("sDay");
+			session.removeAttribute("eDay");
+			session.removeAttribute("reserveAirline");
+			session.removeAttribute("airPersonnel");
+			
+		}else if(action.equals("writeAirReview")) {
+			List<Airline> airlineList = new ArrayList<>();
+			
+			AirReviewDao reviewDao = new AirReviewDaoImpl();
+			List<Integer> reserveList = reviewDao.check_member(999);
+			
+			AirlineDao dao = new AirlineDaoImpl();
+			for (Integer i : reserveList) {
+				airlineList.add(dao.selectByNo(i));
+			}
+			
+			req.setAttribute("airlineList", airlineList);
+=======
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 		}
 		
 		
@@ -125,6 +179,15 @@ public class AirController extends HttpServlet{
 			dispatcherUrl = "showAirline";
 		}else if(action.equals("deleteFromAirline")) {
 			dispatcherUrl = "showAirline";
+<<<<<<< HEAD
+		}else if(action.equals("basketAirline")) {
+			dispatcherUrl = "/air/basket.jsp";
+		}else if(action.equals("reserveAll")) {
+			dispatcherUrl = "/mainTemp.jsp";
+		}else if(action.equals("writeAirReview")) {
+			dispatcherUrl = "/air/writeAirReview.jsp";
+=======
+>>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
 		}
 		
 		
