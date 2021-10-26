@@ -1,4 +1,4 @@
-package knh.model;
+package model.air;
 
 public class Airline {
 

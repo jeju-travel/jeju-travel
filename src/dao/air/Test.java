@@ -1,4 +1,4 @@
-package knh.dao;
+package dao.air;
 
 import java.util.List;
 
