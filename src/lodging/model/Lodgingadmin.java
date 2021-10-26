@@ -1,15 +1,15 @@
-package model;
+package lodging.model;
 
-public class Lodging {
+public class Lodgingadmin {
 	private int lodging_no;
 	private String lodging_name;
 	private String lodging_loc;
 	private String lodging_phone;
 	private String lodging_image;
 	
-	public Lodging() {}
+	public Lodgingadmin() {}
 	
-	public Lodging(int lodging_no, String lodging_name, String lodging_loc, String lodging_phone,
+	public Lodgingadmin(int lodging_no, String lodging_name, String lodging_loc, String lodging_phone,
 			String lodging_image) {
 		super();
 		this.lodging_no = lodging_no;
@@ -19,7 +19,7 @@ public class Lodging {
 		this.lodging_image = lodging_image;
 	}
 	
-	public Lodging(String lodging_name, String lodging_loc, String lodging_phone, String lodging_image) {
+	public Lodgingadmin(String lodging_name, String lodging_loc, String lodging_phone, String lodging_image) {
 		super();
 		this.lodging_name = lodging_name;
 		this.lodging_loc = lodging_loc;

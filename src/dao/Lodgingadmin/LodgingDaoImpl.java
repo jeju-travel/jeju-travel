@@ -1,4 +1,4 @@
-package dao.Lodging;
+package dao.Lodgingadmin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.Lodging.JDBCUtil;
-import dao.Lodging.Sql;
-import model.Lodging;
+import dao.Lodgingadmin.JDBCUtil;
+import dao.Lodgingadmin.Sql;
+import lodging.model.Lodgingadmin;
 
 public class LodgingDaoImpl implements LodgingDao{
 
 	@Override
-	public void insert(Lodging lodging) {
+	public void insert(Lodgingadmin lodging) {
 		Connection connection = null;
 		//insert하기 위해 필요한 것
 		PreparedStatement pStatement = null;
@@ -40,8 +40,8 @@ public class LodgingDaoImpl implements LodgingDao{
 	}
 	
 	@Override
-	public List<Lodging> selectAll() {
-	      List<Lodging> lodgingList = new ArrayList<>();
+	public List<Lodgingadmin> selectAll() {
+	      List<Lodgingadmin> lodgingList = new ArrayList<>();
 	      
 	      Connection connection = null;
 	      PreparedStatement pStatement = null;
@@ -53,7 +53,7 @@ public class LodgingDaoImpl implements LodgingDao{
 	         resultset = pStatement.executeQuery();            
 	         
 	         while(resultset.next()) {            
-	            Lodging lodging = new Lodging();
+	            Lodgingadmin lodging = new Lodgingadmin();
 	            
 	            lodging.setLodging_no(resultset.getInt("lodging_no"));
 	            lodging.setLodging_name(resultset.getString("lodging_name"));
@@ -75,7 +75,7 @@ public class LodgingDaoImpl implements LodgingDao{
 	   }
 	
 	@Override
-	   public void update(Lodging lodging) {
+	   public void update(Lodgingadmin lodging) {
 	      Connection connection =null;
 	      PreparedStatement pStatement = null;
 	      try {
@@ -121,8 +121,8 @@ public class LodgingDaoImpl implements LodgingDao{
 	   }
 	
 	@Override
-	   public Lodging selectBylodging_no(int lodging_no) {      
-		Lodging lodging = null;
+	   public Lodgingadmin selectBylodging_no(int lodging_no) {      
+		Lodgingadmin lodging = null;
 	      
 	      Connection connection = null;
 	      PreparedStatement pStatement = null;
@@ -136,7 +136,7 @@ public class LodgingDaoImpl implements LodgingDao{
 	         resultset = pStatement.executeQuery();       
 	         
 	         if(resultset.next()) {   
-	            lodging = new Lodging();
+	            lodging = new Lodgingadmin();
 	            
 	            lodging.setLodging_no(resultset.getInt("lodging_no"));
 	            lodging.setLodging_name(resultset.getString("lodging_name"));

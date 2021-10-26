@@ -1,10 +1,10 @@
-package dao.Lodging;
+package dao.Lodgingadmin;
 
 import java.sql.Connection;
 import java.util.List;
 
-import dao.Lodging.JDBCUtil;
-import model.Lodging;
+import dao.Lodgingadmin.JDBCUtil;
+import lodging.model.Lodgingadmin;
 
 public class test {
 
@@ -12,7 +12,7 @@ public class test {
 		Connection connection = JDBCUtil.getConnection();
 		
 		LodgingDao lodgingDao = new LodgingDaoImpl();
-		Lodging lodging = new Lodging();
+		Lodgingadmin lodging = new Lodgingadmin();
 		
 		//insert
 		/*lodging.setLodging_name("ø¿º«∫‰¡¶¡÷");

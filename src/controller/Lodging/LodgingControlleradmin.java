@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Lodging.LodgingDao;
-import dao.Lodging.LodgingDaoImpl;
-import model.Lodging;
+import dao.Lodgingadmin.LodgingDao;
+import dao.Lodgingadmin.LodgingDaoImpl;
+import lodging.model.Lodgingadmin;
 
-@WebServlet(name="LodgingController", urlPatterns= {"/lodging_input","/lodging_save","/lodging_list","/lodging_detail","/lodging_update","/lodging_delete"})
-public class LodgingController extends HttpServlet{
+@WebServlet(name="LodgingControlleradmin", urlPatterns= {"/lodging_input","/lodging_save","/lodging_list","/lodging_detail","/lodging_update","/lodging_delete"})
+public class LodgingControlleradmin extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -44,7 +45,7 @@ public class LodgingController extends HttpServlet{
 			String lodging_phone = req.getParameter("lodgingphone");
 			String lodging_image = req.getParameter("lodgingimage");
 			
-			Lodging lodging = new Lodging(lodging_name,lodging_loc,lodging_phone,lodging_image);
+			Lodgingadmin lodging = new Lodgingadmin(lodging_name,lodging_loc,lodging_phone,lodging_image);
 			
 			LodgingDao lodgingDao = new LodgingDaoImpl();
 			lodgingDao.insert(lodging);
@@ -55,13 +56,13 @@ public class LodgingController extends HttpServlet{
 			System.out.println("list 도착하였습니다.");
 			
 			LodgingDao lodgingDao = new LodgingDaoImpl();
-			List<Lodging> lodgingList = lodgingDao.selectAll();
+			List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
 			req.setAttribute("lodgingList", lodgingList);
 			
 		}else if(action.equals("lodging_detail")) {
 			int lodging_no = Integer.parseInt(req.getParameter("lodging_no"));
 			LodgingDao lodgingDao = new LodgingDaoImpl();
-			Lodging lodging = lodgingDao.selectBylodging_no(lodging_no);
+			Lodgingadmin lodging = lodgingDao.selectBylodging_no(lodging_no);
 			System.out.println(lodging);
 			req.setAttribute("lodging", lodging);	
 		
@@ -75,7 +76,7 @@ public class LodgingController extends HttpServlet{
 			String lodging_phone = req.getParameter("lodging_phone");
 			String lodging_image = req.getParameter("lodging_image");
 			
-			Lodging lodging = new Lodging(lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_image);
+			Lodgingadmin lodging = new Lodgingadmin(lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_image);
 			LodgingDao lodgingDao = new LodgingDaoImpl();
 			lodgingDao.update(lodging);
 			
@@ -89,8 +90,6 @@ public class LodgingController extends HttpServlet{
 			
 			req.setAttribute("message", "삭제되었습니다.");
 		}
-		
-		//커밋 테스트
 		
 		//화면구성
 		String dispatcherUrl = null;

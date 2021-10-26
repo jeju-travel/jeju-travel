@@ -1,4 +1,4 @@
-package dao.Lodging;
+package dao.Lodgingadmin;
 
 public class Sql {
 	public static final String Lodging_INSERT_SQL=
