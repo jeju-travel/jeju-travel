@@ -113,9 +113,10 @@ body{
 <form action="review_insert">
 리뷰 쓰기 미완성 
 <div class="box">
-<!--<c:if test="${1 != null}">-->
+<c:if test="${air != null}">
 	<div class="backImg" >
-	<img src="${img}" style="max-width: 100%; height: auto;"> 
+	<h3>${air.airName}</h3>
+	<img src="${air.airImage}" style="max-width: 100%; height: auto;"> 
 	</div>
 	<div>
 	<div class="star-rating space-x-4 mx-auto">
@@ -133,12 +134,13 @@ body{
 
 	<textarea name="airContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
-<!--</c:if>-->
+</c:if>
 </div>
 
 <div class="box">
 <!--<c:if test="${1 != null}">-->
 	<div class="backImg">
+	<h3>${lodging}</h3>
 	<img src="https://blog.kakaocdn.net/dn/LlRM7/btqzaY2Liml/Aw8jye6FPKb9m9loTi0Zdk/img.jpg" style="max-width: 100%; height: auto;"> 
 	</div>
 	
@@ -162,9 +164,10 @@ body{
 </div>
 
 <div class="box">
-<!--<c:if test="${1 != null}">-->
-	<div class="backImg" >
-	<img src="https://contents.hiltonhotels.jp/ko/h/kyohi/hotel_main_20200517222112_lg_sp.jpg" style="max-width: 100%; height: auto;"> 
+<c:if test="${car != null}">
+	<div class="car.backImg" >
+	<h3>${car.car_name}</h3>
+	<img src="${car.car_img}" style="max-width: 100%; height: auto;"> 
 	</div>
 	<div>
 	
@@ -183,7 +186,7 @@ body{
 	
 	<textarea name="carContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
-<!--</c:if>-->
+</c:if>
 </div>
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,14 +44,39 @@
         padding: 20px;        
     }
     
+    li{
+    	list-style: none;
+    }
+    
+    a{
+    	text-decoration: none;
+    }
+    
 </style>
 <body>
-    <header class="header_nav">        
+    <header class="header_nav">     
+    	<c:if test="${member != null }">   
         <ul class="login_memu">
-            <li><a href="#">회원가입</a></li>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">마이페이지</a></li>
+        	<li>${member}님 환영합니다</li>
+            <li><a href="logout">로그아웃</a></li>
+            <li><a href="mypage">마이페이지</a></li>
         </ul>
+        </c:if>
+        
+        <c:if test="${admin != null }">
+        <ul class="login_memu">
+        	<li>${admin}님 환영합니다</li>
+            <li><a href="logout">로그아웃</a></li>
+        </ul>
+        </c:if>
+        
+        <c:if test="${admin == null && member == null}">
+        <ul class="login_memu">
+            <li><a href="join">회원가입</a></li>
+            <li><a href="login_input">로그인</a></li>
+ 
+        </ul>
+        </c:if>
     </header>
     
    	<main>

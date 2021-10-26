@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import model.Reservation;
+import model.manager.Reservation;
 import util.JDBCUtil;
 
 

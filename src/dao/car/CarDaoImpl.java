@@ -147,7 +147,7 @@ public class CarDaoImpl implements CarDao {
 				car.setCapacity(resultset.getInt("capacity"));
 				car.setCar_fuel(resultset.getString("car_fuel"));
 				car.setCar_loc(resultset.getString("car_loc"));
-				car.setCar_img(resultset.getString("car_img"));
+				car.setCar_img(resultset.getString("car_image"));
 			}			
 			
 			

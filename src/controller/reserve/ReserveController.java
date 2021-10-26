@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.air.AirlineDao;
+import dao.air.AirlineDaoImpl;
+import dao.car.CarDao;
+import dao.car.CarDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
-import model.Reservation;
+import model.air.Airline;
+import model.car.Car;
+import model.manager.Reservation;
 
 @WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart", "/review_insert" })
 public class ReserveController extends HttpServlet {
@@ -50,6 +56,17 @@ public class ReserveController extends HttpServlet {
 			
 		} else if(action.equals("review")) {
 			
+			int airNo = Integer.parseInt(req.getParameter("air"));
+			int carNo = Integer.parseInt(req.getParameter("car"));
+			
+			AirlineDao airDao = new AirlineDaoImpl();
+			Airline air = airDao.selectByNo(airNo);
+			
+			CarDao carDao = new CarDaoImpl();
+			Car car = carDao.selectByCarno(carNo);
+			
+			req.setAttribute("air", air);
+			req.setAttribute("car", car);
 			
 		} else if(action.equals("shopping_cart")) {
 			
