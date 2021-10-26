@@ -54,7 +54,6 @@
     </header>
     
    	<main>
-    	테스트용:<a href="car_input">관리자모드 car</a>
         <h3>제주여행</h3>
         <form action="jsp/main/air.jsp" method="post">           
             <div class="main_center">
