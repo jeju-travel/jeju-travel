@@ -3,10 +3,10 @@ package model;
 public class Admin {
 
 	
-	private static int no;
-	private static String name;
-	private static String id;
-	private static String pw;
+	private int no;
+	private String name;
+	private String id;
+	private String pw;
 	
 	
 	
@@ -28,6 +28,10 @@ public class Admin {
 	}
 	
 	
+	public Admin() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNo() {
 		return no;
 	}

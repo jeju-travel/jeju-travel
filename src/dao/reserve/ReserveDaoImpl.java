@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.member.JDBCUtil;
+
 import model.Reservation;
+import util.JDBCUtil;
 
 
 public class ReserveDaoImpl implements ReserveDao{
