@@ -3,8 +3,9 @@ package dao.Lodgingadmin;
 import java.sql.Connection;
 import java.util.List;
 
-import dao.Lodgingadmin.JDBCUtil;
+
 import model.Lodging.Lodgingadmin;
+import util.JDBCUtil;
 
 public class test {
 

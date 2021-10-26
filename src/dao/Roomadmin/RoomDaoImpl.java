@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.Roomadmin.JDBCUtil;
+
 import dao.Roomadmin.Sql;
 import model.Lodging.Roomadmin;
+import util.JDBCUtil;
 
 public class RoomDaoImpl implements RoomDao{
 

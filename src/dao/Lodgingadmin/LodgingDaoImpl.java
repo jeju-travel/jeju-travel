@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.Lodgingadmin.JDBCUtil;
+
 import dao.Lodgingadmin.Sql;
 import model.Lodging.Lodgingadmin;
+import util.JDBCUtil;
 
 public class LodgingDaoImpl implements LodgingDao{
 

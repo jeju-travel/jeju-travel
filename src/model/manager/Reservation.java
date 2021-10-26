@@ -8,6 +8,36 @@ public class Reservation {
 	private String endDay;
 	private String state;
 	private String items;
+	private int airNo;
+	private int carNo;
+	private int roomNo;
+	
+	
+	
+	
+	public int getAirNo() {
+		return airNo;
+	}
+
+	public void setAirNo(int airNo) {
+		this.airNo = airNo;
+	}
+
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
+	public int getRoomNo() {
+		return roomNo;
+	}
+
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
 
 	public String getItems() {
 		return items;
@@ -21,6 +51,22 @@ public class Reservation {
 		
 	}
 	
+	
+	
+	public Reservation(int resNo, int memNo, String startDay, String endDay, String state, String items, int airNo,
+			int carNo, int roomNo) {
+		super();
+		this.resNo = resNo;
+		this.memNo = memNo;
+		this.startDay = startDay;
+		this.endDay = endDay;
+		this.state = state;
+		this.items = items;
+		this.airNo = airNo;
+		this.carNo = carNo;
+		this.roomNo = roomNo;
+	}
+
 	public Reservation(int resNo, int memNo, String startDay, String endDay, String state) {
 		super();
 		this.resNo = resNo;
