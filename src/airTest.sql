@@ -16,7 +16,6 @@ insert into RESERVATION values (1001, 999, SYSDATE-90, SYSDATE-87, '다녀옴')
 insert into RESERVATION values (1002, 999, SYSDATE-90, SYSDATE-88, '취소')
 insert into RESERVATION values (1003, 999, SYSDATE-40, SYSDATE-37, '다녀옴')
 insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, '예약')
-<<<<<<< HEAD
 insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 2, 1001, 3)
 select * from RESERVATION
 
@@ -76,30 +75,3 @@ from member m, reservation r, air_reserve ar
 where m.member_no = r.member_no AND r.reserve_no = ar.reserve_no
 and m.member_no = 999
 
-=======
-select * from RESERVATION
-
-DROP TABLE AIR_RESERVE 
-	CASCADE CONSTRAINTS;
-	
-CREATE TABLE AIR_RESERVE (
-	ari_reserve_no NUMBER NOT NULL, /* 항공예약번호 */
-	take_off VARCHAR2(10), /* 항공가는시간 */
-	landing VARCHAR2(10), /* 항공오는시간 */
-	personnel NUMBER, /* 인원 */
-	reserve_no NUMBER, /* 예약번호 */
-	air_no NUMBER /* 비행기번호 */
-);
-
-CREATE UNIQUE INDEX PK_AIR_RESERVE
-	ON AIR_RESERVE (
-		ari_reserve_no ASC
-	);
-
-ALTER TABLE AIR_RESERVE
-	ADD
-		CONSTRAINT PK_AIR_RESERVE
-		PRIMARY KEY (
-			ari_reserve_no
-		);
->>>>>>> branch 'namho' of https://github.com/jeju-travel/jeju-travel.git
