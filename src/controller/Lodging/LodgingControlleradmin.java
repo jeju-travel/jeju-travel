@@ -91,6 +91,8 @@ public class LodgingControlleradmin extends HttpServlet{
 			req.setAttribute("message", "삭제되었습니다.");
 		}
 		
+		//테스트테스트테스트
+		
 		//화면구성
 		String dispatcherUrl = null;
 		
