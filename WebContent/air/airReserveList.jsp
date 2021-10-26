@@ -20,14 +20,19 @@
 		<th></th>
 	</tr>
 	<c:forEach var="airline" items="${airlineList}">
+	<form method="post" action="basketAirline">
 	<tr>
-		<td>${airline.airName}</td>
+		<td>${airline.airName}
+			<input type="text" name="airNo" value="${airline.airNo}" hidden="hidden">
+		</td>
 		<td>${sDay}</td>
 		<td>${eDay}</td>
 		<td>${airline.takeOff}</td>
 		<td>${airline.price}원</td>
 		<td><input type="text" name="personnel">명</td>
-		<td><button onclick="location.href='reserveAirline?airNo=${airline.airNo}'">예약하기</button></td>
+		<td><input type="submit" value="예약하기"></td>
+	</tr>
+	</form>
 	</c:forEach>
 	
 </table>

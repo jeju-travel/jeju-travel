@@ -22,5 +22,8 @@
 	도착 날짜 <input type="date" name="endDay" value=<%= sf.format(calEnd.getTime()) %>><br>
 	<input type="submit" value="검색">
 </form>
+	<input type="button" value="항공등록하기" onclick="location.href='goAddAirline'">
+	<input type="button" value="항공수정하기" onclick="location.href='showAirline'"><br>
+	<input type="button" value="댓글쓰기" onclick="location.href='writeAirReview'">
 </body>
 </html>

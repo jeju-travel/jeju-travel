@@ -67,8 +67,27 @@ public class AirlineDaoImpl implements AirlineDao {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
+	public void delete(int airNo) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.AIRLINE_DELETE);
+			
+			pStatement.setInt(1, airNo);
+			
+			pStatement.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(null, pStatement, connection);
+		}
 
 	}
 	
