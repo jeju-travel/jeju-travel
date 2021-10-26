@@ -1,12 +1,13 @@
-package member;
+package dao.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-
-import member.Sql;
+import dao.member.Sql;
+import model.Admin;
+import model.Member;
 
 
 
@@ -359,6 +360,53 @@ public Member selectByNo(int no) {
 		}
 
 		return pw;
+	}
+
+	
+public Member AdminLogin(String id, String pw) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		Member member = new Member();
+	
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.ADMIN_LOGIN);
+
+			
+			pStatement.setString(1,id);
+			pStatement.setString(2,pw);
+			
+
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				
+				
+				
+				Admin.setNo(resultSet.getInt("admin_no"));
+			
+				Admin.setId(resultSet.getString("id"));
+				Admin.setPw(resultSet.getString("pw"));
+				
+				Admin.setName(resultSet.getString("name"));
+	
+				
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+
+		
+			
+		return member;
 	}
 
 }

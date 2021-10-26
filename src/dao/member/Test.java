@@ -1,4 +1,6 @@
-package member;
+package dao.member;
+
+import model.Member;
 
 public class Test {
 

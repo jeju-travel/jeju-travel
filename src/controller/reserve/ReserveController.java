@@ -1,4 +1,4 @@
-package reserve;
+package controller.reserve;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import reserve.Reservation;
-import reserve.ReserveDao;
-import reserve.ReserveDaoImpl;
+import dao.reserve.ReserveDao;
+import dao.reserve.ReserveDaoImpl;
+import model.Reservation;
 
 @WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart", "/review_insert" })
 public class ReserveController extends HttpServlet {
@@ -66,6 +65,11 @@ public class ReserveController extends HttpServlet {
 			req.setAttribute("room", room);
 			req.setAttribute("car", car);
 		} else if(action.equals("review_insert")){
+			
+			String airContent = req.getParameter("airContent");
+			int airStar = Integer.parseInt(req.getParameter("airStar"));
+			int resNo = Integer.parseInt(req.getParameter("airResNo"));
+			
 			
 			
 		}

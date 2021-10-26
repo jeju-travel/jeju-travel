@@ -1,6 +1,8 @@
-package reserve;
+package dao.reserve;
 
 import java.util.List;
+
+import model.Reservation;
 
 public interface ReserveDao {
 

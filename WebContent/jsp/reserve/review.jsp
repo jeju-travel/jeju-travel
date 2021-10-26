@@ -6,6 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 페이지</title>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	
+	$('.btn_cancle').on('click',function(){
+		$(location).attr('href','mypage');
+	});
+	
+	
+})
+
+</script>
+
 <style>
 
 .star-rating {

@@ -1,6 +1,10 @@
-package member;
+package dao.member;
+
+
 
 import java.util.List;
+
+import model.Member;
 
 public interface MemberDao {
 
@@ -17,10 +21,14 @@ public interface MemberDao {
 	public void update(Member member);
 	
 	public Member login(String id, String pw);
+
+	public Member adminLogin(String id, String pw);
 	
 	public int selectCntById(String id);
 	
 	public String FindId(String name, String phone);
 	
 	public String FindPw(String id, String name, String hint, String answer);
+	
+	
 }

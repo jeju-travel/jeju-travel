@@ -1,4 +1,4 @@
-package reserve;
+package model;
 
 public class Reservation {
 	
