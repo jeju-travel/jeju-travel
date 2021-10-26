@@ -92,13 +92,35 @@ public class MemberController extends HttpServlet {
 				//예약 항목 뽑아오기
 				int num[] = dao.selectItemNoByResNo(res.getResNo());
 				
+				System.out.println("1: " + num[0] + " 2: " +num[1] + " 3: " +num[2]);
 				String items = "";
 				
 				for(int i=0; i<3; i ++) {
 					if(num[i] != 0) {
 						//예약번호를 넣어서 항목이름 뽑아오기
-					
-						items += "	결과값	" ;
+						switch(i) {
+						//항공 이름 가져오기
+						case 0:
+							
+							
+							items += "	결과값	" ;
+							break;
+						//숙소 이름 가져오기
+						case 1:
+							
+							
+							items += "	결과값	" ;
+							break;
+						//차 이름 가져오기	
+						case 2:
+							
+							
+							items += "	결과값	" ;
+							break;
+						}
+							
+						
+			
 					}
 				}
 				
