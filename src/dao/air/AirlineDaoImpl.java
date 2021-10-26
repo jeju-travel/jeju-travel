@@ -1,4 +1,4 @@
-package knh.dao;
+package dao.air;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import knh.model.Airline;
-import knh.sql.Sql;
+import model.air.Airline;
+import sql.air.Sql;
 
 public class AirlineDaoImpl implements AirlineDao {
 

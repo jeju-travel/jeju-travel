@@ -1,8 +1,8 @@
-package knh.dao;
+package dao.air;
 
 import java.util.List;
 
-import knh.model.Airline;
+import model.air.Airline;
 
 public interface AirlineDao {
 	

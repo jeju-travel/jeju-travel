@@ -1,4 +1,4 @@
-package knh.sql;
+package sql.air;
 
 public class Sql {
 	
