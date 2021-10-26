@@ -16,7 +16,7 @@ import reserve.Reservation;
 import reserve.ReserveDao;
 import reserve.ReserveDaoImpl;
 
-@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail" })
+@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart", "/review_insert" })
 public class ReserveController extends HttpServlet {
 
 	@Override
@@ -40,10 +40,34 @@ public class ReserveController extends HttpServlet {
 		// logic
 		if (action.equals("res_detail")) {
 
-			String resNo = req.getParameter("resNo");
+			int resNo = Integer.parseInt(req.getParameter("resNo"));
 			System.out.println(resNo);
 			
-			req.setAttribute("no", resNo);
+			ReserveDao dao = new ReserveDaoImpl();
+			Reservation res = dao.selectByResNo(resNo);
+			
+			
+			req.setAttribute("res", res);
+			
+		} else if(action.equals("review")) {
+			
+			
+		} else if(action.equals("shopping_cart")) {
+			
+			HttpSession session = req.getSession();
+			
+			
+			//나중에 수정
+			String air = (String) session.getAttribute("air");
+			String room = (String) session.getAttribute("room");
+			String car = (String) session.getAttribute("car");
+		
+			req.setAttribute("air", air);
+			req.setAttribute("room", room);
+			req.setAttribute("car", car);
+		} else if(action.equals("review_insert")){
+			
+			
 		}
 
 
@@ -51,7 +75,14 @@ public class ReserveController extends HttpServlet {
 		String dispatchUrl = null;
 		if (action.equals("res_detail")) {
 			dispatchUrl = "/reserve/res_detail.jsp";
-		} 
+		} else if(action.equals("review")) {
+			dispatchUrl = "/reserve/review.jsp";
+		} else if(action.equals("shopping_cart")) {
+			dispatchUrl = "/reserve/shoppingbasket.jsp";
+		}  else if(action.equals("review_insert")){
+			dispatchUrl = "/member.mypage.jsp";
+			
+		}
 
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatchUrl);

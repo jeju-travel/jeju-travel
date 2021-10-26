@@ -87,9 +87,9 @@ public class ReserveDaoImpl implements ReserveDao{
 				
 				//a.air_no, c.car_no, room.room_no
 				
-				int air_no = resultSet.getInt("a.air_no");
-				int car_no = resultSet.getInt("c.car_no");
-				int room_no = resultSet.getInt("room.room_no");
+				int air_no = resultSet.getInt("air_no");
+				int car_no = resultSet.getInt("car_no");
+				int room_no = resultSet.getInt("room_no");
 				
 				num[0] = air_no;
 				num[1] = car_no;
@@ -109,6 +109,46 @@ public class ReserveDaoImpl implements ReserveDao{
 		
 		
 		return num;
+	}
+
+	@Override
+	public Reservation selectByResNo(int resNo) {
+		
+		Reservation res = new Reservation();
+		
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+	
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.RES_SELECT_BY_NO);
+			
+			pStatement.setInt(1, resNo);
+
+			resultSet = pStatement.executeQuery();
+
+			if(resultSet.next()) {
+				
+				res.setResNo(resNo);
+				res.setStartDay(resultSet.getString("start_day"));
+				res.setEndDay(resultSet.getString("end_day"));
+				res.setState(resultSet.getString("state"));
+				res.setMemNo(resultSet.getInt("member_no"));
+				
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+
+		
+		
+		return res;
 	}
 	
 

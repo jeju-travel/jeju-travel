@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>마이 페이지</title>
-
 <script type="text/javascript">
 	
 	$(document).ready(function(){
@@ -62,6 +61,7 @@ body{
 </head>
 <body>
 
+
 	<h1>My Page</h1>
 	<hr>
 	<form action="detail">
@@ -84,11 +84,11 @@ body{
 			<c:forEach var="res" items="${reslist}">
 			<tr>
 				<td>${res.startDay} ~ ${res.endDay}</td>
-				<td>ss</td>
+				<td>${res.items}</td>
 				<td>${res.state}</td>
 				<td onclick="event.cancelBubble=true;">
 					<c:if test="${res.state == '예약확인'}">
-						<a href="#" >리뷰쓰기 </a>
+						<a href="review?air=${air}&room=${room}&car=${car}">리뷰쓰기 </a>
 					</c:if>
 				</td>
 				<td hidden>${res.resNo}</td>
