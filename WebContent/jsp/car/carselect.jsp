@@ -32,6 +32,7 @@
 					<tr>
 						<td>${car.car_no}</td>
 						<td>${car.car_name}</td>
+						<td>${car_car_type}</td>
 						<td>${car.car_price}</td>
 						<td>${car.capacity}</td>
 						<td>${car.car_fuel}</td>

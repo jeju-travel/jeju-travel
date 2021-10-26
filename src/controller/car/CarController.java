@@ -18,7 +18,7 @@ import model.car.Car;
 import model.car.Carhoroscope;
 import validator.car.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car_select"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -161,25 +161,25 @@ public class CarController extends HttpServlet {
 		String dispatcherUrl = null;
 	
 		if(action.equals("car_input")) {			
-			dispatcherUrl = "car/carinsert.jsp";  	
+			dispatcherUrl = "jsp/car/carinsert.jsp";  	
 			
 		}else if(action.equals("car_save")) {			
-			dispatcherUrl = "/car/carinsert.jsp";
+			dispatcherUrl = "jsp/car/carinsert.jsp";
 			
 		}else if(action.equals("car_search")) {
-			dispatcherUrl = "car/carselect.jsp";				
+			dispatcherUrl = "jsp/car/carselect.jsp";				
 			
 		}else if(action.equals("car_detail")) {
-			dispatcherUrl = "car/cardetail.jsp";	
+			dispatcherUrl = "jsp/car/cardetail.jsp";	
 			
 		}else if(action.equals("car_update")) {
-			dispatcherUrl = "car/cardetail.jsp";	
+			dispatcherUrl = "jsp/car/cardetail.jsp";	
 			
 		}else if(action.equals("car_delete")) {
 			dispatcherUrl = "car_search";	
 			
 	    }else if(action.equals("car_select")) {
-	    	dispatcherUrl = "../jsp/carlist.jsp";
+	    	dispatcherUrl = "carlist.jsp";
 	    }
 		//,
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
