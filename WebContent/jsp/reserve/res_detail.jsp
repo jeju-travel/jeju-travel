@@ -13,6 +13,18 @@
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+	
+	
+	$('.btn_cancle').on('click',function(){
+		$(location).attr('href','delete?no=' + no);
+	});
+	
+	$('.btn_p').on('click',function(){
+		$(location).attr('href','mypage');
+	});
+	
+})
 
 </script>
 
@@ -140,8 +152,8 @@ form{
 	</table>
 	<div>
 	
-	<input type="button" value="마이페이지" class="btn btn_p">
-	<input type="button" value="예약취소" class="btn btn_cancle">
+	<input type="button"  value="마이페이지" class="btn btn_p">
+	<input type="button"  value="예약취소" class="btn btn_cancle">
 	</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package reserve;
+package dao.reserve;
 
 public class Sql {
 

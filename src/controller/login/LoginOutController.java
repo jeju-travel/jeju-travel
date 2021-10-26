@@ -1,4 +1,4 @@
-package login;
+package controller.login;
 
 import java.io.IOException;
 
@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.Member;
-import member.MemberDao;
-import member.MemberDaoImpl;
+
+import dao.member.MemberDao;
+import dao.member.MemberDaoImpl;
+import model.Admin;
+import model.Member;
 
 
 @WebServlet(name = "LoginOutConroller", urlPatterns = { "/login_input", "/login", "/logout",  "/findidpw", "/findid", "/findpw"})
@@ -48,14 +50,20 @@ public class LoginOutController extends HttpServlet {
 			MemberDao dao = new MemberDaoImpl();
 			
 			Member member = dao.login(id, pw);
+			Admin admin = dao.adminlogin(id,pw);
 			
 			if(member.getId() != null) {
 				HttpSession session = req.getSession();
 				session.setAttribute("member", member.getNo());
 				System.out.println("id: " + member.getId() + " pw: " +member.getPw() );
-			}else {
-				req.setAttribute("message", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
+			}else if(admin.getId() != null){
 				
+				HttpSession session = req.getSession();
+				session.setAttribute("admin", member.getNo());
+				System.out.println("id: " + member.getId() + " pw: " +member.getPw() );
+			}else {
+				
+				req.setAttribute("message", "존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
 				System.out.println("존재하지 않는 아이디이거나 비밀번호가 일치하지 않습니다.");
 			}
 			

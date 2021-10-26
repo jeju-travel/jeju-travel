@@ -1,4 +1,4 @@
-package member;
+package controller.member;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.MemberDao;
-import reserve.Reservation;
-import reserve.ReserveDao;
-import reserve.ReserveDaoImpl;
+import dao.member.MemberDao;
+import dao.member.MemberDaoImpl;
+import dao.reserve.ReserveDao;
+import dao.reserve.ReserveDaoImpl;
+import model.Member;
+import model.Reservation;
 
 @WebServlet(name = "MemberConroller", urlPatterns = { "/join", "/idcheck", "/save", "/mypage", "/detail", "/update",
 		"/delete" })

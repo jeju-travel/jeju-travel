@@ -1,4 +1,4 @@
-package reserve;
+package dao.reserve;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import member.JDBCUtil;
+import dao.member.JDBCUtil;
+import model.Reservation;
 
 
 public class ReserveDaoImpl implements ReserveDao{
