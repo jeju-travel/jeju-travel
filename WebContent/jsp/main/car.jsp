@@ -11,22 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>메인화면</title>
 </head>
-<style>
-    html{
-		height: 100%;
-	}
-    body{
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-    main{ 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin:-150px 0 0 -150px;  
-        text-align: center;    
-    } 
+<style>    
+    body{        
+        display: flex;
+  		justify-content: center;
+  		align-items: center;
+  		text-align:center;
+  		min-height: 100vh;    
+    }     
     .main_center{
         display: flex;  
     }
@@ -40,12 +32,16 @@
         <h3>제주여행</h3><br>
         <h5>렌트카예약</h5>
         <div class="main_center">   
-            <form action="../car/carlist.jsp" method="post">     
+            <form action="../car/carlist.jsp" method="post"> 
+            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
+            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">    
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="렌트카예약o">
                     </div>
             </form>
             <form action="#" method="post">
+            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
+            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="렌트카예약x">
                     </div>

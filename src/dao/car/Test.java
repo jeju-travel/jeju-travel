@@ -37,7 +37,6 @@ public class Test {
 		
 		carReserve.setBorrow_car("오전");
 		carReserve.setReturn_car("오후");
-		carReserve.setReserve_no(1);
 		carReserve.setCar_no(1);
 		cardao.CarReserve(carReserve);
 		

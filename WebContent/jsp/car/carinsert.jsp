@@ -65,7 +65,7 @@
                                 <option value="휘발유">휘발유</option>
                                 <option value="경유">경유</option>
                                 <option value="가솔린">가솔린</option>
-                                <option value="전기차">전기차</option>
+                                <option value="전기">전기</option>
                             </select>
                         </td>
                     </tr>
@@ -97,7 +97,7 @@
 		</c:if> 
 		<hr>
 		<center>
-		<a href="car_search">리스트로이동</a><br/>
+		<a href="car_search?reqPage=1">리스트로이동</a><br/>
 		${carError.car_nameErr} ${carError.car_priceErr} <br/>
         ${carError.capacityErr} ${carError.car_locErr}<br/> 
 		</center>
