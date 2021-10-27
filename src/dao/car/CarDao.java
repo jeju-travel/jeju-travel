@@ -15,8 +15,14 @@ public interface CarDao {
 	void CarReview(CarReview carreview);
 	
 	List<Car> CarselectAll();
-	List<Carhoroscope> Carhoroscope();
+	List<Car> selectAll(int requestPage);
+	List<Car> CarselectAllprice();
+	List<Car> Cartypefuel(String car_type,String car_fuel);
+	List<Car> Cartype(String car_type);
+	List<Car> Carfuel(String car_fuel);
 	
+	List<Carhoroscope> Carhoroscope();
+	int cha(String end_day,String start_day);
 	
 	Car selectByCarno(int car_no);	
 	

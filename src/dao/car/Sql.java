@@ -6,7 +6,7 @@ public class Sql {
 			"insert into car values(seq_car_no.nextval,?,?,?,?,?,?,?)";	
 	
 	public static final String CAR_SELECT_ALL_SQL=
-			"select * from car";	
+			"select * from car order by car_no";
 	
 	public static final String CAR_SELECT_BY_NO_SQL=
 			"select * from car where car_no= ?";
@@ -15,11 +15,26 @@ public class Sql {
 			"update car set car_name = ?,car_type =?,car_price=? ,capacity = ?,car_fuel=?,car_loc=?,car_img=? where car_no=?";
 	
 	public static final String CAR_DELETE_SQL=	
-			"delete from car where car_no = ?"; 
+			"delete from car where car_no = ?";
+	
+	public static final String CAR_SELECT_ALL_PRICE_SQL=
+			"select * from car order by car_price";
+	
+	public static final String CAR_SELECT_TYPE_SQL=	
+			"select * from car where car_type = ? order by car_price";
+	
+	public static final String CAR_SELECT_FUEL_SQL=	
+			"select * from car where  car_fuel= ? order by car_price";
+	
+	public static final String CAR_SELECT_TYPE_FUEL_SQL=	
+			"select * from car where car_type = ? and car_fuel= ? order by car_price";
+	
+	public static final String CAR_SELECT_PRICE_COUNT_SQL=
+			"select to_date(?,'yyyy-mm-dd')-to_date(?,'yyyy-mm-dd') as cha from dual";
 	
 	//·»Æ®Ä« ¿¹¾à
 	public static final String CAR_RESERVE_INSERT_SQL=
-			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?,?)";
+			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?)";
 	//·»Æ®Ä« ¸®ºä
 	public static final String CAR_REVIEW_INSERT_SQL=
 			"insert into car_review values(seq_car_review_no.nextval,?,?,?,?)";	

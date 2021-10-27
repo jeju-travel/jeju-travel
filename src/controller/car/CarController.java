@@ -14,11 +14,18 @@ import dao.car.CarDao;
 import dao.car.CarDaoImpl;
 import form.car.CarForm;
 import formerror.car.CarError;
+
 import model.car.Car;
+import model.car.CarReserve;
 import model.car.Carhoroscope;
+import page.car.PageDao;
+import page.car.PageDaoImpl;
+import page.car.PageGroupResult;
+import page.car.PageManager;
+import page.car.PageSql;
 import validator.car.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select","/jsp/car/car_reserve"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -73,11 +80,18 @@ public class CarController extends HttpServlet {
 			}				
 			
 		}else if(action.equals("car_search")) {
-			CarDao dao = new CarDaoImpl();
-			List<Car> carList = dao.CarselectAll();
+			int requestPage = Integer.parseInt(req.getParameter("reqPage"));
+			CarDao dao = new CarDaoImpl();			
+			List<Car> carList = dao.selectAll(requestPage);
+    		PageDao pageDao = new PageDaoImpl();
 			
-			req.setAttribute("carList", carList);			
+    		int cnt = pageDao.getCount(PageSql.CAR_COUNT_SQL);
 			
+			PageManager pm =new PageManager(requestPage);
+			PageGroupResult pgr = pm.getPageGroupResult(cnt);
+    		
+    		req.setAttribute("carList", carList);
+    		req.setAttribute("pageGroupResult", pgr);
 			
 		}else if(action.equals("car_detail")) {
 			
@@ -124,6 +138,7 @@ public class CarController extends HttpServlet {
 				
 				CarDao dao = new CarDaoImpl();
 				Car car = dao.selectByCarno(car_no);
+				
 				List<Car> carList = dao.CarselectAll();
 				
 				req.setAttribute("car", car);	
@@ -139,25 +154,50 @@ public class CarController extends HttpServlet {
 	         
 	         CarDao dao = new CarDaoImpl();
 	         dao.Cardelete(car_no);
-	         
-	         	       
-	    }else if(action.equals("car_select")) {
-	    	String date1 = req.getParameter("date1");
-	    	String date2 = req.getParameter("date2");
-	    	System.out.println(date2);
+	        
+	          	       
+	    }else if(action.equals("car_select")) {	    	
+	    	String start_day = req.getParameter("start_day");
+	    	String end_day = req.getParameter("end_day");	
+	    	
 	    	String borrow_car = req.getParameter("borrow_car");
 			String return_car = req.getParameter("return_car");
-	    	
+	    	String car_type= req.getParameter("car_type");
+	    	String car_fuel= req.getParameter("car_fuel");
 	    	CarDao dao = new CarDaoImpl();
+	    	
+	    	int cha =dao.cha(end_day,start_day);	    	
 	    	List<Carhoroscope> carhoroscopeList = dao.Carhoroscope();
-	    	    	
-			List<Car> carList = dao.CarselectAll();
-									
-			req.setAttribute("carList", carList);
+	    	
+	    	if(car_type.equals("전체") && car_fuel.equals("전체")) {	    		
+	    		List<Car> carList = dao.CarselectAllprice();
+	    		req.setAttribute("carList", carList);
+	    	}else if(car_type.equals("전체")) {
+	    		List<Car> carList = dao.Carfuel(car_fuel);	    		
+	    		req.setAttribute("carList", carList);
+	    	}else if(car_fuel.equals("전체")) {
+	    		List<Car> carList = dao.Cartype(car_type);
+	    		req.setAttribute("carList", carList);
+	    	}else {
+	    		List<Car> carList = dao.Cartypefuel(car_type,car_fuel);
+	    		req.setAttribute("carList", carList);
+	    	}
+			
 			req.setAttribute("carhoroscopeList", carhoroscopeList);	
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
+			req.setAttribute("cha", cha);
+	    }else if(action.equals("car_reserve")) {	    		
+			String borrow_car = req.getParameter("borrow_car");	
+			String return_car = req.getParameter("return_car");	
+			int car_no = Integer.parseInt(req.getParameter("car_no"));
+			
+			CarReserve carReserve = new CarReserve(borrow_car,return_car,car_no);			
+			
+			CarDao dao = new CarDaoImpl();
+			dao.CarReserve(carReserve);
 	    }
+		
 		String dispatcherUrl = null;
 	
 		if(action.equals("car_input")) {			
@@ -180,8 +220,11 @@ public class CarController extends HttpServlet {
 			
 	    }else if(action.equals("car_select")) {
 	    	dispatcherUrl = "carlist.jsp";
+	    	
+	    }else if(action.equals("car_reserve")) {
+	    	dispatcherUrl = "carlist.jsp"; //나중에 최종예약으로 넘어가야됨.
 	    }
-		//,
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 		dispatcher.forward(req, resp);
 	}

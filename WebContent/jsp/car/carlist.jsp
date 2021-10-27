@@ -59,9 +59,10 @@
 
     <form action="car_select" method="post">
         <div class="date_main">
-            <div class="date_side1">
+            <div class="date_side1">            
+         	 
                 대여일<br/>
-                <input type="date" name="date1">
+                <input type="date" name="start_day" value="${param.start_day}" readonly>
                 <select name="borrow_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
@@ -71,7 +72,7 @@
                 차종 <br/>               
                 <select name="car_type">
                     <option value="전체">전체</option>
-                    <option value="소형차">소형차</option>
+                    <option value="경차">경차</option>
                     <option value="중형차">중형차</option>
                     <option value="대형차">대형차</option>
                 </select>
@@ -79,19 +80,19 @@
             
             <div class="date_side2">
                 반납일<br/>
-                <input type="date" name="date2" readonly>
+               <input type="date" name="end_day" value="${param.end_day}" readonly>
                 <select name="return_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
                 </select>
                 <br/>
                 연료<br/>
-               <select name="car_fuel">
-					<option value="전체">전체</option>
+               <select name="car_fuel">	
+               		<option value="전체">전체</option>				
 					<option value="휘발유">휘발유</option>
 					<option value="경유">경유</option>
 					<option value="가솔린">가솔린</option>
-					<option value="전기차">전기차</option>
+					<option value="전기">전기</option>
                </select>
             </div>
             
@@ -119,17 +120,19 @@
 				</tr>		
 										
 				<c:forEach var="car" items="${carList}">
-					<form action="#" method="post">
+					<form action="car_reserve" method="post">
 					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
+					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
+					<input type="text" name="return_car" value="${borrow_car}" hidden="hidden"/> 
 						<tr>
 							<td>${car.car_name}</td>
-							<td>${car.car_price}</td>
+							<td>${car.car_price*cha}</td>
 							<td>${car.capacity}</td>
 							<td>${car.car_type}</td>
 							<td>${car.car_fuel}</td>
 							<td>${borrow_car}</td>
 							<td>${return_car}</td>
-							<td><input type="submit" class="btn btn-primary btn-sm" value="예약하기"></a>
+							<td><input type="submit" class="btn btn-primary btn-sm" value="예약하기"></td>
 							<c:forEach var="carhoroscope" items="${carhoroscopeList}">								
 								<c:if test="${carhoroscope.car_no eq car.car_no}">	
 									<td>${carhoroscope.car_horoscope}/5.0</td>	
@@ -141,6 +144,7 @@
 			</table>
 		</c:if>
 		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>
+		
 	</div>
 </body>
 </html>
