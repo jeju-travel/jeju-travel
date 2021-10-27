@@ -30,6 +30,9 @@ insert into lodging values(seqlodging_no.nextval,?,?,?,?);
 --숙소테이블 조회--
 select * from LODGING;
 
+select * from lodging where lodging_no = (select lodging_no from room where lodging_no = 4)
+
+
 --객실 테이블 생성--
 create table room(
 	room_no number primary key,
@@ -48,6 +51,7 @@ insert into room values(seqroom_no.nextval,'1번방',20000,3,'싱글베드','무료생수'
 insert into room values(seqroom_no.nextval,'1번방',20000,3,'싱글베드','무료생수',null,'이미지');
 --객실 테이블 조회--
 select * from room;
+drop table room;
 
 --객실예약 테이블 생성--
 create table room_reserve(

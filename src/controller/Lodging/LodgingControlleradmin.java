@@ -22,6 +22,7 @@ public class LodgingControlleradmin extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 	    process(req,resp);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    req.setCharacterEncoding("utf-8");
@@ -90,8 +91,6 @@ public class LodgingControlleradmin extends HttpServlet{
 			
 			req.setAttribute("message", "삭제되었습니다.");
 		}
-		
-		//테스트테스트테스트
 		
 		//화면구성
 		String dispatcherUrl = null;
