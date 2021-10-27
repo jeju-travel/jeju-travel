@@ -212,7 +212,7 @@ public class AirController extends HttpServlet{
 			dispatcherUrl = "/jsp/air/basket.jsp";
 			
 		}else if(action.equals("reserveAll")) {
-			dispatcherUrl = "/mainTemp.jsp";
+			dispatcherUrl = "/jsp/main/lodging.jsp";
 			
 		}else if(action.equals("writeAirReview")) {
 			dispatcherUrl = "/jsp/air/reserveList.jsp";
