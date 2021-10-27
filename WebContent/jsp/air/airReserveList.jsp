@@ -11,6 +11,7 @@
 <h3>항공 예약</h3>
 <table>
 	<tr>
+		<th>별점</th>
 		<th>항공사</th>
 		<th>가는날</th>
 		<th>오는날</th>
@@ -22,6 +23,7 @@
 	<c:forEach var="airline" items="${airlineList}">
 	<form method="post" action="basketAirline">
 	<tr>
+		<td>${airline.horoscope}/5.0</td>
 		<td>${airline.airName}
 			<input type="text" name="airNo" value="${airline.airNo}" hidden="hidden">
 		</td>

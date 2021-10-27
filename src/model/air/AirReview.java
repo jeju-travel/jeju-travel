@@ -3,9 +3,10 @@ package model.air;
 public class AirReview {
 
 	private int airReviewNo;
+	private String writer;
 	private String airContent;
 	private double airHoroscope;
-	private int airReserveNo;
+	private int airNo;
 	
 	public AirReview() {
 		super();
@@ -17,6 +18,15 @@ public class AirReview {
 	public void setAirReviewNo(int airReviewNo) {
 		this.airReviewNo = airReviewNo;
 	}
+	
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
 	public String getAirContent() {
 		return airContent;
 	}
@@ -29,16 +39,17 @@ public class AirReview {
 	public void setAirHoroscope(double airHoroscope) {
 		this.airHoroscope = airHoroscope;
 	}
-	public int getAirReserveNo() {
-		return airReserveNo;
+	public int getAirNo() {
+		return airNo;
 	}
-	public void setAirReserveNo(int airReserveNo) {
-		this.airReserveNo = airReserveNo;
+	public void setAirNo(int airNo) {
+		this.airNo = airNo;
 	}
 
 	@Override
 	public String toString() {
-		return "AirReview [airReviewNo=" + airReviewNo + ", airContent=" + airContent + ", airHoroscope=" + airHoroscope
-				+ ", airReserveNo=" + airReserveNo + "]";
+		return "AirReview [airReviewNo=" + airReviewNo + ", writer=" + writer + ", airContent=" + airContent
+				+ ", airHoroscope=" + airHoroscope + ", airNo=" + airNo + "]";
 	}
+
 }
