@@ -8,11 +8,29 @@
 <title>제주 여행</title>
 </head>
 <body>
-<h3>항공 댓글쓰기</h3>
-<hr>
-<c:forEach var="airline" items="${airlineList}">
-	<a href="">${airline.airName}</a><br>
-</c:forEach>
+
+<form method="post" action="reviewSave_air">
+<input type="text" name="airlineNo" value="${airlineNo}" hidden="hidden">
+<table>
+	<tr>
+		<td>내용</td>
+		<td><textarea rows="5" cols="10" name="content"></textarea></td>
+	</tr>
+	<tr>
+		<td>별점</td>
+		<td>
+			<select name="horoscope">
+				<option value=1>1</option>
+				<option value=2>2</option>
+				<option value=3>3</option>
+				<option value=4>4</option>
+				<option value=5 selected="selected">5</option>
+			</select>
+		</td>
+	</tr>
+</table>
+<input type="submit" value="저장하기">
+</form>
 
 </body>
 </html>

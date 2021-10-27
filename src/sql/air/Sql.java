@@ -27,10 +27,13 @@ public class Sql {
 	public static final String AIR_RESERVE_DELETE = 
 			"delete from air_reserve where air_reserve_no = ?";
 	
+	public static final String AIR_RESERVE_SELECT_BY_RESERVENO = 
+			"select * from air_reserve where air_reserve_no = ?";
+	
 	
 	//AIR_REVIEW
 	public static final String AIR_REVIEW_INSERT = 
-			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?)";
+			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?, ?)";
 	
 	public static final String AIR_REVIEW_DELETE = 
 			"delete from air_review where air_review_no = ?";
@@ -41,8 +44,12 @@ public class Sql {
 	public static final String AIR_REVIEW_SELECT_BY_AIR_REVIEWNO = 
 			"select * from air_review where air_no = ?";
 	
+	public static final String AVERAGE_HOROSCOPE = 
+			"select avg(air_horoscope) as horoscope from air_review " + 
+			"where air_no = ? group by air_no";
+	
 	
 	public static final String CHECK_RESERVE_MEMBER = 
-			"select air_no from RESERVATION r, AIR_RESERVE ar " + 
-			"where r.reserve_no = ar.reserve_no AND member_no = ?";
+			"select air_reserve_no from RESERVATION " + 
+			"where member_no = ? and air_reserve_no is not null";
 }

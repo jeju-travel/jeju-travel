@@ -9,6 +9,9 @@ select * from airline;
 select * from air_review;
 select * from air_reserve;
 
+select air_no, avg(air_horoscope) as horoscope from air_review
+where air_no = 2 group by air_no;
+
 insert into member values (999, 'abc', '1234', 'hong', '´ß', 'º´¾Æ¸®', '01011112222', 'abc@naver.com')
 select * from member;
 
@@ -18,6 +21,12 @@ insert into RESERVATION values (1003, 999, SYSDATE-40, SYSDATE-37, 0, '´Ù³à¿È', 
 insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, 0, '¿¹¾à', null, null, null)
 insert into AIR_RESERVE values(airReserveSeq.nextval, '¿ÀÀü', '¿ÀÀü', 2, 3)
 select * from RESERVATION
+
+update RESERVATION set air_reserve_no = 4 where reserve_no = 1003;
+update RESERVATION set air_reserve_no = 9 where reserve_no = 1004;
+
+select distinct air_reserve_no from RESERVATION 
+where member_no = 999 and air_reserve_no is not null;
 
 select air_no from RESERVATION r, AIR_RESERVE ar
 where r.reserve_no = ar.reserve_no AND member_no = 999;
