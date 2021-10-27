@@ -1,4 +1,4 @@
-package dao.Roomadmin;
+package dao.Lodginguser;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

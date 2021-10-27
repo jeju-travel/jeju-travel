@@ -19,27 +19,45 @@
         	padding-top: 60px;
         	margin: auto;
     	}
+    	tr{
+			text-align:center;
+    	}
+    	.updatedelete{
+    		text-decoration:none;
+    	}
+    	.titlename{
+    		font-size:20px;
+    	}
+    	td{
+    		font-size:12px;
+    		font-weight:bold;
+    	}
+    	
   	</style>
 </head>
 <body>
-<div class="lodgingdate">
-        <h5></h5>
-        	<input type="date">
-        	<input type="date">
-        	<h3>성인 : </h3>
-        	<select>
-        	</select>
-        <h1>숙소 리스트</h1>
+<div class="container mt-3">
+        <div class="title">
+        	<h1>숙소 리스트<관리자모드></h1>
+        	<a class="btn btn-primary" href="lodging_input">숙소 추가</a>
+        </div>
         <hr>
         <c:if test="${!empty lodgingList}">
-        <table>
+        <table class="table table-dark table-hover">
+        	<tr>
+        		<th class="titlename">숙소 이름</th>
+        		<th class="titlename">숙소 위치</th>
+        		<th class="titlename">숙소 전화번호</th>
+        		<th class="titlename">숙소 이미지</th>
+        		<th class="titlename">숙소 수정 및 삭제</th>
+        	</tr>
         	<c:forEach var="list" items="${lodgingList}">
                <tr>
                   <td>${list.lodging_name}</td>
                   <td>${list.lodging_loc}</td>
                   <td>${list.lodging_phone}</td>
                   <td>${list.lodging_image}</td>
-                  <td><a href="lodging_detail?lodging_no=${list.lodging_no}">상세보기</a>
+                  <td><a class="updatedelete" href="lodging_detail?lodging_no=${list.lodging_no}">상세보기</a>
                </tr>
             </c:forEach>
         </table>

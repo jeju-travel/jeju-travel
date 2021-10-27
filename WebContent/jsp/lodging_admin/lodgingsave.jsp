@@ -21,7 +21,7 @@
     .lodgingtext{
         margin-top: 20px;
     }
-    input{
+    .inserttable input{
         margin-top: 10px;
         margin-left: 10px;
         width: 600px;
@@ -34,18 +34,25 @@
     .lodgingbutton{
         display: flex;
         justify-content: center;
-        padding: 10px;
+        margin-top:30px;
     }
-    .lodgingbutton button{
-        width: 300px;
-        margin: 50px;
+    .lodgingbutton a{
+    	width:300px;
+    }
+    .lodgingbutton input{
+    	width:300px;
+    	margin-right:150px;
+    }
+    .listmove{
+    	text-align: center;
+    	margin-top:20px;
     }
 </style>
 </head>
 <body>
 	<form method="post" action="lodging_save">
 		<h1>숙소 추가(관리자)</h1>
-        <table>
+        <table class="inserttable">
             <tr>
                 <td class="lodgingtext"> 숙소 이름 : </td>
                 <td><input type="text" size="60px" name="lodgingname" placeholder=" 숙소 이름을 입력해 주세요!"></td>
@@ -63,16 +70,16 @@
             	<td><input type="text" size="60px" name="lodgingimage" placeholder=" 숙소 이미지를 넣어주세요!"></td>
            	</tr>
         </table>
-        <!-- a링크 이용하여 이전,삭제 변경 -->
-    <!-- <center> -->
     <div class="lodgingbutton">
-        <!--  <button type="submit" class="btn btn-primary">이전</button> -->
+    <!-- 이전버튼 링크 -->
+        <a class="btn btn-primary" href="adminmain.jsp">이전</a>
         <input type="submit" class="btn btn-primary" value="숙소 추가">
         <input type="reset" class="btn btn-primary" value="다시 입력">
     </div>
-    <a href="lodging_list">숙소 리스트로 이동</a>
-    ${message}
-    <!-- </center> -->
+    <div class="listmove">
+    	<h2>${message}</h2>
+    	<a class="btn btn-primary" href="lodging_list">숙소 리스트로 이동</a>
+    </div>
 	</form>
 </body>
 </html>
