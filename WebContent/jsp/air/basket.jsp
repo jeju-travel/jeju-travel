@@ -25,8 +25,8 @@
 	<tr>
 		<td>${reserveAirline.airName}
 		</td>
-		<td>${sDay}</td>
-		<td>${eDay}</td>
+		<td>${startDay}</td>
+		<td>${endDay}</td>
 		<td>${reserveAirline.takeOff}</td>
 		<td>${airPersonnel}</td>
 		<td>${reserveAirline.price * airPersonnel}원</td>

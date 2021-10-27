@@ -32,16 +32,12 @@
         <h3>제주여행</h3><br>
         <h5>숙소예약</h5>
         <div class="main_center">   
-            <form action="#" method="post">  
-           			<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">   
+            <form action="lodging_list_user" method="post">  
                     <div class="main_memu">                    	
                         <input type="submit" class="btn btn-primary" value="숙소예약o">
                     </div>
             </form>
-            <form action="car.jsp" method="post">
-            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">
+            <form action="main_car" method="post">
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="숙소예약x">
                     </div>

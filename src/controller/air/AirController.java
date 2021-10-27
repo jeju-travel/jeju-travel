@@ -26,7 +26,7 @@ import model.air.Airline;
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
 		, "/goAddAirline", "/updateAirline", "/showAirline", "/updateSetAirline"
 		, "/deleteFromAirline", "/basketAirline", "/reserveAll", "/writeAirReview"
-		, "/saveAirReview", "/reviewSave_air"})
+		, "/saveAirReview", "/reviewSave_air", "/main_air"})
 public class AirController extends HttpServlet{
 
 	@Override
@@ -48,12 +48,7 @@ public class AirController extends HttpServlet{
 		
 		if(action.equals("reserveAirlineCheck")) {
 			
-			String startDay = req.getParameter("startDay");
-			String endDay = req.getParameter("endDay");
-
-			HttpSession session = req.getSession();
-			session.setAttribute("sDay", startDay);
-			session.setAttribute("eDay", endDay);
+			
 			
 		}else if(action.equals("reserveAirline")) {
 			
@@ -140,10 +135,10 @@ public class AirController extends HttpServlet{
 			AirReserveDao reserveDao = new AirReserveDaoImpl();
 			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
 			
-			session.removeAttribute("sDay");
+			/*session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
 			session.removeAttribute("reserveAirline");
-			session.removeAttribute("airPersonnel");
+			session.removeAttribute("airPersonnel");*/
 			
 		}else if(action.equals("writeAirReview")) {
 			List<Airline> airlineList = new ArrayList<>();
@@ -175,6 +170,15 @@ public class AirController extends HttpServlet{
 			
 			AirReviewDao reviewDao = new AirReviewDaoImpl();
 			reviewDao.insert(writer, content, airHoroscope, airNo);
+			
+		}else if(action.equals("main_air")) {
+			
+			String startDay = req.getParameter("start_day");
+			String endDay = req.getParameter("end_day");
+
+			HttpSession session = req.getSession();
+			session.setAttribute("startDay", startDay);
+			session.setAttribute("endDay", endDay);
 		}
 		
 		
@@ -182,30 +186,46 @@ public class AirController extends HttpServlet{
 		
 		if(action.equals("reserveAirlineCheck")) {
 			dispatcherUrl = "/jsp/air/airReserveCheck.jsp";
+			
 		}else if(action.equals("reserveAirline")) {
 			dispatcherUrl = "/jsp/air/airReserveList.jsp";
+			
 		}else if(action.equals("goAddAirline")) {
 			dispatcherUrl = "/jsp/air/addAirline.jsp";
+			
 		}else if(action.equals("addAirline")) {
 			dispatcherUrl = "/mainTemp.jsp";
+			
 		}else if(action.equals("updateAirline")) {
 			dispatcherUrl = "/jsp/air/updateAirline.jsp";
+			
 		}else if(action.equals("showAirline")) {
 			dispatcherUrl = "/jsp/air/showAirline.jsp";
+			
 		}else if(action.equals("updateSetAirline")) {
 			dispatcherUrl = "showAirline";
+			
 		}else if(action.equals("deleteFromAirline")) {
 			dispatcherUrl = "showAirline";
+			
 		}else if(action.equals("basketAirline")) {
 			dispatcherUrl = "/jsp/air/basket.jsp";
+			
 		}else if(action.equals("reserveAll")) {
 			dispatcherUrl = "/mainTemp.jsp";
+			
 		}else if(action.equals("writeAirReview")) {
 			dispatcherUrl = "/jsp/air/reserveList.jsp";
+			
 		}else if(action.equals("saveAirReview")) {
 			dispatcherUrl = "/jsp/air/writeAirReview.jsp";
+			
 		}else if(action.equals("reviewSave_air")) {
 			dispatcherUrl = "/mainTemp.jsp";
+			
+		}else if(action.equals("main_air")) {
+			dispatcherUrl = "/jsp/main/air.jsp";
+			
 		}
 		
 		

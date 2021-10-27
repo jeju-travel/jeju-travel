@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+<%
+	Calendar calStart = Calendar.getInstance();
+	Calendar calEnd = Calendar.getInstance();
+	calEnd.add(calEnd.DATE, + 1);
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,29 +81,20 @@
  
         </ul>
 
-    </header>    
-    	테스트용:<a href="car_input">관리자모드 car</a>
-
         </c:if>
     </header>
     
-
-   </header>    
-    	테스트용:<a href="car_input">관리자모드 car</a>
-
-        </c:if>
-    </header>
    	<main>
         <h3>제주여행</h3>
-        <form action="jsp/main/air.jsp" method="post">           
+        <form action="main_air" method="post">           
             <div class="main_center">
                 <div class="main_memu">
                     출발일<br/><br/>
-                    <input type="date" name="start_day">
+                    <input type="date" name="start_day" value=<%= sf.format(calStart.getTime()) %>>
                 </div>
                 <div class="main_memu">
                     도착일<br/><br/>
-                    <input type="date" name="end_day">
+                    <input type="date" name="end_day" value=<%= sf.format(calEnd.getTime()) %>>
                 </div>                    
             </div>            
             <input type="submit" class ="btn btn-primary" value="검색">           

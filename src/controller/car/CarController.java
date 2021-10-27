@@ -25,7 +25,7 @@ import page.car.PageManager;
 import page.car.PageSql;
 import validator.car.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select","/jsp/car/car_reserve"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select","/jsp/car/car_reserve", "/main_car", "/carlist"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -223,6 +223,12 @@ public class CarController extends HttpServlet {
 	    	
 	    }else if(action.equals("car_reserve")) {
 	    	dispatcherUrl = "carlist.jsp"; //나중에 최종예약으로 넘어가야됨.
+	    	
+	    }else if(action.equals("main_car")) {
+	    	dispatcherUrl = "/jsp/main/car.jsp";
+	    	
+	    }else if(action.equals("carlist")) {
+	    	dispatcherUrl = "/jsp/car/carlist.jsp";
 	    }
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);

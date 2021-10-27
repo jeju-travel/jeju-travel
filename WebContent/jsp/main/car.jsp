@@ -32,16 +32,12 @@
         <h3>제주여행</h3><br>
         <h5>렌트카예약</h5>
         <div class="main_center">   
-            <form action="../car/carlist.jsp" method="post"> 
-            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">    
+            <form action="carlist" method="post">   
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="렌트카예약o">
                     </div>
             </form>
-            <form action="#" method="post">
-            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">
+            <form action="shopping_cart" method="post">
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="렌트카예약x">
                     </div>

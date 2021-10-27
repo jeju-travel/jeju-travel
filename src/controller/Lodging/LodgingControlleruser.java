@@ -14,7 +14,7 @@ import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
 import model.Lodging.Lodgingadmin;
 
-@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user"})
+@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging"})
 public class LodgingControlleruser extends HttpServlet{
 	
 	@Override
@@ -51,6 +51,8 @@ public class LodgingControlleruser extends HttpServlet{
 		
 		if(action.equals("lodging_list_user")) {
 			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
+		}else if(action.equals("main_lodging")) {
+			dispatcherUrl = "/jsp/main/lodging.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);

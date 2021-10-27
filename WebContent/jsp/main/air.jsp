@@ -36,17 +36,13 @@
         <h5>항공예약</h5>      
          
         <div class="main_center">   
-            <form action="#" method="post">
-            		<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            		<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">
+            <form action="reserveAirline" method="post">
                     <div class="main_memu">
                         <input type="submit" class="btn btn-primary" value="항공예약o">
                     </div>
             </form>
-            <form action="room.jsp" method="post">
+            <form action="main_lodging" method="post">
                     <div class="main_memu">
-                    	<input type="date" name="start_day" value="${param.start_day}" hidden="hidden">
-            			<input type="date" name="end_day" value="${param.end_day}" hidden="hidden">
                         <input type="submit" class="btn btn-primary" value="항공예약x">
                     </div>
             </form>   

@@ -27,8 +27,8 @@
 		<td>${airline.airName}
 			<input type="text" name="airNo" value="${airline.airNo}" hidden="hidden">
 		</td>
-		<td>${sDay}</td>
-		<td>${eDay}</td>
+		<td>${startDay}</td>
+		<td>${endDay}</td>
 		<td>${airline.takeOff}</td>
 		<td>${airline.price}원</td>
 		<td><input type="text" name="personnel">명</td>
