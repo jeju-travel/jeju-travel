@@ -88,7 +88,7 @@ body{
 				<td>${res.state}</td>
 				<td onclick="event.cancelBubble=true;">
 					<c:if test="${res.state == '예약확인'}">
-						<a href="review?air=${air}&room=${room}&car=${car}">리뷰쓰기 </a>
+						<a href="review?air=${res.airResNo}&lodging=${res.roomResNo}&car=${res.carResNo}">리뷰쓰기 </a>
 					</c:if>
 				</td>
 				<td hidden>${res.resNo}</td>

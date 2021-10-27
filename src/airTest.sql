@@ -9,25 +9,71 @@ select * from airline;
 select * from air_review;
 select * from air_reserve;
 
+select air_no, avg(air_horoscope) as horoscope from air_review
+where air_no = 2 group by air_no;
+
 insert into member values (999, 'abc', '1234', 'hong', '닭', '병아리', '01011112222', 'abc@naver.com')
 select * from member;
 
-insert into RESERVATION values (1001, 999, SYSDATE-90, SYSDATE-87, '다녀옴')
-insert into RESERVATION values (1002, 999, SYSDATE-90, SYSDATE-88, '취소')
-insert into RESERVATION values (1003, 999, SYSDATE-40, SYSDATE-37, '다녀옴')
-insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, '예약')
-insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 2, 1001, 3)
+insert into RESERVATION values (1001, 999, SYSDATE-90, SYSDATE-87, 0, '다녀옴', null, null, null)
+insert into RESERVATION values (1002, 999, SYSDATE-90, SYSDATE-88, 0, '취소', null, null, null)
+insert into RESERVATION values (1003, 999, SYSDATE-40, SYSDATE-37, 0, '다녀옴', null, null, null)
+insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, 0, '예약', null, null, null)
+insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 2, 3)
 select * from RESERVATION
 
+update RESERVATION set air_reserve_no = 4 where reserve_no = 1003;
+update RESERVATION set air_reserve_no = 9 where reserve_no = 1004;
+
+select distinct air_reserve_no from RESERVATION 
+where member_no = 999 and air_reserve_no is not null;
+
+select air_no from RESERVATION r, AIR_RESERVE ar
+where r.reserve_no = ar.reserve_no AND member_no = 999;
+
+DROP TABLE RESERVATION 
+	CASCADE CONSTRAINTS;
+/* 항공예약 */
 DROP TABLE AIR_RESERVE 
 	CASCADE CONSTRAINTS;
-	
+
+/* 숙소예약 */
+DROP TABLE LODGING_RESERVE 
+	CASCADE CONSTRAINTS;
+
+/* 렌트카예약 */
+DROP TABLE CAR_RESERVE 
+	CASCADE CONSTRAINTS;
+/* 예약정보 */
+CREATE TABLE RESERVATION (
+	reserve_no NUMBER NOT NULL, /* 예약번호 */
+	member_no NUMBER, /* 회원번호 */
+	start_day DATE, /* 출발일 */
+	end_day DATE, /* 도착일 */
+	total_price NUMBER, /* 새 컬럼 */
+	total_state VARCHAR2(30), /* 예약상태 */
+	air_reserve_no NUMBER, /* 항공예약번호 */
+	room_reserve_no NUMBER, /* 숙소예약번호 */
+	car_reserve_no NUMBER /* 렌트카예약번호 */
+);
+
+CREATE UNIQUE INDEX PK_RESERVATION
+	ON RESERVATION (
+		reserve_no ASC
+	);
+
+ALTER TABLE RESERVATION
+	ADD
+		CONSTRAINT PK_RESERVATION
+		PRIMARY KEY (
+			reserve_no
+		);
+/* 항공예약 */
 CREATE TABLE AIR_RESERVE (
 	air_reserve_no NUMBER NOT NULL, /* 항공예약번호 */
 	take_off VARCHAR2(10), /* 항공가는시간 */
 	landing VARCHAR2(10), /* 항공오는시간 */
 	personnel NUMBER, /* 인원 */
-	reserve_no NUMBER, /* 예약번호 */
 	air_no NUMBER /* 비행기번호 */
 );
 
@@ -43,37 +89,44 @@ ALTER TABLE AIR_RESERVE
 			air_reserve_no
 		);
 
-DROP TABLE AIR_REVIEW 
-	CASCADE CONSTRAINTS;
-	
-CREATE TABLE AIR_REVIEW (
-	air_review_no NUMBER NOT NULL, /* 후기번호 */
-	air_content VARCHAR2(255), /* 내용 */
-	air_horoscope NUMBER, /* 별점 */
-	air_reserve_no NUMBER /* 항공예약번호 */
+/* 숙소예약 */
+CREATE TABLE LODGING_RESERVE (
+	room_reserve_no NUMBER NOT NULL, /* 숙소예약번호 */
+	check_in VARCHAR2(10), /* 체크인 */
+	check_out VARCHAR2(10), /* 체크아웃 */
+	lodging_no NUMBER /* 숙소번호 */
 );
 
-CREATE UNIQUE INDEX PK_AIR_REVIEW
-	ON AIR_REVIEW (
-		air_review_no ASC
+CREATE UNIQUE INDEX PK_LODGING_RESERVE
+	ON LODGING_RESERVE (
+		room_reserve_no ASC
 	);
 
-ALTER TABLE AIR_REVIEW
+ALTER TABLE LODGING_RESERVE
 	ADD
-		CONSTRAINT PK_AIR_REVIEW
+		CONSTRAINT PK_LODGING_RESERVE
 		PRIMARY KEY (
-			air_review_no
+			room_reserve_no
 		);
-d
 
+/* 렌트카예약 */
+CREATE TABLE CAR_RESERVE (
+	car_reserve_no NUMBER NOT NULL, /* 렌트카예약번호 */
+	borrow_car VARCHAR2(10), /* 렌트카대여시간 */
+	return_car VARCHAR2(10), /* 렌트카반납시간 */
+	car_no NUMBER /* 차량번호 */
+);
 
-select * from AIR_RESERVE ar, AIRLINE a, AIR_REVIEW review
-where ar.air_no = a.air_no AND ar.air_reserve_no = review.air_reserve_no;
+CREATE UNIQUE INDEX PK_CAR_RESERVE
+	ON CAR_RESERVE (
+		car_reserve_no ASC
+	);
 
-select m.member_no as member_no, air_no, state 
-from member m, reservation r, air_reserve ar 
-where m.member_no = r.member_no AND r.reserve_no = ar.reserve_no
-and m.member_no = 999
-
+ALTER TABLE CAR_RESERVE
+	ADD
+		CONSTRAINT PK_CAR_RESERVE
+		PRIMARY KEY (
+			car_reserve_no
+		);
 
 

@@ -10,6 +10,7 @@ import model.car.Car;
 import model.car.CarReserve;
 import model.car.CarReview;
 import model.car.Carhoroscope;
+
 import page.car.PageManager;
 import page.car.PageRowResult;
 import util.JDBCUtil;
@@ -138,7 +139,7 @@ public class CarDaoImpl implements CarDao {
 			connection = JDBCUtil.getConnection();
 			pStatement = connection.prepareStatement(BOOK_SELECT_PAGE_SQL);
 			
-			//? ¼ÂÆÃÇØ¾ßµÈ´Ù.  ¸Å´ÏÀúÇÑÅ× º¸³»¼­ ¸Å´ÏÀú°¡ ¾Ë¾Æ³¾¼öÀÖ°Ô º¸³½´Ù.
+			//? ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ßµÈ´ï¿½.  ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ë¾Æ³ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 			PageManager pm = new PageManager(requestPage);
 			PageRowResult prr = pm.getPageRowResult();
 							
@@ -233,7 +234,7 @@ public class CarDaoImpl implements CarDao {
 				car.setCapacity(resultset.getInt("capacity"));
 				car.setCar_fuel(resultset.getString("car_fuel"));
 				car.setCar_loc(resultset.getString("car_loc"));
-				car.setCar_img(resultset.getString("car_img"));
+				car.setCar_img(resultset.getString("car_image"));
 			}			
 			
 			

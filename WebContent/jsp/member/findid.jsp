@@ -72,7 +72,7 @@ form{
 		</form>
 		
 		<form action="findpw">
-		<input type="button" value="비밀번호 찾기" class="btn btn_p">
+		<input type="button" value="비밀번호 찾기" class="btn btn_p" onClick="location.href='findidpw'">
 		</form>
 		</div>
 	</c:if>

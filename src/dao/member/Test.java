@@ -1,6 +1,6 @@
 package dao.member;
 
-import model.Member;
+import model.manager.Member;
 
 public class Test {
 

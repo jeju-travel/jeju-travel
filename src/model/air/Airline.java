@@ -8,6 +8,7 @@ public class Airline {
 	private String airLoc;
 	private String takeOff;
 	private String airImage;
+	private double horoscope;
 	
 	public Airline() {
 		super();
@@ -58,6 +59,12 @@ public class Airline {
 	}
 	public void setAirImage(String airImage) {
 		this.airImage = airImage;
+	}
+	public double getHoroscope() {
+		return horoscope;
+	}
+	public void setHoroscope(double horoscope) {
+		this.horoscope = horoscope;
 	}
 
 	@Override

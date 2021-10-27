@@ -11,11 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.Lodgingadmin.LodgingDao;
+import dao.Lodgingadmin.LodgingDaoImpl;
+import dao.air.AirlineDao;
+import dao.air.AirlineDaoImpl;
+import dao.car.CarDao;
+import dao.car.CarDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
-import model.Reservation;
+import model.Lodging.Lodgingadmin;
+import model.air.AirReserve;
+import model.air.Airline;
+import model.car.Car;
+import model.car.CarReserve;
+import model.manager.Reservation;
 
-@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart", "/review_insert" })
+@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart"})
 public class ReserveController extends HttpServlet {
 
 	@Override
@@ -40,16 +51,47 @@ public class ReserveController extends HttpServlet {
 		if (action.equals("res_detail")) {
 
 			int resNo = Integer.parseInt(req.getParameter("resNo"));
-			System.out.println(resNo);
+			System.out.println("예약번호" + resNo);
 			
 			ReserveDao dao = new ReserveDaoImpl();
 			Reservation res = dao.selectByResNo(resNo);
+			System.out.println("안녕하세요");
+			System.out.println(res.toString());
 			
+			AirReserve airRes = dao.selectAirResByResNo(res.getairResNo());
+		
+
+			CarReserve carRes = dao.selectCarResByResNo(res.getcarResNo());
+	
+			
+			Airline air = dao.selectAirByResNo(res.getairResNo());
+			Car car = dao.selectCarByResNo(res.getcarResNo());
+			
+			
+			
+			//LodgingDao roomDao = new LodgingDaoImpl();
+			//Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
+			
+			//req.setAttribute("resNo", resNo);
+			req.setAttribute("air", air);
+			req.setAttribute("car", car);
+			req.setAttribute("airRes", airRes);
+			req.setAttribute("carRes", carRes);
+			//req.setAttribute("room", room);
 			
 			req.setAttribute("res", res);
 			
 		} else if(action.equals("review")) {
 			
+			int airResNo = Integer.parseInt(req.getParameter("air"));
+			int carResNo = Integer.parseInt(req.getParameter("car"));
+			
+			ReserveDao dao = new ReserveDaoImpl();
+			Airline air = dao.selectAirByResNo(airResNo);
+			Car car = dao.selectCarByResNo(carResNo);
+			
+			req.setAttribute("air", air);
+			req.setAttribute("car", car);
 			
 		} else if(action.equals("shopping_cart")) {
 			
@@ -64,15 +106,7 @@ public class ReserveController extends HttpServlet {
 			req.setAttribute("air", air);
 			req.setAttribute("room", room);
 			req.setAttribute("car", car);
-		} else if(action.equals("review_insert")){
-			
-			String airContent = req.getParameter("airContent");
-			int airStar = Integer.parseInt(req.getParameter("airStar"));
-			int resNo = Integer.parseInt(req.getParameter("airResNo"));
-			
-			
-			
-		}
+		} 
 
 
 		// 주소 이동
@@ -83,10 +117,7 @@ public class ReserveController extends HttpServlet {
 			dispatchUrl = "/jsp/reserve/review.jsp";
 		} else if(action.equals("shopping_cart")) {
 			dispatchUrl = "/jsp/reserve/shoppingbasket.jsp";
-		}  else if(action.equals("review_insert")){
-			dispatchUrl = "/jsp/member.mypage.jsp";
-			
-		}
+		} 
 
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatchUrl);

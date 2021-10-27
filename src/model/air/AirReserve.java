@@ -6,7 +6,6 @@ public class AirReserve {
 	private String takeOff;
 	private String landing;
 	private int personnel;
-	private int reserveNo;
 	private int airNo;
 	
 	
@@ -41,12 +40,6 @@ public class AirReserve {
 		this.personnel = personnel;
 	}
 
-	public int getReserveNo() {
-		return reserveNo;
-	}
-	public void setReserveNo(int reserveNo) {
-		this.reserveNo = reserveNo;
-	}
 	public int getAirNo() {
 		return airNo;
 	}
@@ -57,6 +50,6 @@ public class AirReserve {
 	@Override
 	public String toString() {
 		return "AirReserve [airReserveNo=" + airReserveNo + ", takeOff=" + takeOff + ", landing=" + landing
-				+ ", reserveNo=" + reserveNo + ", airNo=" + airNo + "]";
+				+", airNo=" + airNo + "]";
 	}
 }
