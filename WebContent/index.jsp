@@ -63,12 +63,7 @@
         </ul>
         </c:if>
         
-        <c:if test="${admin != null }">
-        <ul class="login_memu">
-        	<li>${admin}님 환영합니다</li>
-            <li><a href="logout">로그아웃</a></li>
-        </ul>
-        </c:if>
+       
         
         <c:if test="${admin == null && member == null}">
         <ul class="login_memu">

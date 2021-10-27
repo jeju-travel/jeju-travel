@@ -29,10 +29,21 @@ $(document).ready(function(){
 </script>
 
 <style>
+
+
 	body{
 	display:flex;
 	flex-direction:column;
 	padding:50px;
+}
+.b{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+table{
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 .btn {
@@ -67,46 +78,64 @@ form{
 </head>
 <body>
 	<h3>예약 현황 (${res.startDay} ~ ${res.endDay})</h3>
-	<hr>
 	
 	
-	<p>항공</p>
-	<hr>
-	<c:if test="empty">
-		<h4>예약 결과가 없습니다.</h4>
+	
+	
+	<c:if test="${empty airRes}">
+		<div>
+		항공
+		<hr>
+		<p>예약 결과가 없습니다.</p>
+		</div>
 	</c:if>
 	<!-- 결과 존재시 -->
+	<c:if test="${!empty  airRes}">
 	<table  class="table table-hover">
+		
 		<thead>
 			<th>항공편</th>
 			<th>출발 장소</th>
 			<th>도착 장소</th>
 			<th>출발 시간</th>
 			<th>도착 시간</th>
-			<th>소요 시간</th>
+		
 			<th>금액</th>
 			
 		</thead>
 		<tbody>
+		
+		<!--	private int airReserveNo;
+	private String takeOff;
+	private String landing;
+	private int personnel;
+	private int reserveNo;
+	private int airNo;
+	 -->
 			
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${air.airName}</td>
+				<td>${air.airLoc}</td>
+				<td>제주</td>
+				<td>${airRes.takeOff}</td>
+				<td>${airRes.landing}</td>
+			
+				<td>${air.price}</td>
 			
 		</tbody>
 	</table>
+	</c:if>
 	
-	<p>숙박</p>
-	<hr>
-	<c:if test="empty">
-		<h4>예약 결과가 없습니다.</h4>
+	<c:if test="${empty roomRes}">
+		<div class="b">
+		숙박
+		<hr>
+		<p>예약 결과가 없습니다.</p>
+		</div>
 	</c:if>
 	<!-- 결과 존재시 -->
+	<c:if test=" ${!empty roomRes}">
 	<table  class="table table-hover">
+	
 		<thead>
 			<th>모텔명</th>
 			<th>체크인</th>
@@ -114,24 +143,38 @@ form{
 			<th>금액</th>
 			
 		</thead>
+		<!-- 	private int lodging_no;
+	private String lodging_name;
+	private String lodging_loc;
+	private String lodging_phone;
+	private String lodging_image;
+	 -->
+	 
+	
 		<tbody>
 			
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${room.lodging_name}</td>
+				<td>${roomRes.lodging_ }</td>
+				<td>${roomRes.lodging_ }</td>
+				<td>${room.lodging_price}</td>
 			
 		</tbody>
 	</table>
+	</c:if>
 
 
-	<p>렌트카</p>
-	<hr>
-	<c:if test="empty">
-		<h4>예약 결과가 없습니다.</h4>
+	<c:if test="${empty carRes}">
+	<div>
+		렌트카
+		<hr>
+		<p>예약 결과가 없습니다.</p>
+	</div>
 	</c:if>
 	<!-- 결과 존재시 -->
+	
+	<c:if test="${!empty carRes}">
 	<table  class="table table-hover">
+	
 		<thead>
 			<th>차종</th>
 			<th>출발 시간</th>
@@ -139,19 +182,27 @@ form{
 			<th>금액</th>
 			
 		</thead>
+		
+		 <!-- 
+	 	private int car_reserve_no;
+	private String borrow_car;
+	private String return_car;
+	private int reserve_no;
+	private int car_no;
+	 -->
 		<tbody>
 		
 			
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${car.car_name}</td>
+				<td>${carRes.borrow_car}</td>
+				<td>${carRes.return_car}</td>
+				<td>${car.car_price}</td>
 		
 		
 		</tbody>
 	</table>
+	</c:if>
 	<div>
-	
 	<input type="button"  value="마이페이지" class="btn btn_p">
 	<input type="button"  value="예약취소" class="btn btn_cancle">
 	</div>
