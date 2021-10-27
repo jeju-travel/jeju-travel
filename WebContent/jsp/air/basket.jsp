@@ -17,17 +17,20 @@
 		<th>출발 장소</th>
 		<th>출발날짜</th>
 		<th>탑승시간대</th>
+		<th>인원</th>
 		<th>요금</th>
 		<th></th>
 	</tr>
 	<c:if test="${!empty reserveAirline}">
 	<tr>
-		<td>${airline.airName}</td>
+		<td>${reserveAirline.airName}
+		</td>
 		<td>${sDay}</td>
 		<td>${eDay}</td>
-		<td>${airline.takeOff}</td>
-		<td>${airline.price}원</td>
-		<td><button onclick="location.href='reserveAirline?airNo=${airline.airNo}'">예약하기</button></td>
+		<td>${reserveAirline.takeOff}</td>
+		<td>${airPersonnel}</td>
+		<td>${reserveAirline.price * airPersonnel}원</td>
+		<td><button onclick="location.href='reserveAll?airNo=${reserveAirline.airNo}'">예약하기</button></td>
 	</c:if>
 	
 </table>

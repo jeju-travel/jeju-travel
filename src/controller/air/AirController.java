@@ -60,9 +60,6 @@ public class AirController extends HttpServlet{
 			
 			req.setAttribute("airlineList", airlineList);
 			
-			/*HttpSession session = req.getSession();
-			session.removeAttribute("sDay");
-			session.removeAttribute("eDay");*/
 			
 		}else if(action.equals("addAirline")) {
 			
@@ -124,7 +121,7 @@ public class AirController extends HttpServlet{
 			
 		}else if(action.equals("reserveAll")) {
 			
-			int airNo = Integer.parseInt(req.getParameter("reserve_airNo"));
+			int airNo = Integer.parseInt(req.getParameter("airNo"));
 			HttpSession session = req.getSession();
 			int personnel = (int) session.getAttribute("airPersonnel");
 
@@ -132,7 +129,7 @@ public class AirController extends HttpServlet{
 			Airline airline = dao.selectByNo(airNo);
 			
 			AirReserveDao reserveDao = new AirReserveDaoImpl();
-			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, 1001, airNo);
+			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
 			
 			session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
@@ -157,27 +154,27 @@ public class AirController extends HttpServlet{
 		String dispatcherUrl = null;
 		
 		if(action.equals("reserveAirlineCheck")) {
-			dispatcherUrl = "/air/airReserveCheck.jsp";
+			dispatcherUrl = "/jsp/air/airReserveCheck.jsp";
 		}else if(action.equals("reserveAirline")) {
-			dispatcherUrl = "/air/airReserveList.jsp";
+			dispatcherUrl = "/jsp/air/airReserveList.jsp";
 		}else if(action.equals("goAddAirline")) {
-			dispatcherUrl = "/air/addAirline.jsp";
+			dispatcherUrl = "/jsp/air/addAirline.jsp";
 		}else if(action.equals("addAirline")) {
 			dispatcherUrl = "/mainTemp.jsp";
 		}else if(action.equals("updateAirline")) {
-			dispatcherUrl = "/air/updateAirline.jsp";
+			dispatcherUrl = "/jsp/air/updateAirline.jsp";
 		}else if(action.equals("showAirline")) {
-			dispatcherUrl = "/air/showAirline.jsp";
+			dispatcherUrl = "/jsp/air/showAirline.jsp";
 		}else if(action.equals("updateSetAirline")) {
 			dispatcherUrl = "showAirline";
 		}else if(action.equals("deleteFromAirline")) {
 			dispatcherUrl = "showAirline";
 		}else if(action.equals("basketAirline")) {
-			dispatcherUrl = "/air/basket.jsp";
+			dispatcherUrl = "/jsp/air/basket.jsp";
 		}else if(action.equals("reserveAll")) {
 			dispatcherUrl = "/mainTemp.jsp";
 		}else if(action.equals("writeAirReview")) {
-			dispatcherUrl = "/air/writeAirReview.jsp";
+			dispatcherUrl = "/jsp/air/writeAirReview.jsp";
 		}
 		
 		

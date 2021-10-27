@@ -22,7 +22,7 @@ public class Sql {
 	
 	//AIR_RESERVE
 	public static final String AIR_RESERVE_INSERT = 
-			"insert into air_reserve values(airReserveSeq.nextval, ?, ?, ?, ?, ?)";
+			"insert into air_reserve values(airReserveSeq.nextval, ?, ?, ?, ?)";
 	
 	public static final String AIR_RESERVE_DELETE = 
 			"delete from air_reserve where air_reserve_no = ?";
@@ -30,15 +30,19 @@ public class Sql {
 	
 	//AIR_REVIEW
 	public static final String AIR_REVIEW_INSERT = 
-			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?, ?)";
+			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?)";
 	
 	public static final String AIR_REVIEW_DELETE = 
 			"delete from air_review where air_review_no = ?";
 	
+	public static final String AIR_REVIEW_SELECT_BY_AIRNO = 
+			"select * from air_review where air_no = ?";
 	
-	public static final String CHECK_RESERVE_AIR = 
-			"select m.member_no as member_no, air_no, state " 
-			+"from member m, reservation r, air_reserve ar "
-			+"where m.member_no = r.member_no AND r.reserve_no = ar.reserve_no "
-			+"AND m.member_no = ?";
+	public static final String AIR_REVIEW_SELECT_BY_AIR_REVIEWNO = 
+			"select * from air_review where air_no = ?";
+	
+	
+	public static final String CHECK_RESERVE_MEMBER = 
+			"select air_no from RESERVATION r, AIR_RESERVE ar " + 
+			"where r.reserve_no = ar.reserve_no AND member_no = ?";
 }
