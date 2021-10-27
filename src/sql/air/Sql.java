@@ -30,7 +30,7 @@ public class Sql {
 	
 	//AIR_REVIEW
 	public static final String AIR_REVIEW_INSERT = 
-			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?)";
+			"insert into air_review values(airReviewSeq.nextval, ?, ?, ?, ?)";
 	
 	public static final String AIR_REVIEW_DELETE = 
 			"delete from air_review where air_review_no = ?";

@@ -67,13 +67,7 @@ ALTER TABLE AIR_REVIEW
 d
 
 
-select * from AIR_RESERVE ar, AIRLINE a, AIR_REVIEW review
-where ar.air_no = a.air_no AND ar.air_reserve_no = review.air_reserve_no;
 
-select m.member_no as member_no, air_no, state 
-from member m, reservation r, air_reserve ar 
-where m.member_no = r.member_no AND r.reserve_no = ar.reserve_no
-and m.member_no = 999
 
 
 
