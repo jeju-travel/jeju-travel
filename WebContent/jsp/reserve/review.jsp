@@ -110,12 +110,15 @@ body{
 
 <body>
 <h1>리뷰페이지</h1>
-<form action="review_insert">
+<form action="re_insert">
 리뷰 쓰기 미완성 
+
+
 <div class="box">
 <c:if test="${air != null}">
 	<div class="backImg" >
 	<h3>${air.airName}</h3>
+
 	<img src="${air.airImage}" style="max-width: 100%; height: auto;"> 
 	</div>
 	<div>
@@ -131,6 +134,7 @@ body{
 	<input type="radio" id="air1-star" name="air_star" value="1" v-model="ratings" />
 	<label for="air1-star" class="star">★</label>
 	</div>
+	<input type="text" name="airNo" value=${air.airNo} hidden="hidden">
 
 	<textarea name="airContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
@@ -138,10 +142,10 @@ body{
 </div>
 
 <div class="box">
-<!--<c:if test="${1 != null}">-->
+<c:if test="${lodging != null}">
 	<div class="backImg">
-	<h3>${lodging}</h3>
-	<img src="https://blog.kakaocdn.net/dn/LlRM7/btqzaY2Liml/Aw8jye6FPKb9m9loTi0Zdk/img.jpg" style="max-width: 100%; height: auto;"> 
+	<h3>${lodging.lodging_name}</h3>
+	<img src="${lodging.lodging_image}" style="max-width: 100%; height: auto;"> 
 	</div>
 	
 	<div>
@@ -158,14 +162,15 @@ body{
 	<label for="room1-star" class="star">★</label>
 	</div>
 	
+		<input type="text" name = "roomNo" value=${room.lodging_no} hidden="hidden">
 	<textarea name="roomContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
-<!--</c:if>-->
+</c:if>
 </div>
 
 <div class="box">
 <c:if test="${car != null}">
-	<div class="car.backImg" >
+	<div class="backImg" >
 	<h3>${car.car_name}</h3>
 	<img src="${car.car_img}" style="max-width: 100%; height: auto;"> 
 	</div>
@@ -183,7 +188,7 @@ body{
 	<input type="radio" id="car1-star" name="car_star" value="1" v-model="ratings" />
 	<label for="car1-star" class="star">★</label>
 	</div>
-	
+		<input type="text" name="carNo" value=${car.car_no} hidden="hidden">
 	<textarea name="carContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
 </c:if>

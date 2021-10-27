@@ -8,35 +8,36 @@ public class Reservation {
 	private String endDay;
 	private String state;
 	private String items;
-	private int airNo;
-	private int carNo;
-	private int roomNo;
+	private int airResNo;
+	private int carResNo;
+	private int roomResNo;
+	private int price;
 	
 	
 	
 	
-	public int getAirNo() {
-		return airNo;
+	public int getairResNo() {
+		return airResNo;
 	}
 
-	public void setAirNo(int airNo) {
-		this.airNo = airNo;
+	public void setairResNo(int airResNo) {
+		this.airResNo = airResNo;
 	}
 
-	public int getCarNo() {
-		return carNo;
+	public int getcarResNo() {
+		return carResNo;
 	}
 
-	public void setCarNo(int carNo) {
-		this.carNo = carNo;
+	public void setcarResNo(int carResNo) {
+		this.carResNo = carResNo;
 	}
 
-	public int getRoomNo() {
-		return roomNo;
+	public int getroomResNo() {
+		return roomResNo;
 	}
 
-	public void setRoomNo(int roomNo) {
-		this.roomNo = roomNo;
+	public void setroomResNo(int roomResNo) {
+		this.roomResNo = roomResNo;
 	}
 
 	public String getItems() {
@@ -53,8 +54,8 @@ public class Reservation {
 	
 	
 	
-	public Reservation(int resNo, int memNo, String startDay, String endDay, String state, String items, int airNo,
-			int carNo, int roomNo) {
+	public Reservation(int resNo, int memNo, String startDay, String endDay, String state, String items, int airResNo,
+			int carResNo, int roomResNo, int price) {
 		super();
 		this.resNo = resNo;
 		this.memNo = memNo;
@@ -62,27 +63,30 @@ public class Reservation {
 		this.endDay = endDay;
 		this.state = state;
 		this.items = items;
-		this.airNo = airNo;
-		this.carNo = carNo;
-		this.roomNo = roomNo;
+		this.airResNo = airResNo;
+		this.carResNo = carResNo;
+		this.roomResNo = roomResNo;
+		this.price = price;
 	}
 
-	public Reservation(int resNo, int memNo, String startDay, String endDay, String state) {
+	public Reservation(int resNo, int memNo, String startDay, String endDay, String state, int price) {
 		super();
 		this.resNo = resNo;
 		this.memNo = memNo;
 		this.startDay = startDay;
 		this.endDay = endDay;
 		this.state = state;
+		this.price = price;
 	}
 	
-	public Reservation( int memNo, String startDay, String endDay, String state) {
+	public Reservation( int memNo, String startDay, String endDay, String state, int price) {
 		super();
 		
 		this.memNo = memNo;
 		this.startDay = startDay;
 		this.endDay = endDay;
 		this.state = state;
+		this.price = price;
 	}
 	
 	public int getResNo() {
@@ -119,7 +123,19 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [resNo=" + resNo + ", memNo=" + memNo + ", startDay=" + startDay + ", endDay=" + endDay
-				+ ", state=" + state + "]";
+				+ ", state=" + state + ", items=" + items + ", airResNo=" + airResNo + ", carResNo=" + carResNo + ", roomResNo="
+				+ roomResNo + ", price=" + price + "]";
+	}
+	
+	
+
+	public void setPrice(int price) {
+		this.price = price;
+		
+	}
+	
+	public int getPrice() {
+		return price;
 	}
 
 

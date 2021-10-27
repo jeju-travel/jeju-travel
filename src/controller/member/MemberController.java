@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.Lodgingadmin.LodgingDao;
+import dao.Lodgingadmin.LodgingDaoImpl;
 import dao.air.AirlineDao;
 import dao.air.AirlineDaoImpl;
 import dao.car.CarDao;
@@ -19,6 +21,7 @@ import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
+import model.Lodging.Lodgingadmin;
 import model.air.Airline;
 import model.car.Car;
 import model.manager.Member;
@@ -99,46 +102,32 @@ public class MemberController extends HttpServlet {
 			for (Reservation res : reslist) {
 				
 				//예약 항목 뽑아오기
-				int num[] = dao.selectItemNoByResNo(res.getResNo());
 				
-				System.out.println("1: " + num[0] + " 2: " +num[1] + " 3: " +num[2]);
 				String items = "";
-				
-				for(int i=0; i<3; i ++) {
-					if(num[i] != 0) {
-						//예약번호를 넣어서 항목이름 뽑아오기
-						switch(i) {
-						//항공 이름 가져오기
-						case 0:
-							AirlineDao airDao = new AirlineDaoImpl();
-							Airline air =  airDao.selectByNo(num[0]);
-							
-							items += air.getAirName()+ "  " ;
-							
-							res.setAirNo(air.getAirNo());
-							break;
-						//숙소 이름 가져오기
-						case 1:
-							
-							
-							items += "	결과값	" ;
-							break;
-						//차 이름 가져오기	
-						case 2:
-							CarDao carDao = new CarDaoImpl();
-							Car car = carDao.selectByCarno(num[2]);
-							
-							System.out.println(car.toString());
-							items += "  " + car.getCar_name() + "  " ;
-							
-							res.setCarNo(car.getCar_no());
-							break;
-						}
-							
-						
-			
-					}
+				if(res.getairResNo() != 0) {//예약번호
+					ReserveDao airdao = new ReserveDaoImpl();
+					String airName = dao.selectNameAirResNo(res.getairResNo());
+					
+					
+					items += airName + "\t";
 				}
+				
+				//select car_name from car_reserve ar inner join car a on a.car_no = ar.car_no 
+				if(res.getcarResNo() != 0) {
+					ReserveDao cardao = new ReserveDaoImpl();
+					String carName = cardao.selectNameCarResNo(res.getcarResNo());
+					items += "\t" + carName+ "\t";
+				}
+				
+				//select loadging_name from lodging_reserve ar inner join lodging a on a.lodging_no = ar.lodging_no 
+				if(res.getroomResNo() != 0) {
+					ReserveDao roomdao = new ReserveDaoImpl();
+					String room = roomdao.selectNameRoomResNo(res.getroomResNo());
+					items += "\t" + room + "\t";
+				}
+				
+			
+				
 				
 				res.setItems(items);
 			}
