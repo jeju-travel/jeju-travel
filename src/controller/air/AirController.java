@@ -226,7 +226,7 @@ public class AirController extends HttpServlet{
 		}else if(action.equals("main_air")) {
 			dispatcherUrl = "/jsp/main/air.jsp";
 			
-		}
+		}//
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
