@@ -340,7 +340,8 @@ public class ReserveDaoImpl implements ReserveDao{
 				car.setBorrow_car(resultSet.getString("borrow_car"));
 				car.setReturn_car(resultSet.getString("return_car"));
 				car.setCar_no(resultSet.getInt("car_no"));
-				car.setReserve_no(resultSet.getInt("car_reserve_no"));
+				car.setCar_reserve_no(resultSet.getInt("car_reserve_no"));
+				
 				
 	
 				
@@ -438,8 +439,39 @@ public class ReserveDaoImpl implements ReserveDao{
 
 	@Override
 	public Lodgingadmin selectRoomByResNo(int resNo) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Lodgingadmin room =null;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.SELECT_ROOM_BY_RESNO);
+			pStatement.setInt(1, resNo);
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				room = new Lodgingadmin();
+				
+				room.setLodging_image(resultSet.getString("lodging_image"));
+				room.setLodging_loc(resultSet.getString("lodging_loc"));
+				room.setLodging_name(resultSet.getString("lodging_name"));
+				room.setLodging_no(resultSet.getInt("lodging_no"));
+				room.setLodging_phone(resultSet.getString("lodging_phone"));
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return room;
 	}
 	
 

@@ -26,7 +26,7 @@ import model.car.Car;
 import model.car.CarReserve;
 import model.manager.Reservation;
 
-@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail", "/review", "/shopping_cart"})
+@WebServlet(name = "ReserveController", urlPatterns = {"/res_detail",  "/shopping_cart"})
 public class ReserveController extends HttpServlet {
 
 	@Override
@@ -81,19 +81,7 @@ public class ReserveController extends HttpServlet {
 			
 			req.setAttribute("res", res);
 			
-		} else if(action.equals("review")) {
-			
-			int airResNo = Integer.parseInt(req.getParameter("air"));
-			int carResNo = Integer.parseInt(req.getParameter("car"));
-			
-			ReserveDao dao = new ReserveDaoImpl();
-			Airline air = dao.selectAirByResNo(airResNo);
-			Car car = dao.selectCarByResNo(carResNo);
-			
-			req.setAttribute("air", air);
-			req.setAttribute("car", car);
-			
-		} else if(action.equals("shopping_cart")) {
+		}  else if(action.equals("shopping_cart")) {
 			
 			HttpSession session = req.getSession();
 			
@@ -113,8 +101,6 @@ public class ReserveController extends HttpServlet {
 		String dispatchUrl = null;
 		if (action.equals("res_detail")) {
 			dispatchUrl = "/jsp/reserve/res_detail.jsp";
-		} else if(action.equals("review")) {
-			dispatchUrl = "/jsp/reserve/review.jsp";
 		} else if(action.equals("shopping_cart")) {
 			dispatchUrl = "/jsp/reserve/shoppingbasket.jsp";
 		} 

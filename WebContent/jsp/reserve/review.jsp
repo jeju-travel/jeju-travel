@@ -110,7 +110,7 @@ body{
 
 <body>
 <h1>리뷰페이지</h1>
-<form action="re_insert">
+<form action="review_insert">
 리뷰 쓰기 미완성 
 
 
@@ -143,6 +143,8 @@ body{
 
 <div class="box">
 <c:if test="${lodging != null}">
+
+
 	<div class="backImg">
 	<h3>${lodging.lodging_name}</h3>
 	<img src="${lodging.lodging_image}" style="max-width: 100%; height: auto;"> 
@@ -162,7 +164,7 @@ body{
 	<label for="room1-star" class="star">★</label>
 	</div>
 	
-		<input type="text" name = "roomNo" value=${room.lodging_no} hidden="hidden">
+		<input type="text" name="roomNo" value="${lodging.lodging_no}" hidden="hidden">
 	<textarea name="roomContent" placeholder="리뷰를 작성하세요"></textarea>
 	</div>
 </c:if>
