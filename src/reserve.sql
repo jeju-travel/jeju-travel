@@ -1,5 +1,15 @@
 select * from reservation where member_no = 1
 
+create sequence airReviewSeq
+
+create sequence seq_car_review_no
+
+
+--review 
+select * from CAR_REVIEW
+select * from AIR_REVIEW
+select * from LODGING_REVIEW
+
 select * from member
 
 select * from reserve_admin
@@ -44,15 +54,16 @@ select * from RESERVATION where reserve_no = 14
 
 delete from RESERVATION
 
-
+select * from LODGING
 
 select air_name from air_reserve ar inner join airline a on a.air_no = ar.air_no where air_reserve_no = 4
 select car_name from car_reserve ar inner join car a on a.car_no = ar.car_no where car_reserve_no = 1
 select lodging_name from lodging_reserve ar inner join lodging a on a.lodging_no = ar.lodging_no where room_reserve_no = 1
 
+select * from LODGING_REVIEW
+create sequence lodging_seq
 
-
-
+insert into LODGING_REVIEW values(lodging_seq.nextval, ?, ?, ?, ?)
 
 select reserve_no, member_no, TO_CHAR(start_day, 'YYYY.MM.DD') AS start_day, TO_CHAR(end_day, 'YY.MM.DD') AS end_day, state  from reservation where member_no = 1
 

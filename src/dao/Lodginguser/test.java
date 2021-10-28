@@ -3,7 +3,7 @@ package dao.Lodginguser;
 import java.sql.Connection;
 import java.util.List;
 
-import dao.Lodgingadmin.JDBCUtil;
+
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
 import model.Lodging.Lodgingadmin;
