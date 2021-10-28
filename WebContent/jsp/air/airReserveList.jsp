@@ -5,11 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+  
 <title>제주 여행</title>
 </head>
 <body>
 <h3>항공 예약</h3>
-<table>
+<div class="container mt-3">
+<table class="table">
+	<thead>
 	<tr>
 		<th>별점</th>
 		<th>항공사</th>
@@ -20,6 +26,8 @@
 		<th>탑승인원</th>
 		<th></th>
 	</tr>
+	</thead>
+	<tbody>
 	<c:forEach var="airline" items="${airlineList}">
 	<form method="post" action="basketAirline">
 	<tr>
@@ -36,8 +44,8 @@
 	</tr>
 	</form>
 	</c:forEach>
-	
+	</tbody>	
 </table>
-
+</div>
 </body>
 </html>
