@@ -24,11 +24,11 @@ public class test {
 		lodgingDao.insert(lodgingadmin);*/
 		
 		//list
-		/*List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
+		List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
 		for (Lodgingadmin lodgingadmin2 : lodgingList) {
 	         System.out.println(lodgingadmin2.toString());
 	    }
-		System.out.println("출력되었습니다.");*/
+		System.out.println("출력되었습니다.");
 		
 		//update
 		/*lodging.setLodging_name("숙소테스트수정");
@@ -44,8 +44,8 @@ public class test {
 		System.out.println("삭제되었습니다.");*/
 		
 		//selectbylodging_no
-		lodgingadmin = lodgingDao.selectBylodging_no(2);
-		System.out.println(lodgingadmin.toString());
+		/*lodgingadmin = lodgingDao.selectBylodging_no(2);
+		System.out.println(lodgingadmin.toString());*/
 		
 		JDBCUtil.close(null, null, connection);
 		

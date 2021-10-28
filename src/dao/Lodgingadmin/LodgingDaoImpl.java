@@ -26,7 +26,8 @@ public class LodgingDaoImpl implements LodgingDao{
 			pStatement.setString(1, lodgingadmin.getLodging_name());
 			pStatement.setString(2, lodgingadmin.getLodging_loc());
 			pStatement.setString(3, lodgingadmin.getLodging_phone());
-			pStatement.setString(4, lodgingadmin.getLodging_image());
+			pStatement.setInt(4, lodgingadmin.getLodging_price());
+			pStatement.setString(5, lodgingadmin.getLodging_image());
 			
 			pStatement.executeUpdate();
 			
@@ -60,6 +61,7 @@ public class LodgingDaoImpl implements LodgingDao{
 	            lodgingadmin.setLodging_name(resultset.getString("lodging_name"));
 	            lodgingadmin.setLodging_loc(resultset.getString("lodging_loc"));
 	            lodgingadmin.setLodging_phone(resultset.getString("lodging_phone"));
+	            lodgingadmin.setLodging_price(resultset.getInt("lodging_price"));
 	            lodgingadmin.setLodging_image(resultset.getString("lodging_image"));
 	            
 	            lodgingList.add(lodgingadmin);
@@ -86,8 +88,9 @@ public class LodgingDaoImpl implements LodgingDao{
 	         pStatement.setString(1, lodgingadmin.getLodging_name());
 	         pStatement.setString(2, lodgingadmin.getLodging_loc());
 	         pStatement.setString(3, lodgingadmin.getLodging_phone());
-	         pStatement.setString(4, lodgingadmin.getLodging_image());
-	         pStatement.setInt(5, lodgingadmin.getLodging_no());
+	         pStatement.setInt(4, lodgingadmin.getLodging_price());
+	         pStatement.setString(5, lodgingadmin.getLodging_image());
+	         pStatement.setInt(6, lodgingadmin.getLodging_no());
 	         
 	         pStatement.executeUpdate();         
 	         
@@ -144,6 +147,7 @@ public class LodgingDaoImpl implements LodgingDao{
 	        	 lodgingadmin.setLodging_name(resultset.getString("lodging_name"));
 	        	 lodgingadmin.setLodging_loc(resultset.getString("lodging_loc"));
 	        	 lodgingadmin.setLodging_phone(resultset.getString("lodging_phone"));
+	        	 lodgingadmin.setLodging_price(resultset.getInt("lodging_price"));
 	        	 lodgingadmin.setLodging_image(resultset.getString("lodging_image"));
 	            
 	         }         
