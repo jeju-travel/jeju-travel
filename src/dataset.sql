@@ -6,6 +6,8 @@ create sequence mem_seq;
 create sequence res_seq;
 create sequence airlineSeq;
 create sequence seq_car_no;
+create sequence seq_car_reserve_no
+create sequence seq_car_review_no
 create sequence seqlodging_no;
 
 --항공 데이터
