@@ -36,4 +36,7 @@ public interface ReserveDao {
 	
 	public Lodgingadmin selectRoomByResNo(int resNo);
 	
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice);
+	
+	public int recentReservation();
 }

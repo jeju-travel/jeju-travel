@@ -12,7 +12,6 @@ import model.air.Airline;
 import model.car.Car;
 import model.car.CarReserve;
 import model.manager.Reservation;
-
 import util.JDBCUtil;
 
 
@@ -473,6 +472,65 @@ public class ReserveDaoImpl implements ReserveDao{
 		
 		return room;
 	}
+
+	@Override
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.INSERT_RESERVATION);
+			
+			pStatement.setInt(1, memberNo);
+			pStatement.setString(2, startDay);
+			pStatement.setString(3, endDay);
+			pStatement.setInt(4, totalPrice);
+			
+			pStatement.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+	}
+
+	@Override
+	public int recentReservation() {
+		int resNo = 0;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.RECENT_RESERVATION);
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				
+				resNo = resultSet.getInt("num");
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		return resNo;
+	}
+	
 	
 
+	
 }

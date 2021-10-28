@@ -19,8 +19,13 @@ import dao.air.AirReviewDao;
 import dao.air.AirReviewDaoImpl;
 import dao.air.AirlineDao;
 import dao.air.AirlineDaoImpl;
+import dao.member.MemberDao;
+import dao.member.MemberDaoImpl;
+import dao.reserve.ReserveDao;
+import dao.reserve.ReserveDaoImpl;
 import model.air.AirReserve;
 import model.air.Airline;
+import model.manager.Member;
 
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
@@ -175,13 +180,25 @@ public class AirController extends HttpServlet{
 			reviewDao.insert(writer, content, airHoroscope, airNo);
 			
 		}else if(action.equals("main_air")) {
-			
-			String startDay = req.getParameter("start_day");
-			String endDay = req.getParameter("end_day");
-
 			HttpSession session = req.getSession();
-			session.setAttribute("startDay", startDay);
-			session.setAttribute("endDay", endDay);
+			
+			if(session.getAttribute("member") != null) {
+				String startDay = req.getParameter("start_day");
+				String endDay = req.getParameter("end_day");
+	
+				session.setAttribute("startDay", startDay);
+				session.setAttribute("endDay", endDay);
+				
+				MemberDao memberDao = new MemberDaoImpl();
+				Member member = memberDao.selectById((String) session.getAttribute("member"));
+				
+				ReserveDao reserveDao = new ReserveDaoImpl();
+				reserveDao.insert(member.getNo(), startDay, endDay, 0);
+				int resNo = reserveDao.recentReservation();
+				
+				session.setAttribute("resNo", resNo);
+				System.out.println(session.getAttribute("resNo"));
+			}
 		}
 		
 		
@@ -227,7 +244,12 @@ public class AirController extends HttpServlet{
 			dispatcherUrl = "/mainTemp.jsp";
 			
 		}else if(action.equals("main_air")) {
-			dispatcherUrl = "/jsp/main/air.jsp";
+			HttpSession session = req.getSession();
+			if(session.getAttribute("member") != null) {
+				dispatcherUrl = "/jsp/main/air.jsp";
+			}else {
+				dispatcherUrl = "/index.jsp";
+			}
 			
 		}//
 		
