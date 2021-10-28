@@ -75,7 +75,7 @@
                     </tr>
                     <tr>
                         <td>이미지(2차)</td>
-                        <td><input type="text" name="car_img"/></td>
+                        <td><input type="text" name="car_image"/></td>
                     </tr>
                     <tr>
                         <td><input type="reset" value="다시입력" class="btn btn-primary"></td>

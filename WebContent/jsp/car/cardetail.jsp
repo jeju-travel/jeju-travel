@@ -98,7 +98,7 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                         <td>이미지(2차)</td>
-                        <td><input type="text" name="car_img" value="${car.car_img}" /></td>
+                        <td><input type="text" name="car_image" value="${car.car_image}" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="수정하기" class="btn btn-primary"></td>

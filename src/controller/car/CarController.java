@@ -25,7 +25,7 @@ import page.car.PageManager;
 import page.car.PageSql;
 import validator.car.CarValidator;
 
-@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/jsp/car/car_select","/jsp/car/car_reserve", "/main_car", "/carlist"})
+@WebServlet(name="CarController" , urlPatterns= {"/car_input","/car_save","/car_search","/car_detail","/car_update","/car_delete","/car_select","/car_reserve","/main_car", "/carlist"})
 public class CarController extends HttpServlet {
 	
 	@Override
@@ -54,9 +54,9 @@ public class CarController extends HttpServlet {
 			String capacity = req.getParameter("capacity");
 			String car_fuel = req.getParameter("car_fuel");
 			String car_loc = req.getParameter("car_loc");
-			String car_img = req.getParameter("car_img");
+			String car_image = req.getParameter("car_image");
 			
-			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_img);	
+			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_image);	
 			//여기서 체크해서 유효성 검사
 			CarValidator validator = new CarValidator();
 			CarError carError = validator.validate(carForm);
@@ -69,7 +69,7 @@ public class CarController extends HttpServlet {
 				car.setCapacity(Integer.parseInt(carForm.getCapacity()));
 				car.setCar_fuel(carForm.getCar_fuel());
 				car.setCar_loc(carForm.getCar_loc());
-				car.setCar_img(carForm.getCar_img());
+				car.setCar_image(carForm.getCar_image());
 				CarDao cardao = new CarDaoImpl();
 				
 				cardao.insert(car);
@@ -111,9 +111,9 @@ public class CarController extends HttpServlet {
 			String capacity = req.getParameter("capacity");
 			String car_fuel = req.getParameter("car_fuel");
 			String car_loc = req.getParameter("car_loc");
-			String car_img = req.getParameter("car_img");			
+			String car_image = req.getParameter("car_image");			
 			
-			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_img);
+			CarForm carForm = new CarForm(car_name,car_type,car_price,capacity,car_fuel,car_loc,car_image);
 			CarValidator validator = new CarValidator();
 			CarError carError = validator.validate(carForm);
 			
@@ -127,7 +127,7 @@ public class CarController extends HttpServlet {
 				car.setCapacity(Integer.parseInt(carForm.getCapacity()));
 				car.setCar_fuel(carForm.getCar_fuel());
 				car.setCar_loc(carForm.getCar_loc());
-				car.setCar_img(carForm.getCar_img());
+				car.setCar_image(carForm.getCar_image());
 				car.setCar_no(car_no);
 				CarDao cardao = new CarDaoImpl();
 				
@@ -156,7 +156,7 @@ public class CarController extends HttpServlet {
 	         dao.Cardelete(car_no);
 	        
 	          	       
-	    }else if(action.equals("car_select")) {	    	
+	    }else if(action.equals("car_select")) {	
 	    	String start_day = req.getParameter("start_day");
 	    	String end_day = req.getParameter("end_day");	
 	    	
@@ -218,17 +218,18 @@ public class CarController extends HttpServlet {
 		}else if(action.equals("car_delete")) {
 			dispatcherUrl = "car_search";	
 			
-	    }else if(action.equals("car_select")) {
-	    	dispatcherUrl = "carlist.jsp";
-	    	
-	    }else if(action.equals("car_reserve")) {
-	    	dispatcherUrl = "carlist.jsp"; //나중에 최종예약으로 넘어가야됨.
-	    	
 	    }else if(action.equals("main_car")) {
 	    	dispatcherUrl = "/jsp/main/car.jsp";
 	    	
 	    }else if(action.equals("carlist")) {
 	    	dispatcherUrl = "/jsp/car/carlist.jsp";
+	    	
+	    }else if(action.equals("car_select")) {
+	    	dispatcherUrl = "jsp/car/carlist.jsp";
+	    	
+	    }else if(action.equals("car_reserve")) {
+	    	dispatcherUrl = "/jsp/reserve/shoppingbasket.jsp"; 
+	    	
 	    }
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);

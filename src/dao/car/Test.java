@@ -30,7 +30,7 @@ public class Test {
 		car.setCapacity(5);
 		car.setCar_fuel("가솔린");
 		car.setCar_loc("제주도 올레길 52-10번길 3층");
-		car.setCar_img(null);		
+		car.setCar_image(null);		
 		cardao.insert(car);
 		
 		//------------렌트카 CAR_RESERVE db insert문-------------

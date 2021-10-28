@@ -10,11 +10,11 @@ public class Car {
 	private int capacity;
 	private String car_fuel;
 	private String car_loc;
-	private String car_img;	
+	private String car_image;	
 	public Car() {}
 
 	public Car(int car_no, String car_name, String car_type, int car_price, int capacity, String car_fuel,
-			String car_loc, String car_img) {
+			String car_loc, String car_image) {
 		super();
 		this.car_no = car_no;
 		this.car_name = car_name;
@@ -23,7 +23,7 @@ public class Car {
 		this.capacity = capacity;
 		this.car_fuel = car_fuel;
 		this.car_loc = car_loc;
-		this.car_img = car_img;
+		this.car_image = car_image;
 	}
 		
 
@@ -83,12 +83,12 @@ public class Car {
 		this.car_loc = car_loc;
 	}
 
-	public String getCar_img() {
-		return car_img;
+	public String getCar_image() {
+		return car_image;
 	}
 
-	public void setCar_img(String car_img) {
-		this.car_img = car_img;
+	public void setCar_image(String car_image) {
+		this.car_image = car_image;
 	}
 	
 
@@ -96,7 +96,7 @@ public class Car {
 	public String toString() {
 		return "Car [car_no=" + car_no + ", car_name=" + car_name + ", car_type=" + car_type + ", car_price="
 				+ car_price + ", capacity=" + capacity + ", car_fuel=" + car_fuel + ", car_loc=" + car_loc
-				+ ", car_img=" + car_img + "]";
+				+ ", car_image=" + car_image + "]";
 	}
 
 	
