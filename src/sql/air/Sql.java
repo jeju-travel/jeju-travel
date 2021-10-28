@@ -38,6 +38,10 @@ public class Sql {
 	public static final String AIR_REVIEW_DELETE = 
 			"delete from air_review where air_review_no = ?";
 	
+	public static final String AIR_REVIEW_UPDATE = 
+			"update air_review set content = ?, air_horoscope = ? "
+			+"where air_review_no = ?";
+	
 	public static final String AIR_REVIEW_SELECT_BY_AIRNO = 
 			"select * from air_review where air_no = ?";
 	

@@ -165,7 +165,7 @@ public class AirController extends HttpServlet{
 		}else if(action.equals("reviewSave_air")) {
 			String writer = "abc";
 			String content = req.getParameter("content");
-			int airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
+			double airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
 			int airNo = Integer.parseInt(req.getParameter("airlineNo"));
 			
 			AirReviewDao reviewDao = new AirReviewDaoImpl();

@@ -104,7 +104,55 @@ public class AirReviewDaoImpl implements AirReviewDao {
 		
 		return horoscope;
 	}
-	
-	
 
+	@Override
+	public void update(String content, double horoscope, int air_review_no) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.AIR_REVIEW_UPDATE);
+			
+			pStatement.setString(1, content);
+			pStatement.setDouble(2, horoscope);
+			pStatement.setInt(3, air_review_no);
+			
+			pStatement.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+	}
+
+	@Override
+	public void delete(int airReviewNo) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.AIR_REVIEW_DELETE);
+			
+			pStatement.setInt(1, airReviewNo);
+			
+			pStatement.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+	}
 }
