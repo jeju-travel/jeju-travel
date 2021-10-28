@@ -5,6 +5,8 @@ insert into RESERVE_ADMIN values(1,'root','root','1234')
 create sequence mem_seq;
 create sequence res_seq;
 create sequence airlineSeq;
+create sequence airReserveSeq;
+create sequence airReviewSeq;
 create sequence seq_car_no;
 create sequence seq_car_reserve_no
 create sequence seq_car_review_no

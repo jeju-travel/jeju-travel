@@ -90,7 +90,7 @@ public class AirReserveDaoImpl implements AirReserveDao {
 			
 			resultSet = pStatement.executeQuery();
 			
-			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false.
 				airReserve = new AirReserve();
 
 				airReserve.setAirReserveNo(resultSet.getInt("air_reserve_no"));
