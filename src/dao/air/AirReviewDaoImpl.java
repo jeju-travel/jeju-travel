@@ -13,7 +13,7 @@ import util.JDBCUtil;
 public class AirReviewDaoImpl implements AirReviewDao {
 
 	@Override
-	public void insert(String writer, String airContent, int airHoroscope, int airNo) {
+	public void insert(String writer, String airContent, double airHoroscope, int airNo) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		
@@ -23,7 +23,7 @@ public class AirReviewDaoImpl implements AirReviewDao {
 			
 			pStatement.setString(1, writer);
 			pStatement.setString(2, airContent);
-			pStatement.setInt(3, airHoroscope);
+			pStatement.setDouble(3, airHoroscope);
 			pStatement.setInt(4, airNo);
 			
 			pStatement.executeQuery();

@@ -71,9 +71,10 @@ input, select{
 	<input type="text" name="name" placeholder="이름">
 	<br>
 	<select name="hint">
+		<option value="food">본인이 가장 좋아하는 음식은?</option>
+		<option value="color">본인이 가장 좋아하는 색깔은?</option>
 		<option value="school">본인이 졸업한 초등학교는?</option>
 		<option value="city">본인이 태어난 도시는?</option>
-		<option value="food">본인이 가장 좋아하는 음식은?</option>
 	</select>
 	<br>
 	<input type="text" name="answer" placeholder="답변"><br>
