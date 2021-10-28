@@ -68,6 +68,7 @@
                   <td>${list.lodging_name}</td>
                   <td>${list.lodging_loc}</td>
                   <td>${list.lodging_phone}</td>
+                  <td>${list.lodging_price}</td>
                   <td>${list.lodging_image}</td>
                </tr>
             </c:forEach>

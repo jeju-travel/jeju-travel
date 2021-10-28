@@ -32,7 +32,12 @@
     		font-size:12px;
     		font-weight:bold;
     	}
-    	
+    	.lodgingimage{
+    		width:100px;
+      		height: auto;
+      		background-size:cover;
+      		background: no-repeat;
+    	}
   	</style>
 </head>
 <body>
@@ -48,6 +53,7 @@
         		<th class="titlename">숙소 이름</th>
         		<th class="titlename">숙소 위치</th>
         		<th class="titlename">숙소 전화번호</th>
+        		<th class="titlename">숙소 가격</th>
         		<th class="titlename">숙소 이미지</th>
         		<th class="titlename">숙소 수정 및 삭제</th>
         	</tr>
@@ -56,7 +62,8 @@
                   <td>${list.lodging_name}</td>
                   <td>${list.lodging_loc}</td>
                   <td>${list.lodging_phone}</td>
-                  <td>${list.lodging_image}</td>
+                  <td>${list.lodging_price}</td>
+                  <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
                   <td><a class="updatedelete" href="lodging_detail?lodging_no=${list.lodging_no}">상세보기</a>
                </tr>
             </c:forEach>

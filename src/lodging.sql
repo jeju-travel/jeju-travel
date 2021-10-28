@@ -20,54 +20,42 @@ CREATE TABLE LODGING (
 	lodging_name VARCHAR2(50) not null,
 	lodging_loc VARCHAR2(80) not null,
 	lodging_phone VARCHAR2(30) not null,
+	lodging_price NUMBER not null,
 	lodging_image VARCHAR2(255)
 )
 --숙소테이블 시퀀스 생성--
 create sequence seqlodging_no;
 --숙소테이블insert--
-insert into lodging values(seqlodging_no.nextval,'제주','제주도','032-2222-3333','이미지');
-insert into lodging values(seqlodging_no.nextval,?,?,?,?);
+insert into lodging values(seqlodging_no.nextval,'리젠트마린','제주도','032-2222-3333',3000,'jsp/image/RegentMarine.jpg');
+insert into lodging values(seqlodging_no.nextval,'그랜드하얏트제주','제주도 서귀포','032-1111-2222',9000,'jsp/image/GrandHyattJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'탐라스테이호텔제주','제주도 서귀포','032-2222-3333',10000,'jsp/image/TamnaStayHotelJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'유탑유블레스호텔','제주도 제주','032-2222-3333',3000,'jsp/image/GrandHyattJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'호텔위드제주','제주도 제주','032-2222-3333',1000,'jsp/image/HotelwithJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'다인오세아노호텔','제주도서귀포','032-3333-3333',90000,'jsp/image/DyneOcenanoHotel.jpg');
+insert into lodging values(seqlodging_no.nextval,'유니호텔제주','제주도 제주','032-2222-7777',7000,'jsp/image/UniHotelJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'아스타호델','제주도 제주','032-1111-3333',1000,'jsp/image/HotelwithJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'제주칼호텔','제주도 제주','032-2222-3333',2000,'jsp/image/KalHotelJeju.jpg');
+insert into lodging values(seqlodging_no.nextval,'제주마레보리조트','제주도 애월','032-2222-3333',1000,'jsp/image/JejuMarevoResort.jpg');
+insert into lodging values(seqlodging_no.nextval,'우도사랑채민박','우도','032-2222-3333',1000,'jsp/image/UdoLovehousePension.jpg');
+insert into lodging values(seqlodging_no.nextval,'스카이리더스호텔','제주도 제주 ','032-2222-3333',1000,'jsp/image/SkyLeadersHotel.jpg');
+insert into lodging values(seqlodging_no.nextval,?,?,?,?,?);
 --숙소테이블 조회--
-select * from LODGING;
+select * from LODGING order by lodging_no asc;
 
-select * from lodging where lodging_no = (select lodging_no from room where lodging_no = 4)
-
-
---객실 테이블 생성--
-create table room(
-	room_no number primary key,
-	room_name varchar2(50) not null,
-	room_price number not null,
-	room_personnel number not null,
-	room_configuration varchar2(255),
-	room_service varchar2(255),
-	lodging_no number references lodging(lodging_no),
-	room_image varchar2(255)
-)
---객실테이블 시퀀스 생성--
-create sequence seqroom_no;
---객실 테이블 insert--
-insert into room values(seqroom_no.nextval,'1번방',20000,3,'싱글베드','무료생수',21,'이미지');
-insert into room values(seqroom_no.nextval,'1번방',20000,3,'싱글베드','무료생수',null,'이미지');
---객실 테이블 조회--
-select * from room;
-drop table room;
-
---객실예약 테이블 생성--
-create table room_reserve(
-	room_reserve_no number primary key,
+--숙소예약 테이블 생성--
+create table lodging_reserve(
+	lodging_reserve_no number primary key,
 	check_in varchar(10),
 	check_out varchar(10),
-	room_no number references room(room_no),
-	reserve_no number references reservation(reserve_no)
+	lodging number references lodging(lodging_no)
 )
---객실예약 테이블 시퀀스 생성--
-create sequence seqroom_reserve_no;
---객실예약 테이블 insert--
-insert into room_reserve values(seqroom_reserve_no.nextval,'오전','오후',21,1);
-insert into room_reserve values(seqroom_reserve_no.nextval,'오전','오후',21,null);
---객실예약 테이블 조회--
-select * from room_reserve;
+--숙소예약 테이블 시퀀스 생성--
+create sequence seqlodging_reserve_no;
+--숙소예약 테이블 insert--
+insert into lodging_reserve values(seqlodging_reserve_no.nextval,'오전','오후',2);
+insert into lodging_reserve values(seqlodging_reserve_no.nextval,'오전','오후',1);
+--숙소예약 테이블 조회--
+select * from lodging_reserve;
 
 --숙소후기 테이블 생성--
 create table lodging_review(

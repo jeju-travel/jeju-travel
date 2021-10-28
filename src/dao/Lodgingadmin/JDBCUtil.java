@@ -10,7 +10,7 @@ public class JDBCUtil {
 	
 	//접속
 	public static final String driver = "oracle.jdbc.driver.OracleDriver";
-	public static final String url = "jdbc:oracle:thin:@192.168.35.185:1521:xe";
+	public static final String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	//로그인
 	public static final String user = "SCOTT";
 	public static final String password = "tiger";

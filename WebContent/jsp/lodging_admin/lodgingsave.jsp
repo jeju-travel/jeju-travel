@@ -41,7 +41,7 @@
     }
     .lodgingbutton input{
     	width:300px;
-    	margin-right:150px;
+    	margin-right:13.5%;
     }
     .listmove{
     	text-align: center;
@@ -67,7 +67,7 @@
             </tr>
             <tr>
             	<td class="lodgingtext"> 숙소 이미지 : </td>
-            	<td><input type="text" size="60px" name="lodgingimage" placeholder=" 숙소 이미지를 넣어주세요!"></td>
+            	<td><input type="text" size="60px" name="lodgingimage" placeholder=" 숙소 이미지경로를 넣어주세요!"></td>
            	</tr>
         </table>
     <div class="lodgingbutton">
