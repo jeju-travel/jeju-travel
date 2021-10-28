@@ -154,8 +154,8 @@ form{
 		<tbody>
 			
 				<td>${room.lodging_name}</td>
-				<td>${roomRes.lodging_ }</td>
-				<td>${roomRes.lodging_ }</td>
+				<td>${roomRes.check_in}</td>
+				<td>${roomRes.check_out}</td>
 				<td>${room.lodging_price}</td>
 			
 		</tbody>

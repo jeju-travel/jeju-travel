@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import model.Lodging.Lodging_reserve;
 
 import model.Lodging.Lodgingadmin;
 import model.air.AirReserve;
@@ -417,7 +418,7 @@ public class ReserveDaoImpl implements ReserveDao{
 				
 				car.setCapacity(resultSet.getInt("capacity"));
 				car.setCar_fuel(resultSet.getString("car_fuel"));
-				car.setCar_img(resultSet.getString("car_image"));
+				car.setCar_image(resultSet.getString("car_image"));
 				car.setCar_loc(resultSet.getString("car_loc"));
 				car.setCar_name(resultSet.getString("car_name"));
 				car.setCar_no(resultSet.getInt("car_no"));
@@ -531,6 +532,168 @@ public class ReserveDaoImpl implements ReserveDao{
 	}
 	
 	
+	@Override
+	public Lodging_reserve selectRoomResByResNo(int resNo) {
+		Lodging_reserve room = null;
+	
+
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = JDBCUtil.getConnection();
+			
+
+			pStatement = connection.prepareStatement(Sql.SELECT_ROOM_RES_BY_RESNO);
+			pStatement.setInt(1, resNo);
+			
+
+			resultSet = pStatement.executeQuery();
+
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				room = new Lodging_reserve();
+
+				room.setCheck_in(resultSet.getString("check_in"));
+				room.setCheck_out(resultSet.getString("check_out"));
+				room.setLodging_no(resultSet.getInt("lodging_no"));
+				room.setLodging_reserve_no(resultSet.getInt("room_reserve_no"));
+
+				System.out.println("숙소 예약 정보:" + room.toString());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+
+		return room;
+	}
+
+	@Override
+	public void updateResState(int resNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.UPDATE_RES_STATE);
+			pStatement.setInt(1, resNo);
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+
+	}
+	
+	
+	@Override
+	public void deleteAirRes(int airResNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.DELETE_AIR_RES);
+
+			pStatement.setInt(1, airResNo);
+			
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+	}
+	
+	
+//-----------------------
+	@Override
+	public void deleteLodgingRes(int lodgingResNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.DELETE_LODGING_RES);
+
+			pStatement.setInt(1, lodgingResNo);
+
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+
+	}
+
+	@Override
+	public void deleteCarRes(int carResNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.DELETE_CAR_RES);
+
+			pStatement.setInt(1, carResNo);
+			
+
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+	}
+
+	@Override
+	public void deleteRes(int resNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.DELETE_RES);
+
+			pStatement.setInt(1, resNo);
+			
+
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+
+			
+		}
+
+		
+	}
 
 	
 }

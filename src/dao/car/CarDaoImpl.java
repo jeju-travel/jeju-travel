@@ -80,7 +80,7 @@ public class CarDaoImpl implements CarDao {
 			
 			pStatement.setString(1, carreview.getWriter());
 			pStatement.setString(2, carreview.getCar_content());			
-			pStatement.setInt(3, carreview.getCar_horoscope());			
+			pStatement.setDouble(3, carreview.getCar_horoscope());			
 			pStatement.setInt(4, carreview.getCar_no());
 			
 			pStatement.executeUpdate();			

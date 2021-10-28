@@ -1,7 +1,7 @@
 package dao.reserve;
 
 import java.util.List;
-
+import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 
 import model.air.AirReserve;
@@ -28,6 +28,7 @@ public interface ReserveDao {
 	
 	public AirReserve selectAirResByResNo(int resNo);
 	public CarReserve selectCarResByResNo(int resNo);
+	public Lodging_reserve selectRoomResByResNo(int resNo);
 	//public Room_reserve selectRoomResByResNo(int resNo);
 	
 	public Airline selectAirByResNo(int resNo);
@@ -35,6 +36,15 @@ public interface ReserveDao {
 	public Car selectCarByResNo(int resNo);
 	
 	public Lodgingadmin selectRoomByResNo(int resNo);
+	
+	public void updateResState(int resNo);
+
+
+	//delete
+	public void deleteAirRes(int airResNo);
+	public void deleteLodgingRes(int lodgingResNo);
+	public void deleteCarRes(int carResNo);
+	public void deleteRes(int resNo);
 	
 	public void insert(int memberNo, String startDay, String endDay, int totalPrice);
 	

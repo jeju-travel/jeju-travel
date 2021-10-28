@@ -1,14 +1,17 @@
 select * from reservation where member_no = 1
 
 create sequence airReviewSeq
+select * from LODGING
 
 create sequence seq_car_review_no
 
-
+select * from RESERVATION
 --review 
 select * from CAR_REVIEW
 select * from AIR_REVIEW
 select * from LODGING_REVIEW
+
+select * from LODGING_RESERVE
 
 select * from member
 
