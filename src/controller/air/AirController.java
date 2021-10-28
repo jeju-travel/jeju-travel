@@ -135,10 +135,13 @@ public class AirController extends HttpServlet{
 			AirReserveDao reserveDao = new AirReserveDaoImpl();
 			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
 			
+			//int airReserve = reserveDao.recentAirReserve();
+			
 			/*session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
 			session.removeAttribute("reserveAirline");
-			session.removeAttribute("airPersonnel");*/
+			session.removeAttribute("airPersonnel");
+			session.removeAttribute("recentAirReserve");*/
 			
 		}else if(action.equals("writeAirReview")) {
 			List<Airline> airlineList = new ArrayList<>();

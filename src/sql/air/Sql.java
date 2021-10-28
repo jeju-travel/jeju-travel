@@ -30,6 +30,9 @@ public class Sql {
 	public static final String AIR_RESERVE_SELECT_BY_RESERVENO = 
 			"select * from air_reserve where air_reserve_no = ?";
 	
+	public static final String RECENT_AIR_RESERVE = 
+			"select max(air_reserve_no) as num from air_reserve";
+	
 	
 	//AIR_REVIEW
 	public static final String AIR_REVIEW_INSERT = 

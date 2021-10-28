@@ -38,6 +38,41 @@ public class AirReserveDaoImpl implements AirReserveDao {
 		}
 
 	}
+	
+	
+
+	@Override
+	public int recentAirReserve() {
+		int number = 0;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.RECENT_AIR_RESERVE);
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				
+				number = resultSet.getInt("num");
+				
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return number;
+	}
+
+
 
 	@Override
 	public AirReserve selectByNo(int reserveNo) {
