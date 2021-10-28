@@ -417,7 +417,7 @@ public class ReserveDaoImpl implements ReserveDao{
 				
 				car.setCapacity(resultSet.getInt("capacity"));
 				car.setCar_fuel(resultSet.getString("car_fuel"));
-				car.setCar_img(resultSet.getString("car_image"));
+				car.setCar_image(resultSet.getString("car_image"));
 				car.setCar_loc(resultSet.getString("car_loc"));
 				car.setCar_name(resultSet.getString("car_name"));
 				car.setCar_no(resultSet.getInt("car_no"));

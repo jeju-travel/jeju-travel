@@ -62,7 +62,7 @@ update car set content=?,scope=? where car_review_no=?;
 delete from car_review where car_review_no = ?; 
 insert into car_review values(seq_car_review_no.nextval,?,?,?);
 
-insert into car_review values(seq_car_review_no.nextval,'id','내용',4,1); 
+insert into car_review values(seq_car_review_no.nextval,'s','내용',2,1); 
 
 select car.car_no,avg(car_horoscope) as car_horoscope
 from car car, car_review car_review

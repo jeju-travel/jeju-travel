@@ -4,12 +4,12 @@ public class CarReview {
 	private int car_review_no;
 	private String writer; 
 	private String car_content;
-	private int car_horoscope;
+	private double car_horoscope;
 	private int car_no;
 	
 	public CarReview() {}
 
-	public CarReview(int car_review_no, String writer, String car_content, int car_horoscope, int car_no) {
+	public CarReview(int car_review_no, String writer, String car_content, double car_horoscope, int car_no) {
 		super();
 		this.car_review_no = car_review_no;
 		this.writer = writer;
@@ -42,11 +42,11 @@ public class CarReview {
 		this.car_content = car_content;
 	}
 
-	public int getCar_horoscope() {
+	public double getCar_horoscope() {
 		return car_horoscope;
 	}
 
-	public void setCar_horoscope(int car_horoscope) {
+	public void setCar_horoscope(double car_horoscope) {
 		this.car_horoscope = car_horoscope;
 	}
 
