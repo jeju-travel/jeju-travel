@@ -34,6 +34,8 @@ update RESERVATION set air_reserve_no = 4 where reserve_no = 1003;
 update RESERVATION set air_reserve_no = 6 where reserve_no = 1004;
 update RESERVATION set air_reserve_no = 7 where reserve_no = 1001;
 
+select max(air_reserve_no) as num from air_reserve;
+
 select distinct air_reserve_no from RESERVATION 
 where member_no = 999 and air_reserve_no is not null;
 
