@@ -40,7 +40,7 @@
 		<td>${airline.takeOff}</td>
 		<td>${airline.price}원</td>
 		<td><input type="text" name="personnel">명</td>
-		<td><input type="submit" value="예약하기"></td>
+		<td><input class="btn btn-primary btn-sm" type="submit" value="예약하기"></td>
 	</tr>
 	</form>
 	</c:forEach>
