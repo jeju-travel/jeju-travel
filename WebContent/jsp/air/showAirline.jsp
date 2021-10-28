@@ -5,18 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <title>항공등록</title>
 </head>
 <body>
 <h3>항공사 리스트</h3>
 <hr>
-<table>
+<div class="container mt-3">
+<table class="table">
 	<c:forEach var="airline" items="${airlineList}">
 		<tr>
 			<td><a href="updateAirline?airNo=${airline.airNo}">${airline.airName}</a></td>
 		</tr>
 	</c:forEach>
 </table>
-</form>
+</div>
+
 </body>
 </html>

@@ -5,13 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
 <title>제주 여행</title>
 </head>
 <body>
 <h3>항공</h3>
 <hr>
-
-<table>
+<div class="container mt-3">
+<table class="table">
 	<tr>
 		<th>항공사</th>
 		<th>출발 장소</th>
@@ -30,10 +34,11 @@
 		<td>${reserveAirline.takeOff}</td>
 		<td>${airPersonnel}</td>
 		<td>${reserveAirline.price * airPersonnel}원</td>
-		<td><button onclick="location.href='reserveAll?airNo=${reserveAirline.airNo}'">예약하기</button></td>
+		<td><button class="btn btn-primary btn-sm" onclick="location.href='reserveAll?airNo=${reserveAirline.airNo}'">예약하기</button></td>
 	</c:if>
 	
 </table>
+</div>
 
 </body>
 </html>

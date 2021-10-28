@@ -3,6 +3,13 @@ create sequence airReserveSeq;
 create sequence airReviewSeq;
 
 insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', null)
+insert into airline values(airlineSeq.nextval, '아시아나항공', 48000, '인천', '오전', null)
+insert into airline values(airlineSeq.nextval, '부산항공', 45000, '부산', '오전', null)
+insert into airline values(airlineSeq.nextval, '제주항공', 50000, '김포', '오전', null)
+insert into airline values(airlineSeq.nextval, '에어부산', 50000, '김해', '오전', null)
+insert into airline values(airlineSeq.nextval, '에어포항', 50000, '포항', '오전', null)
+insert into airline values(airlineSeq.nextval, '진에어', 50000, '인천', '오전', null)
+insert into airline values(airlineSeq.nextval, '티웨이항공', 50000, '김포', '오전', null)
 insert into airline values(airlineSeq.nextval, '이스타', 50000, '청주', '오전', null)
 
 select * from airline;
@@ -19,11 +26,13 @@ insert into RESERVATION values (1001, 999, SYSDATE-90, SYSDATE-87, 0, '다녀옴', 
 insert into RESERVATION values (1002, 999, SYSDATE-90, SYSDATE-88, 0, '취소', null, null, null)
 insert into RESERVATION values (1003, 999, SYSDATE-40, SYSDATE-37, 0, '다녀옴', null, null, null)
 insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, 0, '예약', null, null, null)
-insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 2, 3)
+insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 3, 3)
+insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 3, 7)
 select * from RESERVATION
 
 update RESERVATION set air_reserve_no = 4 where reserve_no = 1003;
-update RESERVATION set air_reserve_no = 9 where reserve_no = 1004;
+update RESERVATION set air_reserve_no = 6 where reserve_no = 1004;
+update RESERVATION set air_reserve_no = 7 where reserve_no = 1001;
 
 select distinct air_reserve_no from RESERVATION 
 where member_no = 999 and air_reserve_no is not null;
@@ -129,4 +138,5 @@ ALTER TABLE CAR_RESERVE
 			car_reserve_no
 		);
 
+alter table lodging add lodging_price number;
 
