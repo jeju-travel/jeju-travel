@@ -31,7 +31,8 @@ import model.manager.Admin;
 import model.manager.Member;
 import util.JDBCUtil;
 
-@WebServlet(name = "ReviewConroller", urlPatterns = { "/review", "/review_insert" })
+
+@WebServlet(name = "ReviewConroller", urlPatterns = { "/review", "/review_insert"})
 public class ReviewController extends HttpServlet {
 
 	@Override
@@ -54,110 +55,91 @@ public class ReviewController extends HttpServlet {
 
 		// logic
 		if (action.equals("review_insert")) {
-
-			// 아이디 내용 별점 비행기번호 받아오기
+			
+			//아이디 내용 별점 비행기번호 받아오기
 			HttpSession session = req.getSession();
-			String id = (String) session.getAttribute("member");
-
-			try {
-				String airContent = req.getParameter("airContent");
-				double airStar = Double.parseDouble(req.getParameter("air_star"));
-				int airNo = Integer.parseInt(req.getParameter("airNo"));
-
-				if (airNo != 0) {
-
-					AirReview airRe = new AirReview();
-					airRe.setAirContent(airContent);
-					airRe.setAirHoroscope(airStar);
-					airRe.setAirNo(airNo);
-					airRe.setWriter(id);
-
-					AirReviewDao airDao = new AirReviewDaoImpl();
-					airDao.insert(id, airContent, airStar, airNo);
-					System.out.println("항공 리뷰 : 저장 O");
-				}
-
-			} catch (NullPointerException ne) {
-				System.out.println("항공 리뷰 :저장 X");
-			}catch (NumberFormatException nfe) {
-				System.out.println("항공 리뷰 :저장 X");
-			}	
-
-			try {
-				double roomStar = Double.parseDouble(req.getParameter("room_star"));
-				int roomNo = Integer.parseInt(req.getParameter("roomNo"));
-				String roomContent = req.getParameter("roomContent");
-
-				if (roomNo != 0) {
-
-					Lodging_review roomRe = new Lodging_review();
-					roomRe.setLodging_content(roomContent);
-					roomRe.setLodging_horoscope(roomStar);
-					roomRe.setWriter(id);
-					roomRe.setlodging_no(roomNo);
-
-					ReivewDao reDao = new ReviewDaoImple();
-					reDao.insertLoadingReview(roomRe);
-					System.out.println("숙소 리뷰 :저장 O");
-				}
-			} catch (NullPointerException ne) {
-				System.out.println("숙소 리뷰 :저장 X");
-
-			}catch (NumberFormatException nfe) {
-				System.out.println("숙소 리뷰 :저장 X");
-			}	
-
-			try {
-				int carNo = Integer.parseInt(req.getParameter("carNo"));
-				double carStar = Double.parseDouble(req.getParameter("car_star"));
-				String carrContent = req.getParameter("carContent");
-
-				if (carNo != 0) {
-					CarReview carRe = new CarReview();
-					carRe.setCar_content(carrContent);
-					carRe.setCar_horoscope(carStar);
-					carRe.setCar_no(carNo);
-					carRe.setWriter(id);
-
-					CarDao carDao = new CarDaoImpl();
-					carDao.CarReview(carRe);
-					System.out.println("렌트카 리뷰 :저장 O");
-				}
-
-			} catch (NullPointerException ne) {
-
-				System.out.println("렌트카 리뷰 :저장 X");
-			} catch (NumberFormatException nfe) {
-				System.out.println("렌트카 리뷰 :저장 X");
-			}	
-
-		} else if (action.equals("review")) {
-
+			String id = (String)session.getAttribute("member");
+			
+			
+			String airContent = req.getParameter("airContent");
+			String carrContent = req.getParameter("carContent");
+			String roomContent = req.getParameter("roomContent");
+			
+			double airStar = Double.parseDouble(req.getParameter("air_star"));
+			double carStar = Double.parseDouble(req.getParameter("car_star"));
+			double roomStar = Double.parseDouble(req.getParameter("room_star"));
+		
+			int airNo = Integer.parseInt(req.getParameter("airNo"));
+			int carNo = Integer.parseInt(req.getParameter("carNo"));
+			int roomNo = Integer.parseInt(req.getParameter("roomNo"));
+	
+		
+		
+			
+			if(airNo != 0) {
+		
+				AirReview airRe = new AirReview();
+				airRe.setAirContent(airContent);
+				airRe.setAirHoroscope(airStar);
+				airRe.setAirNo(airNo);
+				airRe.setWriter(id);	
+				
+				
+				AirReviewDao airDao = new AirReviewDaoImpl();
+				airDao.insert(id, airContent, airStar, airNo);
+			}
+			
+			if(carNo != 0) {
+				CarReview carRe = new CarReview();
+				carRe.setCar_content(carrContent);
+				carRe.setCar_horoscope(carStar);
+				carRe.setCar_no(carNo);
+				carRe.setWriter(id);
+					
+				CarDao carDao = new CarDaoImpl();
+				carDao.CarReview(carRe);
+			}
+			
+			if(roomNo != 0) {
+				
+				Lodging_review roomRe = new Lodging_review();
+				roomRe.setLodging_content(roomContent);
+				roomRe.setLodging_horoscope(roomStar);
+				roomRe.setWriter(id);
+				roomRe.setlodging_no(roomNo);
+				
+				ReivewDao reDao = new ReviewDaoImple();
+				reDao.insertLoadingReview(roomRe);
+			}
+			
+		} else if(action.equals("review")) {
+			
 			int airResNo = Integer.parseInt(req.getParameter("air"));
 			int carResNo = Integer.parseInt(req.getParameter("car"));
 			int roomResNo = Integer.parseInt(req.getParameter("lodging"));
-
+			
 			System.out.println("resNo: " + roomResNo);
-
+			
 			ReserveDao dao = new ReserveDaoImpl();
 			Airline air = dao.selectAirByResNo(airResNo);
 			Car car = dao.selectCarByResNo(carResNo);
 			Lodgingadmin room = dao.selectRoomByResNo(roomResNo);
-			System.out.println("room: " + room.toString());
-
+			System.out.println("room: " +room.toString());
+			
 			req.setAttribute("air", air);
 			req.setAttribute("car", car);
 			req.setAttribute("lodging", room);
 		}
+		
 
 		// 주소 이동
 		String dispatchUrl = null;
 		if (action.equals("review_insert")) {
 			dispatchUrl = "/jsp/member/mypage.jsp";
-		} else if (action.equals("review")) {
+		}else if(action.equals("review")) {
 			dispatchUrl = "/jsp/reserve/review.jsp";
-		}
-
+		} 
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatchUrl);
 		dispatcher.forward(req, resp);
 	}

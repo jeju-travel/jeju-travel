@@ -36,14 +36,8 @@ public class Sql {
 	public static final String SELECT_CAR_RES_BY_RESNO = "select * from car_reserve where car_reserve_no = ?";
 	
 	public static final String SELECT_ROOM_RES_BY_RESNO = "select * from lodging_reserve where room_reserve_no = ?";
-
-
-	public static final String UPDATE_RES_STATE = "update RESERVATION set total_state = '예약확인' where reserve_no = ?";
 	
+	public static final String INSERT_RESERVATION = "insert into RESERVATION values (mem_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
 	
-	//delete
-	public static final String DELETE_AIR_RES = "delete AIR_RESERVE where air_reserve_no = ?";
-	public static final String DELETE_LODGING_RES = "delete LODGING_RESERVE where room_reserve_no = ?";
-	public static final String DELETE_CAR_RES = "delete CAR_RESERVE where car_reserve_no = ?";
-	public static final String DELETE_RES = "delete RESERVATION where reserve_no = ?";
+	public static final String RECENT_RESERVATION = "select max(reserve_no) as num from RESERVATION";
 }

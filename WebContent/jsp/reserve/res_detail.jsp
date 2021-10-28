@@ -90,7 +90,7 @@ form{
 		</div>
 	</c:if>
 	<!-- 결과 존재시 -->
-	<c:if test="${!empty airRes}">
+	<c:if test="${!empty  airRes}">
 	<table  class="table table-hover">
 		
 		<thead>
@@ -133,8 +133,7 @@ form{
 		</div>
 	</c:if>
 	<!-- 결과 존재시 -->
-	<c:if test="${!empty roomRes}">
-	
+	<c:if test=" ${!empty roomRes}">
 	<table  class="table table-hover">
 	
 		<thead>
@@ -149,21 +148,15 @@ form{
 	private String lodging_loc;
 	private String lodging_phone;
 	private String lodging_image;
-	
-	
-	 private int lodging_reserve_no;
-	private String check_in;
-	private String check_out;
-	private int lodging_no;
 	 -->
-	
+	 
 	
 		<tbody>
 			
 				<td>${room.lodging_name}</td>
-				<td>${roomRes.check_in}</td>
-				<td>${roomRes.check_out}</td>
-				<td></td>
+				<td>${roomRes.lodging_ }</td>
+				<td>${roomRes.lodging_ }</td>
+				<td>${room.lodging_price}</td>
 			
 		</tbody>
 	</table>

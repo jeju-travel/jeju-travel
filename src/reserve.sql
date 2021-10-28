@@ -1,25 +1,9 @@
 select * from reservation where member_no = 1
 
-delete AIR_RESERVE where air_reserve_no = ?
-select * from AIR_RESERVE
-
-select * from CAR_RESERVE
-delete CAR_RESERVE where car_reserve_no
-
-select * from LODGING_RESERVE
-delete LODGING_RESERVE where room_reserve_no = ?
-
-select * from RESERVATION
-delete RESERVATION where reserve_no = ?
-
 create sequence airReviewSeq
 
 create sequence seq_car_review_no
-select * from lodging_reserve where room_reserve_no = 1
 
-select * from RESERVATION
-
-update RESERVATION set total_state = '예약확인' where reserve_no = ?
 
 --review 
 select * from CAR_REVIEW
@@ -59,18 +43,12 @@ select * from RESERVATION  where air_reserve_no = 4
 delete from RESERVATION where car_reserve_no = 1
 update RESERVATION set air_rserve_no=6 where reserve_no = 9
 insert into RESERVATION values (res_seq.nextval, 7, sysdate, sysdate, 100, '예약확인',4,1,1)
-insert into RESERVATION values (res_seq.nextval, 7, sysdate, sysdate, 100, '예약확인',4,null,1)
 insert into RESERVATION values (res_seq.nextval, 7, sysdate, sysdate, 100, '예약확인',null,null,null)
 insert into RESERVATION values (res_seq.nextval, 7, sysdate, sysdate, 100, '예약취소',4,1,1)
 select * from RESERVATION
 select * from AIR_RESERVE
 select * from CAR_RESERVE
 select * from LODGING_REserve
-
-alter table lodging add lodging_price number;
-select * from LODGING
-
-
 
 select * from RESERVATION where reserve_no = 14
 

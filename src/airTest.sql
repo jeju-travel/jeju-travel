@@ -1,6 +1,7 @@
 create sequence airlineSeq;
 create sequence airReserveSeq;
 create sequence airReviewSeq;
+create sequence mem_seq;
 
 insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', null)
 insert into airline values(airlineSeq.nextval, '아시아나항공', 48000, '인천', '오전', null)
@@ -29,12 +30,15 @@ insert into RESERVATION values (1004, 999, SYSDATE+20, SYSDATE+23, 0, '예약', nu
 insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 3, 3)
 insert into AIR_RESERVE values(airReserveSeq.nextval, '오전', '오전', 3, 7)
 select * from RESERVATION
+delete from reservation
+
 
 update RESERVATION set air_reserve_no = 4 where reserve_no = 1003;
 update RESERVATION set air_reserve_no = 6 where reserve_no = 1004;
 update RESERVATION set air_reserve_no = 7 where reserve_no = 1001;
 
 select max(air_reserve_no) as num from air_reserve;
+select max(reserve_no) as num from RESERVATION;
 
 select distinct air_reserve_no from RESERVATION 
 where member_no = 999 and air_reserve_no is not null;

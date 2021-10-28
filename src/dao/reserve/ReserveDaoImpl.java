@@ -6,15 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 import model.air.AirReserve;
 import model.air.Airline;
 import model.car.Car;
 import model.car.CarReserve;
 import model.manager.Reservation;
-
 import util.JDBCUtil;
 
 
@@ -56,8 +53,8 @@ public class ReserveDaoImpl implements ReserveDao{
 				res.setPrice(resultSet.getInt("total_price"));
 				res.setResNo(resultSet.getInt("reserve_no"));
 				res.setairResNo(resultSet.getInt("air_reserve_no"));
-				res.setroomResNo(resultSet.getInt("room_reserve_no"));
-				res.setcarResNo(resultSet.getInt("car_reserve_no"));
+				res.setcarResNo(resultSet.getInt("room_reserve_no"));
+				res.setroomResNo(resultSet.getInt("car_reserve_no"));
 
 				
 				System.out.println(res.toString());
@@ -477,8 +474,36 @@ public class ReserveDaoImpl implements ReserveDao{
 	}
 
 	@Override
-	public Lodging_reserve selectRoomResByResNo(int resNo) {
-		Lodging_reserve room = null;
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.INSERT_RESERVATION);
+			
+			pStatement.setInt(1, memberNo);
+			pStatement.setString(2, startDay);
+			pStatement.setString(3, endDay);
+			pStatement.setInt(4, totalPrice);
+			
+			pStatement.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+	}
+
+	@Override
+	public int recentReservation() {
+		int resNo = 0;
 		
 		Connection connection = null;
 		PreparedStatement pStatement = null;
@@ -486,146 +511,26 @@ public class ReserveDaoImpl implements ReserveDao{
 		
 		try {
 			connection = JDBCUtil.getConnection();
-			
-			pStatement = connection.prepareStatement(Sql.SELECT_ROOM_RES_BY_RESNO);
-			pStatement.setInt(1, resNo);
-			
+			pStatement = connection.prepareStatement(Sql.RECENT_RESERVATION);
 			resultSet = pStatement.executeQuery();
 			
 			if(resultSet.next()) { //다음값으로 이동, null이라면 false
-				room = new Lodging_reserve();
 				
-				room.setCheck_in(resultSet.getString("check_in"));
-				room.setCheck_out(resultSet.getString("check_out"));
-				room.setLodging_no(resultSet.getInt("lodging_no"));
-				room.setLodging_reserve_no(resultSet.getInt("room_reserve_no"));
-		
-				System.out.println("숙소 예약 정보:" + room.toString());
+				resNo = resultSet.getInt("num");
+				
 			}
-		
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		} finally {
+			
 			JDBCUtil.close(resultSet, pStatement, connection);
 		}
-		
-		return room;
-	}
-
-	@Override
-	public void updateResState(int resNo) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-
-		try {
-
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.UPDATE_RES_STATE);
-			pStatement.setInt(1, resNo);
-			
-			pStatement.execute();
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
-		
-	}
-
-	@Override
-	public void deleteAirRes(int airResNo) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-
-		try {
-
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.DELETE_AIR_RES);
-
-			pStatement.setInt(1, airResNo);
-			
-		
-			pStatement.execute();
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
-	}
-
-	@Override
-	public void deleteLodgingRes(int lodgingResNo) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-
-		try {
-
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.DELETE_LODGING_RES);
-
-			pStatement.setInt(1, lodgingResNo);
-			
-		
-			pStatement.execute();
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
-	}
-
-	@Override
-	public void deleteCarRes(int carResNo) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-
-		try {
-
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.DELETE_CAR_RES);
-
-			pStatement.setInt(1, carResNo);
-			
-		
-			pStatement.execute();
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
-	}
-
-	@Override
-	public void deleteRes(int resNo) {
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-
-		try {
-
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.DELETE_RES);
-
-			pStatement.setInt(1, resNo);
-			
-		
-			pStatement.execute();
-	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
+		return resNo;
 	}
 	
+	
 
+	
 }
