@@ -174,7 +174,7 @@ body{
 <c:if test="${car != null}">
 	<div class="backImg" >
 	<h3>${car.car_name}</h3>
-	<img src="${car.car_img}" style="max-width: 100%; height: auto;"> 
+	<img src="${car.car_image}" style="max-width: 100%; height: auto;"> 
 	</div>
 	<div>
 	
