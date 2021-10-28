@@ -12,7 +12,7 @@ public class Sql {
 			"select * from car where car_no= ?";
 	
 	public static final String CAR_UPDATE_SQL=
-			"update car set car_name = ?,car_type =?,car_price=? ,capacity = ?,car_fuel=?,car_loc=?,car_img=? where car_no=?";
+			"update car set car_name = ?,car_type =?,car_price=? ,capacity = ?,car_fuel=?,car_loc=?,car_image=? where car_no=?";
 	
 	public static final String CAR_DELETE_SQL=	
 			"delete from car where car_no = ?";

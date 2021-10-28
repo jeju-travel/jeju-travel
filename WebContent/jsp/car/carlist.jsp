@@ -45,6 +45,12 @@
     h4{
         padding: 8px 12px;
     }
+    .carimage{
+        width:100px;
+        height: auto;
+        background-size:cover;
+        background: no-repeat;
+    }
     /* .car_select{
     	text-align:center;
     } */
@@ -60,9 +66,9 @@
     <form action="car_select" method="post">
         <div class="date_main">
             <div class="date_side1">            
-         	 
+         	 <input type="text" name="reqPage" value="1" hidden="hidden">
                 대여일<br/>
-                <input type="date" name="start_day" value="${param.start_day}" readonly>
+                <input type="date" name="start_day" value="${startDay}" readonly>
                 <select name="borrow_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
@@ -80,7 +86,7 @@
             
             <div class="date_side2">
                 반납일<br/>
-               <input type="date" name="end_day" value="${param.end_day}" readonly>
+               <input type="date" name="end_day" value="${endDay}" readonly>
                 <select name="return_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
@@ -108,6 +114,7 @@
 		<c:if test="${!empty carList}">
 			<table class="table table-hover">
 				<tr>
+					<th>차량사진</th>
 					<th>차량이름</th>
 					<th>가격</th>
 					<th>최대탑승</th>
@@ -123,8 +130,9 @@
 					<form action="car_reserve" method="post">
 					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
-					<input type="text" name="return_car" value="${borrow_car}" hidden="hidden"/> 
+					<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
 						<tr>
+							<td><div class="carimage"><img src="${car.car_image}" style="max-width: 100%; height: auto;"></div></td>
 							<td>${car.car_name}</td>
 							<td>${car.car_price*cha}</td>
 							<td>${car.capacity}</td>
@@ -139,12 +147,43 @@
 								</c:if>							
 							</c:forEach>							
 						</tr>
-					</form>	
+					</form>
 				</c:forEach>
 			</table>
 		</c:if>
-		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>
+		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>		
+		<%-- <!-- 링크표시하기 [이전] [다음] -->
+	<div class="paging">
+	<ul class="pagination">
+		<!-- 계속 true로 나오다가 페이지매니저에 false가 걸려서 조건이 달라지면   -->
+		<c:if test="${pageGroupResult.beforePage}">
+			<li class="page-item"><a class="page-link" href="carlist?reqPage=${pageGroupResult.groupStartNumber-1}">[이전]</a></li>
+		</c:if>
 		
+		<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
+			<!-- index를 for돌다가 index값과 내가 선택한 페이지가 같으면 active라는 class를 실행해서 파랗게 나오게함  -->
+			<c:choose>
+				<c:when test="${pageGroupResult.selectPageNumber==index}">
+					<li class="page-item active">
+						<a class="page-link" href="carlist?reqPage=${index}">${index}</a>
+					</li>
+				</c:when>
+				
+				<c:otherwise>
+					<li class="page-item">
+						<a class="page-link" href="carlist?reqPage=${index}">${index}</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${pageGroupResult.afterPage}">
+			<li class="page-item"><a class="page-link" href="carlist?reqPage=${pageGroupResult.groupEndNumber+1}">[다음]</a></li>
+		</c:if>
+	</ul>
+	</div> --%>
+			
 	</div>
+	
 </body>
 </html>
