@@ -25,6 +25,7 @@ public class AirlineDaoImpl implements AirlineDao {
 			pStatement.setInt(2, airline.getPrice());
 			pStatement.setString(3, airline.getAirLoc());
 			pStatement.setString(4, airline.getTakeOff());
+			pStatement.setString(5, airline.getAirImage());
 			
 			pStatement.executeQuery();
 			
@@ -40,7 +41,7 @@ public class AirlineDaoImpl implements AirlineDao {
 	}
 
 	@Override
-	public void update(String airName, int price, String airLoc, String takeOff, int airNo) {
+	public void update(String airName, int price, String airLoc, String takeOff, String airImage, int airNo) {
 		Connection connection = null;
 		PreparedStatement pStatement = null;
 		
@@ -52,7 +53,8 @@ public class AirlineDaoImpl implements AirlineDao {
 			pStatement.setInt(2, price);
 			pStatement.setString(3, airLoc);
 			pStatement.setString(4, takeOff);
-			pStatement.setInt(5, airNo);
+			pStatement.setString(5, airImage);
+			pStatement.setInt(6, airNo);
 			
 			pStatement.executeQuery();
 			

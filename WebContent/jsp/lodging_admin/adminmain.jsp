@@ -88,8 +88,8 @@
         <!-- a링크 이용하여 이전,삭제 변경 -->
     <!-- <center> -->
     <div class="mainadminair">
-        <a href="air_input">항공 추가</a>
-        <a href="air_detail">항공 리스트</a>
+        <a href="goAddAirline">항공 추가</a>
+        <a href="showAirline">항공 리스트</a>
     </div>
 
     <div class="mainadminlodging">
