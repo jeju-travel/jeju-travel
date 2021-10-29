@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import model.Lodging.Lodging_reserve;
 
 import model.Lodging.Lodgingadmin;
@@ -13,6 +15,7 @@ import model.air.Airline;
 import model.car.Car;
 import model.car.CarReserve;
 import model.manager.Reservation;
+
 import util.JDBCUtil;
 
 
@@ -694,6 +697,147 @@ public class ReserveDaoImpl implements ReserveDao{
 
 		
 	}
+
+	@Override
+	public void updateAirResNo(int airResNo, int resNo) {
+
+
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.UPDATE_RES_STATE);
+			pStatement.setInt(1, airResNo);
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+
+		
+	}
+
+	@Override
+	public void updateRoomResNo(int roomResNo, int resNo) {
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.UPDATE_RES_LODGING_NO);
+			pStatement.setInt(1, roomResNo);
+			pStatement.setInt(2, resNo);
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+
+		
+	}
+
+	@Override
+	public void updateCarResNo(int carResNo,int resNo ) {
+
+
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+
+		try {
+
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.UPDATE_RES_STATE);
+			pStatement.setInt(1, carResNo);
+
+			pStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+
+
+		
+	}
+
+	@Override
+	public void insertRoomRes(Lodging_reserve room) {
+		
+			Connection connection =null;
+			PreparedStatement pStatement = null;
+			
+			try {
+				connection = JDBCUtil.getConnection();
+				pStatement = connection.prepareStatement(Sql.INSERT_LODGING_RES);
+				
+				//insert into Lodging_RESERVE values (seqlodging_res_no.nextval,?,?,?)
+				
+				pStatement.setString(1, room.getCheck_in());
+				pStatement.setString(2, room.getCheck_out());
+				pStatement.setInt(3, room.getLodging_no());
+				pStatement.executeUpdate();			
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.close(null, pStatement, connection);
+			}
+		
+		
+	}
+
+	@Override
+	public int selectByNo() {
+		Lodging_reserve lodgingRes= null;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.RECENT_LODGING_RESERVE);
+		
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false.
+				lodgingRes = new Lodging_reserve();
+
+				//lodgingRes.setCheck_in(resultSet.getString("check_in"));
+				//lodgingRes.setCheck_out(resultSet.getString("check_out"));
+				//lodgingRes.setLodging_no(resultSet.getInt("lodging_no"));
+				lodgingRes.setLodging_reserve_no(resultSet.getInt("num"));
+				
+	
+				
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return lodgingRes.getLodging_reserve_no();
+	}
+	
+	
 
 	
 }

@@ -8,9 +8,12 @@ create sequence airlineSeq;
 create sequence airReserveSeq;
 create sequence airReviewSeq;
 create sequence seq_car_no;
-create sequence seq_car_reserve_no
-create sequence seq_car_review_no
+create sequence seq_car_reserve_no;
+create sequence seq_car_review_no;
 create sequence seqlodging_no;
+create sequence seqlodging_res_no;
+drop sequence seqlodging__res_no;
+
 
 --항공 데이터
 insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', 'img/air/korea.jpg');
@@ -23,19 +26,20 @@ insert into airline values(airlineSeq.nextval, '진에어', 50000, '인천', '오전', 
 insert into airline values(airlineSeq.nextval, '티웨이항공', 50000, '김포', '오전', 'img/air/tway.png');
 insert into airline values(airlineSeq.nextval, '이스타', 50000, '청주', '오전', 'img/air/estar.png');
 
+delete LODGING
 --숙박 데이터
 insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'리젠트마린','제주도','032-2222-3333',3000,'img/lodging/RegentMarine.jpg');
 insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'그랜드하얏트제주','제주도 서귀포','032-1111-2222',9000,'img/lodging/GrandHyattJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'탐라스테이호텔제주','제주도 서귀포','032-2222-3333',10000,'img/lodging/TamnaStayHotelJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'유탑유블레스호텔','제주도 제주','032-2222-3333',3000,'img/lodging/GrandHyattJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'호텔위드제주','제주도 제주','032-2222-3333',1000,'img/lodging/HotelwithJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'다인오세아노호텔','제주도서귀포','032-3333-3333',90000,'img/lodging/DyneOcenanoHotel.jpg');
-insert into lodging values(seqlodging_no.nextval,'유니호텔제주','제주도 제주','032-2222-7777',7000,'img/lodging/UniHotelJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'아스타호델','제주도 제주','032-1111-3333',1000,'img/lodging/HotelwithJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'제주칼호텔','제주도 제주','032-2222-3333',2000,'img/lodging/KalHotelJeju.jpg');
-insert into lodging values(seqlodging_no.nextval,'제주마레보리조트','제주도 애월','032-2222-3333',1000,'img/lodging/JejuMarevoResort.jpg');
-insert into lodging values(seqlodging_no.nextval,'우도사랑채민박','우도','032-2222-3333',1000,'img/lodging/UdoLovehousePension.jpg');
-insert into lodging values(seqlodging_no.nextval,'스카이리더스호텔','제주도 제주 ','032-2222-3333',1000,'img/lodging/SkyLeadersHotel.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'탐라스테이호텔제주','제주도 서귀포','032-2222-3333',10000,'img/lodging/TamnaStayHotelJeju.jpg');
+insert into lodging  (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'유탑유블레스호텔','제주도 제주','032-2222-3333',3000,'img/lodging/GrandHyattJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'호텔위드제주','제주도 제주','032-2222-3333',1000,'img/lodging/HotelwithJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image)  values(seqlodging_no.nextval,'다인오세아노호텔','제주도서귀포','032-3333-3333',90000,'img/lodging/DyneOcenanoHotel.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'유니호텔제주','제주도 제주','032-2222-7777',7000,'img/lodging/UniHotelJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'아스타호델','제주도 제주','032-1111-3333',1000,'img/lodging/HotelwithJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'제주칼호텔','제주도 제주','032-2222-3333',2000,'img/lodging/KalHotelJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'제주마레보리조트','제주도 애월','032-2222-3333',1000,'img/lodging/JejuMarevoResort.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'우도사랑채민박','우도','032-2222-3333',1000,'img/lodging/UdoLovehousePension.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'스카이리더스호텔','제주도 제주 ','032-2222-3333',1000,'img/lodging/SkyLeadersHotel.jpg');
 
 --렌트카 데이터
 insert into car values(seq_car_no.nextval,'마티즈','경차',20000,4,'휘발유','제성1길 62,3층','img/car/matiz.png');

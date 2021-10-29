@@ -38,7 +38,7 @@ public class Sql {
 	
 	public static final String SELECT_ROOM_RES_BY_RESNO = "select * from lodging_reserve where room_reserve_no = ?";
 	
-	public static final String INSERT_RESERVATION = "insert into RESERVATION values (mem_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
+	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
 	
 	public static final String RECENT_RESERVATION = "select max(reserve_no) as num from RESERVATION";
 
@@ -48,4 +48,14 @@ public class Sql {
 		public static final String DELETE_CAR_RES = "delete CAR_RESERVE where car_reserve_no = ?";
 		public static final String DELETE_RES = "delete RESERVATION where reserve_no = ?";
 
+		
+	//update
+		public static final String UPDATE_RES_LODGING_NO = "update RESERVATION set room_reserve_no = ? where reserve_no = ?";
+		
+	//insert
+		public static final String INSERT_LODGING_RES = "insert into Lodging_RESERVE values (seqlodging_res_no.nextval,?,?,?)";
+		
+		//
+		public static final String RECENT_LODGING_RESERVE = 
+				"select max(room_reserve_no) as num from lodging_reserve";
 }
