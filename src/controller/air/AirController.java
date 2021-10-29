@@ -1,6 +1,7 @@
 package controller.air;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,7 +172,7 @@ public class AirController extends HttpServlet{
 			req.setAttribute("airlineNo", airlineNo);
 			
 		}else if(action.equals("reviewSave_air")) {
-			String writer = "abc";
+			String writer = "abc"; //수정해야할 부분
 			String content = req.getParameter("content");
 			double airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
 			int airNo = Integer.parseInt(req.getParameter("airlineNo"));
@@ -247,8 +248,12 @@ public class AirController extends HttpServlet{
 			HttpSession session = req.getSession();
 			if(session.getAttribute("member") != null) {
 				dispatcherUrl = "/jsp/main/air.jsp";
-			}else {
-				dispatcherUrl = "/index.jsp";
+			}else {				
+				resp.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter writer = resp.getWriter(); 
+				writer.println("<script>alert('로그인을 해주세요'); location.href='index.jsp';</script>");
+				writer.close();
+
 			}
 			
 		}//

@@ -112,7 +112,7 @@ public class LoginOutController extends HttpServlet {
 			if(session.getAttribute("member") != null) {
 				dispatchUrl = "/index.jsp";
 			}else if(session.getAttribute("admin") != null){
-				dispatchUrl = "jsp/member/admin.jsp";
+				dispatchUrl = "jsp/lodging_admin/adminmain.jsp";
 			}else {
 				dispatchUrl = "/jsp/member/login.jsp";				
 			}
