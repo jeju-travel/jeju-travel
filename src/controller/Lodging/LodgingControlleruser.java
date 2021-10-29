@@ -43,7 +43,7 @@ public class LodgingControlleruser extends HttpServlet{
 		
 		//로직
 		if(action.equals("lodging_list_user")) {
-			System.out.println("list 도착하였습니다.");
+			System.out.println("list �룄李⑺븯���뒿�땲�떎.");
 			
 			LodgingDao lodgingDao = new LodgingDaoImpl();
 			List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
@@ -72,7 +72,7 @@ public class LodgingControlleruser extends HttpServlet{
 		}
 		
 		
-		//화면구성
+		//�솕硫닿뎄�꽦
 		String dispatcherUrl = null;
 		
 		if(action.equals("lodging_list_user")) {
