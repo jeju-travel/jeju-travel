@@ -152,7 +152,7 @@ table{
 				<td>${room.lodging_name}</td>
 				<td>${roomRes.check_in}</td>
 				<td>${roomRes.check_out}</td>
-				<td></td>
+				<td>${room.lodging_price}</td>
 
 		</tbody>
 	</table>

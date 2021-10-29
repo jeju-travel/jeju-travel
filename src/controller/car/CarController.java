@@ -9,12 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
+import dao.reserve.ReserveDao;
+import dao.reserve.ReserveDaoImpl;
 import form.car.CarForm;
 import formerror.car.CarError;
-
+import model.Lodging.Lodging_reserve;
 import model.car.Car;
 import model.car.CarReserve;
 import model.car.Carhoroscope;
@@ -196,6 +199,30 @@ public class CarController extends HttpServlet {
 			
 			CarDao dao = new CarDaoImpl();
 			dao.CarReserve(carReserve);
+	    }else if(action.equals("main_car")) {
+	    	
+	    	HttpSession session = req.getSession();
+	    	int resNo = (int)session.getAttribute("resNo");
+	   
+	    	int roomNo = Integer.parseInt(req.getParameter("roomNo"));
+	    	
+	    	String checkIn = req.getParameter("checkIn");
+	    	String checkOut = req.getParameter("checkOut");
+	    
+	    	ReserveDao dao = new ReserveDaoImpl();
+	    	
+	    	Lodging_reserve room = new Lodging_reserve();
+	    	room.setCheck_in(checkIn);
+	    	room.setCheck_out(checkOut);
+	    	room.setLodging_no(roomNo);
+	    	
+	    	dao.insertRoomRes(room);
+	    	int lodgingResNo = dao.selectByNo();
+	    	System.out.println("·ë¹øÈ£: " + lodgingResNo);
+	    	
+	    	//roomResNo, resNo
+	    	dao.updateRoomResNo(lodgingResNo, resNo);
+	    	
 	    }
 		
 		String dispatcherUrl = null;

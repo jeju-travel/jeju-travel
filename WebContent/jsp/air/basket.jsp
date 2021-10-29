@@ -38,6 +38,7 @@
 	</c:if>
 	
 </table>
+<input class="btn btn-primary" type="button" onclick="location='reserveAirline'" value="뒤로가기" style="text-align: right;"/>
 </div>
 
 </body>

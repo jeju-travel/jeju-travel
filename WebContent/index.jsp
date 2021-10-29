@@ -7,7 +7,9 @@
 <%
 	Calendar calStart = Calendar.getInstance();
 	Calendar calEnd = Calendar.getInstance();
+	Calendar calNot = Calendar.getInstance();
 	calEnd.add(calEnd.DATE, + 1);
+	calNot.add(calEnd.DATE, - 1);
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
         padding: 8px 12px;
     }    
     .login_memu{
-        font-size: 10px;
+        font-size: 14px;
         display: flex;        
     }
     .login_memu li{
@@ -72,6 +74,14 @@
         </ul>
         </c:if>
         
+        <c:if test="${admin != null }">   
+        <ul class="login_memu">
+        	<li>${admin}님 환영합니다</li>
+            <li><a href="logout">로그아웃</a></li>
+           
+        </ul>
+        </c:if>
+        
        
         
         <c:if test="${admin == null && member == null}">
@@ -90,11 +100,11 @@
             <div class="main_center">
                 <div class="main_memu">
                     출발일<br/><br/>
-                    <input type="date" name="start_day" value=<%= sf.format(calStart.getTime()) %>>
+                    <input type="date" name="start_day" min=<%= sf.format(calStart.getTime())  %> value=<%= sf.format(calStart.getTime()) %>>
                 </div>
                 <div class="main_memu">
                     도착일<br/><br/>
-                    <input type="date" name="end_day" value=<%= sf.format(calEnd.getTime()) %>>
+                    <input type="date" name="end_day" min=<%= sf.format(calEnd.getTime())  %> value=<%= sf.format(calEnd.getTime()) %>>
                 </div>                    
             </div>            
             <input type="submit" class ="btn btn-primary" value="검색">           

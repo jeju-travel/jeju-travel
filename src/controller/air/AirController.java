@@ -1,6 +1,7 @@
 package controller.air;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,9 +105,10 @@ public class AirController extends HttpServlet{
 			String airLoc = req.getParameter("airLoc");
 			String takeOff = req.getParameter("takeOff");
 			int airNo = Integer.parseInt(req.getParameter("airNum"));
+			String airImage = req.getParameter("airImage");
 
 			AirlineDao dao = new AirlineDaoImpl();
-			dao.update(airName, price, airLoc, takeOff, airNo);
+			dao.update(airName, price, airLoc, takeOff, airImage, airNo);
 			
 		}else if(action.equals("deleteFromAirline")) {
 			
@@ -140,6 +142,10 @@ public class AirController extends HttpServlet{
 			AirReserveDao reserveDao = new AirReserveDaoImpl();
 			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
 			
+			int airResNo = reserveDao.recentAirReserve();
+			int resNo = (int) session.getAttribute("resNo");
+			
+			reserveDao.updateReservation(resNo, airResNo);
 			//int airReserve = reserveDao.recentAirReserve();
 			
 			/*session.removeAttribute("sDay");
@@ -171,7 +177,9 @@ public class AirController extends HttpServlet{
 			req.setAttribute("airlineNo", airlineNo);
 			
 		}else if(action.equals("reviewSave_air")) {
-			String writer = "abc";
+			HttpSession session = req.getSession();
+			
+			String writer = (String) session.getAttribute("member");
 			String content = req.getParameter("content");
 			double airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
 			int airNo = Integer.parseInt(req.getParameter("airlineNo"));
@@ -197,10 +205,16 @@ public class AirController extends HttpServlet{
 				int resNo = reserveDao.recentReservation();
 				
 				session.setAttribute("resNo", resNo);
-				System.out.println(session.getAttribute("resNo"));
 			}
 		}
-		
+		/*
+		 * int resNo = session.getSession("resNo");
+		 * ReserveDao reserveDao = new ReserveDaoImpl();
+		 * Reservation res = reserveDao.selectByResNo(resNo);
+		 * if(res.getAirResNo() == null && res.getCarResNo() == null && res.getRoomResNo() == null){
+		 * 		reserveDao.delete(res.getResNo());
+		 * }
+		 * */
 		
 		String dispatcherUrl = null;
 		
@@ -247,8 +261,12 @@ public class AirController extends HttpServlet{
 			HttpSession session = req.getSession();
 			if(session.getAttribute("member") != null) {
 				dispatcherUrl = "/jsp/main/air.jsp";
-			}else {
-				dispatcherUrl = "/index.jsp";
+			}else {				
+				resp.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter writer = resp.getWriter(); 
+				writer.println("<script>alert('로그인을 해주세요'); location.href='index.jsp';</script>");
+				writer.close();
+
 			}
 			
 		}//

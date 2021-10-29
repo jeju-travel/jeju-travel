@@ -6,10 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>¼÷¼Ò ¸®½ºÆ®</title>
+    <title>ìˆ™ì†Œ ë¦¬ìŠ¤íŠ¸</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  	<script src="https://kit.fontawesome.com/d42fd504d6.js"
+	crossorigin="anonymous"></script>
   	<style>
   		*{ 
         	margin: auto;
@@ -31,12 +33,26 @@
       		background-size:cover;
       		background: no-repeat;
     	}
+    	
+    		.box{
+		display:flex;
+		
+		align-items: center;
+	}
+	
+	.backImg{
+		width:300px;
+		height: auto;
+		background-size:cover;
+		background: no-repeat;
+	}
+	
   	</style>
 </head>
 <body>
 <div class="lodginglist">
-        <h5>°æ·Î Ç¥½Ã</h5>
-        <!-- ÀÌºÎºĞÀº ¾î¶»°Ô °¡Á®¿Ã °ÍÀÎÁö »ı°¢ ÈÄ value¿¡ °¡Á®¿À´Â ÄÚµå ÀÔ·Â -->
+ 
+        <!-- ì´ë¶€ë¶„ì€ ì–´ë–»ê²Œ ê°€ì ¸ì˜¬ ê²ƒì¸ì§€ ìƒê° í›„ valueì— ê°€ì ¸ì˜¤ëŠ” ì½”ë“œ ì…ë ¥ -->
      	<form method="post" action="lodging_search">
         	<table class="dateselect">
         		<tr>
@@ -45,36 +61,47 @@
         		</tr>
         		<tr>
         			<td>
-        				¼÷¼Ò °Ë»ö : 
+        				ìˆ™ì†Œ ê²€ìƒ‰ : 
         			</td>
         			<td>
         				<input type="text" name="lodging_name">
         			</td>
         			<td>
-        				<input class="btn btn-primary" type="submit" style="margin-left:10px;" value="°Ë»ö">
+        				<input class="btn btn-primary" type="submit" style="margin-left:10px;" value="ê²€ìƒ‰">
         			</td>
         		</tr>
         	</table>
         </form>
         
-        <h1 style="margin-left:30px;">¼÷¼Ò ¸®½ºÆ®</h1>
+        <h1 style="margin-left:30px;">ìˆ™ì†Œ ë¦¬ìŠ¤íŠ¸</h1>
         
         <hr>
         <c:if test="${!empty lodgingList}">
-        <table>
+        
+        <table class="table">
         	<c:forEach var="list" items="${lodgingList}">
                <tr>
-                  <td>${list.lodging_name}</td>
-                  <td>${list.lodging_loc}</td>
-                  <td>${list.lodging_phone}</td>
-                  <td>${list.lodging_price}</td>
-                  <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
-                  <td><a class="btn btn-primary" href="lodging_list_detail">µÑ·¯º¸±â</a>
+               	  <td>
+               	  	<div class="box">
+               	  		<div class="backImg"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div>	
+               	  	</div>
+               	  </td>
+               	  <td><div><p><font size="5"><b>${list.lodging_name}</b></font></p style="color:#bbb">
+               	  <p><i class="fas fa-map-marker-alt"></i>  ${list.lodging_loc}</p></td>
+               
+               	  <td><p><i class="fas fa-phone-alt"></i>  ${list.lodging_phone}</p><p><i class="fas fa-won-sign"></i> ${list.lodging_price}</p></td>
+                 
+                  <td>
+                  
+                  <p>ë³„ì  ë³´ì—¬ì£¼ê¸°</p>	
+                  <input type="button" value="ì˜ˆì•½í•˜ê¸°"  onClick="location.href='detail_room?roomNo=${list.lodging_no}'">
+        
+                  </td>
                </tr>
             </c:forEach>
         </table>
         </c:if>
-        <c:if test="${empty lodgingList }">µî·ÏµÈ ¼÷¼Ò°¡ ¾ø½À´Ï´Ù.</c:if>
+        <c:if test="${empty lodgingList }">ë“±ë¡ëœ ìˆ™ì†Œê°€ ì—†ìŠµë‹ˆë‹¤.</c:if>
 </div>
 </body>
 </html>

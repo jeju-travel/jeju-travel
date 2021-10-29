@@ -46,6 +46,7 @@
 	</c:forEach>
 	</tbody>	
 </table>
+<input class="btn btn-primary" type="button" onclick="location='main_lodging'" value="항공예약 건너뛰기" style="text-align: right;"/>
 </div>
 </body>
 </html>

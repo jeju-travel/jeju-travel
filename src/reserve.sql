@@ -1,7 +1,34 @@
 select * from reservation where member_no = 1
 
 create sequence airReviewSeq
+create sequence Seq
+
+select * from RESERVATION
 select * from LODGING
+select * from LODGING_RESERVE
+
+update RESERVATION set room_reserve_no = 8 where reserve_no = 48
+
+select max(room_reserve_no) as num from lodging_reserve
+
+
+select * from LODGING_RESERVE
+
+select * from LODGING_RESERVE
+insert into Lodging_RESERVE (room_reserve_no, check_in, check_out, lodging_no) values (seqlodging_res_no, '오전' , '오전', 21)
+
+select * from LODGING
+select * from LODGING_RESERVE
+select * from LODGING_RESERVE where room_reserve_no = 15
+
+insert into Lodging_RESERVE values(seqlodging_res_no.nextval, '오전' , '오전', 21)
+insert into Lodging_RESERVE values (, '오전', '오전', 21)
+
+delete LODGING_RESERVE
+select * from LODGING_RESERVE
+
+select * from RESERVATION 
+update RESERVATION set room_reserve_no = ? where reserve_no = ?
 
 create sequence seq_car_review_no
 
@@ -36,12 +63,20 @@ select * from LODGING
 select * from lodging where lodging_no = (select lodging_no from room where room_no = 4)
 
 
+select * from RESERVATION
+
+update RESERVATION
+
 select lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_image from lodging where lodging_no=1
 
 --시퀀스(예약, 멤버)
 create sequence mem_seq
 create sequence res_seq
 
+insert into RESERVATION values (res_seq.nextval, 7, sysdate, sysdate, 0, '예약', null, null, null)
+
+select * from AIR_RESERVE
+select * from airline where air_no = 24
 select * from RESERVATION  where air_reserve_no = 4
 delete from RESERVATION where car_reserve_no = 1
 update RESERVATION set air_rserve_no=6 where reserve_no = 9
@@ -79,8 +114,10 @@ insert into CAR_RESERVE (car_reserve_no, reserve_no) values (2,1)
 select * from AIR_RESERVE
 insert into AIR_RESERVE values (1,'1','0',8,null)
 
+select * from RESERVATION
+
 select * from Lodging_RESERVE
-insert into Lodging_RESERVE values (1,'오전','오후',21)
+insert into Lodging_RESERVE values (seq_lodging_res_no,?,?,?)
 
 select air_no from RESERVATION r inner join AIR_RESERVE a on r.reserve_no = a.reserve_no where r.reserve_no = 1
 
