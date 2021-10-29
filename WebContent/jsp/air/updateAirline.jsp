@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
 <title>항공등록</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -22,13 +26,48 @@ $(document).ready(function(){
 <h3>항공등록</h3>
 <hr>
 <form action="updateSetAirline">
-<input type="text" name="airNum" value="${airline.airNo}" hidden="hidden">
-항공이름<input type="text" name="airName" value="${airline.airName}"><br>
-가격<input type="text" name="price" value="${airline.price}"><br>
-위치<input type="text" name="airLoc" value="${airline.airLoc}"><br>
-출발시간<input type="text" name="takeOff" value="${airline.takeOff}"><br>
-파일 위치<input type="text" name="airImage" value="${airline.airImage}"><br>
-
+<table>
+<tr>
+	<td>
+		<input type="text" name="airNum" value="${airline.airNo}" hidden="hidden">항공이름
+	</td>
+	<td>
+		<input type="text" name="airName" value="${airline.airName}">
+	</td>
+</tr>
+<tr>
+	<td>
+		가격
+	</td>
+	<td>
+		<input type="text" name="price" value="${airline.price}">
+	</td>
+</tr>
+<tr>
+	<td>
+		위치
+	</td>
+	<td>
+		<input type="text" name="airLoc" value="${airline.airLoc}">
+	</td>
+</tr>
+<tr>
+	<td>
+		출발시간
+	</td>
+	<td>
+		<input type="text" name="takeOff" value="${airline.takeOff}">
+	</td>
+</tr>
+<tr>
+	<td>
+		파일 위치
+	</td>
+	<td>
+		<input type="text" name="airImage" value="${airline.airImage}">
+	</td>
+</tr>
+</table>
 <input type="submit" value="수정하기">
 <input type="button" id="delete" value="삭제하기">
 </form>

@@ -3,11 +3,11 @@ package sql.air;
 public class Sql {
 	
 	public static final String AIRLINE_INSERT = 
-			"insert into airline values(airlineSeq.nextval, ?, ?, ?, ?, null)";
+			"insert into airline values(airlineSeq.nextval, ?, ?, ?, ?, ?)";
 	
 	public static final String AIRLINE_UPDATE = 
 			"update airline set air_name = ?, price = ?, air_loc = ?"
-			+", take_off = ?, air_image = null where air_no = ?";
+			+", take_off = ?, air_image = ? where air_no = ?";
 	
 	public static final String AIRLINE_DELETE = 
 			"delete from airline where air_no = ?";
@@ -59,5 +59,9 @@ public class Sql {
 	public static final String CHECK_RESERVE_MEMBER = 
 			"select air_reserve_no from RESERVATION " + 
 			"where member_no = ? and air_reserve_no is not null";
+	
+	
+	public static final String RESERVATION_AIR = 
+			"update RESERVATION set air_reserve_no = ? where reserve_no = ?";
 
 }

@@ -39,7 +39,32 @@ public class AirReserveDaoImpl implements AirReserveDao {
 
 	}
 	
-	
+
+	@Override
+	public void updateReservation(int resNo, int airResNo) {
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.RESERVATION_AIR);
+			pStatement.setInt(1, airResNo);
+			pStatement.setInt(2, resNo);
+			
+			pStatement.executeQuery();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+		
+	}
+
+
 
 	@Override
 	public int recentAirReserve() {
