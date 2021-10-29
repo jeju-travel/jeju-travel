@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
+import dao.car.Sql;
 import form.car.CarForm;
 import formerror.car.CarError;
 
@@ -157,6 +159,7 @@ public class CarController extends HttpServlet {
 	        
 	          	       
 	    }else if(action.equals("car_select")) {	
+	    	int requestPage = Integer.parseInt(req.getParameter("reqPage"));
 	    	String start_day = req.getParameter("start_day");
 	    	String end_day = req.getParameter("end_day");	
 	    	
@@ -170,8 +173,17 @@ public class CarController extends HttpServlet {
 	    	List<Carhoroscope> carhoroscopeList = dao.Carhoroscope();
 	    	
 	    	if(car_type.equals("전체") && car_fuel.equals("전체")) {	    		
-	    		List<Car> carList = dao.CarselectAllprice();
+	    		List<Car> carList = dao.selectAll(requestPage);
+	    		PageDao pageDao = new PageDaoImpl();
+				
+	    		int cnt = pageDao.getCount(PageSql.CAR_COUNT_SQL);
+				
+				PageManager pm =new PageManager(requestPage);
+				PageGroupResult pgr = pm.getPageGroupResult(cnt);
+	    		
 	    		req.setAttribute("carList", carList);
+	    		req.setAttribute("pageGroupResult", pgr);
+	    		req.setAttribute("check", "check");
 	    	}else if(car_type.equals("전체")) {
 	    		List<Car> carList = dao.Carfuel(car_fuel);	    		
 	    		req.setAttribute("carList", carList);
@@ -182,10 +194,14 @@ public class CarController extends HttpServlet {
 	    		List<Car> carList = dao.Cartypefuel(car_type,car_fuel);
 	    		req.setAttribute("carList", carList);
 	    	}
+			System.out.println(car_type);
+			System.out.println(car_fuel);
 			
 			req.setAttribute("carhoroscopeList", carhoroscopeList);	
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
+			req.setAttribute("car_type", car_type);
+			req.setAttribute("car_fuel", car_fuel);
 			req.setAttribute("cha", cha);
 	    }else if(action.equals("car_reserve")) {	    		
 			String borrow_car = req.getParameter("borrow_car");	
@@ -193,9 +209,18 @@ public class CarController extends HttpServlet {
 			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			
 			CarReserve carReserve = new CarReserve(borrow_car,return_car,car_no);			
-			
+						
 			CarDao dao = new CarDaoImpl();
-			dao.CarReserve(carReserve);
+			dao.CarReserve(carReserve);			
+			
+			
+			int num = dao.getNum(Sql.RECENT_CAR_RESERVE);
+			
+			HttpSession session = req.getSession();
+			int resNo = (int)session.getAttribute("resNo");			
+			dao.resNo(num, resNo);
+			
+			
 	    }
 		
 		String dispatcherUrl = null;
@@ -228,7 +253,7 @@ public class CarController extends HttpServlet {
 	    	dispatcherUrl = "jsp/car/carlist.jsp";
 	    	
 	    }else if(action.equals("car_reserve")) {
-	    	dispatcherUrl = "/jsp/reserve/shoppingbasket.jsp"; 
+	    	dispatcherUrl = "shopping_cart"; 
 	    	
 	    }
 		

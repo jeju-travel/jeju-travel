@@ -44,6 +44,7 @@ select * from CAR_RESERVE;
 create sequence seq_car_reserve_no
 drop sequence seq_car_reserve_no
 insert into CAR_RESERVE values(seq_car_reserve_no.nextval,'오전','오후',2);
+select max(car_reserve_no) as num from CAR_RESERVE
 ------------------------------------------------------------------------------
 ------------------------------------렌트 후기 리뷰-------------------------------
 create table car_review(
@@ -87,8 +88,10 @@ create sequence seq_reserve_no
 drop sequence seq_reserve_no
 insert into RESERVATION values(seq_reserve_no.nextval,1,sysdate,sysdate,'예약');
 select * from RESERVATION
---------------------------------------------------------------
 
+update RESERVATION set car_reserve_no = ? where reserve_no = ?;
+
+--------------------------------------------------------------
 -------------------예약 db멤버(테스트용) ------------------
 create table MEMBER(
 	member_no number primary key
