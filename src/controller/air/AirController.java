@@ -177,7 +177,9 @@ public class AirController extends HttpServlet{
 			req.setAttribute("airlineNo", airlineNo);
 			
 		}else if(action.equals("reviewSave_air")) {
-			String writer = "abc"; //수정해야할 부분
+			HttpSession session = req.getSession();
+			
+			String writer = (String) session.getAttribute("member");
 			String content = req.getParameter("content");
 			double airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
 			int airNo = Integer.parseInt(req.getParameter("airlineNo"));
@@ -205,7 +207,14 @@ public class AirController extends HttpServlet{
 				session.setAttribute("resNo", resNo);
 			}
 		}
-		
+		/*
+		 * int resNo = session.getSession("resNo");
+		 * ReserveDao reserveDao = new ReserveDaoImpl();
+		 * Reservation res = reserveDao.selectByResNo(resNo);
+		 * if(res.getAirResNo() == null && res.getCarResNo() == null && res.getRoomResNo() == null){
+		 * 		reserveDao.delete(res.getResNo());
+		 * }
+		 * */
 		
 		String dispatcherUrl = null;
 		
