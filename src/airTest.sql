@@ -3,15 +3,15 @@ create sequence airReserveSeq;
 create sequence airReviewSeq;
 create sequence mem_seq;
 
-insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', null)
-insert into airline values(airlineSeq.nextval, '아시아나항공', 48000, '인천', '오전', null)
-insert into airline values(airlineSeq.nextval, '부산항공', 45000, '부산', '오전', null)
-insert into airline values(airlineSeq.nextval, '제주항공', 50000, '김포', '오전', null)
-insert into airline values(airlineSeq.nextval, '에어부산', 50000, '김해', '오전', null)
-insert into airline values(airlineSeq.nextval, '에어포항', 50000, '포항', '오전', null)
-insert into airline values(airlineSeq.nextval, '진에어', 50000, '인천', '오전', null)
-insert into airline values(airlineSeq.nextval, '티웨이항공', 50000, '김포', '오전', null)
-insert into airline values(airlineSeq.nextval, '이스타', 50000, '청주', '오전', null)
+insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', 'img/air/korea.jpg');
+insert into airline values(airlineSeq.nextval, '아시아나항공', 48000, '인천', '오전', 'img/air/asiana.png');
+insert into airline values(airlineSeq.nextval, '부산항공', 45000, '부산', '오전', 'img/air/busan.png');
+insert into airline values(airlineSeq.nextval, '제주항공', 50000, '김포', '오전', 'img/air/jeju.jpg');
+insert into airline values(airlineSeq.nextval, '에어부산', 50000, '김해', '오전', 'img/air/busan.png');
+insert into airline values(airlineSeq.nextval, '에어포항', 50000, '포항', '오전', 'img/air/airpohang.png');
+insert into airline values(airlineSeq.nextval, '진에어', 50000, '인천', '오전', 'img/air/jinair.jpg');
+insert into airline values(airlineSeq.nextval, '티웨이항공', 50000, '김포', '오전', 'img/air/tway.png');
+insert into airline values(airlineSeq.nextval, '이스타', 50000, '청주', '오전', 'img/air/estar.png');
 
 select * from airline;
 select * from air_review;

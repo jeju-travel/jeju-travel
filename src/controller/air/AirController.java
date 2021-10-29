@@ -105,9 +105,10 @@ public class AirController extends HttpServlet{
 			String airLoc = req.getParameter("airLoc");
 			String takeOff = req.getParameter("takeOff");
 			int airNo = Integer.parseInt(req.getParameter("airNum"));
+			String airImage = req.getParameter("airImage");
 
 			AirlineDao dao = new AirlineDaoImpl();
-			dao.update(airName, price, airLoc, takeOff, airNo);
+			dao.update(airName, price, airLoc, takeOff, airImage, airNo);
 			
 		}else if(action.equals("deleteFromAirline")) {
 			
@@ -141,6 +142,10 @@ public class AirController extends HttpServlet{
 			AirReserveDao reserveDao = new AirReserveDaoImpl();
 			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
 			
+			int airResNo = reserveDao.recentAirReserve();
+			int resNo = (int) session.getAttribute("resNo");
+			
+			reserveDao.updateReservation(resNo, airResNo);
 			//int airReserve = reserveDao.recentAirReserve();
 			
 			/*session.removeAttribute("sDay");
@@ -198,7 +203,6 @@ public class AirController extends HttpServlet{
 				int resNo = reserveDao.recentReservation();
 				
 				session.setAttribute("resNo", resNo);
-				System.out.println(session.getAttribute("resNo"));
 			}
 		}
 		
