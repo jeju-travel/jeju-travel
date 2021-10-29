@@ -34,11 +34,13 @@
         <div class="main_center">   
             <form action="carlist" method="post">   
                     <div class="main_memu">
+                    	<input type="text" name="check" value="1" hidden="hidden">
                         <input type="submit" class="btn btn-primary" value="렌트카예약o">
                     </div>
             </form>
             <form action="shopping_cart" method="post">
                     <div class="main_memu">
+                    	<input type="text" name="check" value="0" hidden="hidden">
                         <input type="submit" class="btn btn-primary" value="렌트카예약x">
                     </div>
             </form>   
