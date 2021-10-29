@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>¼÷¼Ò ¸®½ºÆ®</title>
+    <title>ìˆ™ì†Œ ë¦¬ìŠ¤íŠ¸</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,24 +38,28 @@
       		background-size:cover;
       		background: no-repeat;
     	}
+    	td{
+    		line-height:70px;
+    	}
+    	
   	</style>
 </head>
 <body>
 <div class="container mt-3">
         <div class="title">
-        	<h1>¼÷¼Ò ¸®½ºÆ®<°ü¸®ÀÚ¸ðµå></h1>
-        	<a class="btn btn-primary" href="lodging_input">¼÷¼Ò Ãß°¡</a>
+        	<h1>ìˆ™ì†Œ ë¦¬ìŠ¤íŠ¸<ê´€ë¦¬ìžëª¨ë“œ></h1>
+        	<a class="btn btn-primary" href="lodging_input">ìˆ™ì†Œ ì¶”ê°€</a>
         </div>
         <hr>
         <c:if test="${!empty lodgingList}">
         <table class="table table-dark table-hover">
         	<tr>
-        		<th class="titlename">¼÷¼Ò ÀÌ¸§</th>
-        		<th class="titlename">¼÷¼Ò À§Ä¡</th>
-        		<th class="titlename">¼÷¼Ò ÀüÈ­¹øÈ£</th>
-        		<th class="titlename">¼÷¼Ò °¡°Ý</th>
-        		<th class="titlename">¼÷¼Ò ÀÌ¹ÌÁö</th>
-        		<th class="titlename">¼÷¼Ò ¼öÁ¤ ¹× »èÁ¦</th>
+        		<th class="titlename">ìˆ™ì†Œ ì´ë¦„</th>
+        		<th class="titlename">ìˆ™ì†Œ ìœ„ì¹˜</th>
+        		<th class="titlename">ìˆ™ì†Œ ì „í™”ë²ˆí˜¸</th>
+        		<th class="titlename">ìˆ™ì†Œ ê°€ê²©</th>
+        		<th class="titlename">ìˆ™ì†Œ ì´ë¯¸ì§€</th>
+        		<th class="titlename">ìˆ™ì†Œ ìˆ˜ì • ë° ì‚­ì œ</th>
         	</tr>
         	<c:forEach var="list" items="${lodgingList}">
                <tr>
@@ -64,12 +68,12 @@
                   <td>${list.lodging_phone}</td>
                   <td>${list.lodging_price}</td>
                   <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
-                  <td><a class="updatedelete" href="lodging_detail?lodging_no=${list.lodging_no}">»ó¼¼º¸±â</a>
+                  <td><a class="updatedelete" href="lodging_detail?lodging_no=${list.lodging_no}">ìƒì„¸ë³´ê¸°</a>
                </tr>
             </c:forEach>
         </table>
         </c:if>
-        <c:if test="${empty lodgingList }">µî·ÏµÈ ¼÷¼Ò°¡ ¾ø½À´Ï´Ù.</c:if>
+        <c:if test="${empty lodgingList }">ë“±ë¡ëœ ìˆ™ì†Œê°€ ì—†ìŠµë‹ˆë‹¤.</c:if>
 </div>
 </body>
 </html>
