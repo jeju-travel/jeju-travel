@@ -205,7 +205,14 @@ public class AirController extends HttpServlet{
 				session.setAttribute("resNo", resNo);
 			}
 		}
-		
+		/*
+		 * int resNo = session.getSession("resNo");
+		 * ReserveDao reserveDao = new ReserveDaoImpl();
+		 * Reservation res = reserveDao.selectByResNo(resNo);
+		 * if(res.getAirResNo() == null && res.getCarResNo() == null && res.getRoomResNo() == null){
+		 * 		reserveDao.delete(res.getResNo());
+		 * }
+		 * */
 		
 		String dispatcherUrl = null;
 		
