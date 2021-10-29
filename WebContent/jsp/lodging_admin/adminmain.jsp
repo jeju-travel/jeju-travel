@@ -89,18 +89,18 @@
     <!-- <center> -->
     <div class="mainadminair">
         <a href="air_input">항공 추가</a>
-        <a href="air_detail">항공 수정 및 삭제</a>
+        <a href="air_detail">항공 리스트</a>
     </div>
 
     <div class="mainadminlodging">
         <!--  <button type="submit" class="btn btn-primary">이전</button> -->
         <a href="lodging_input">숙소 추가</a>
-        <a href="lodging_detail">숙소 수정 및 삭제</a>
+        <a href="lodging_detail">숙소 리스트</a>
     </div>
 
     <div class="mainadmincar">
         <a href="car_input">렌트카 추가</a>
-        <a href="car_detail">렌트카 수정 및 삭제</a>
+        <a href="car_detail">렌트카 리스트</a>
     </div>
     <!-- </center> -->
 	</form>
