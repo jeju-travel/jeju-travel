@@ -8,8 +8,8 @@ public class test2 {
 		// TODO Auto-generated method stub
 		LodgingDao dao = new LodgingDaoImpl();
 		
-		Lodgingadmin lodging = dao.selectBylodging_no(1);
-		System.out.println(lodging.toString());
+		/*Lodgingadmin lodging = dao.selectBylodging_no(1);
+		System.out.println(lodging.toString());*/
 	}
 
 }

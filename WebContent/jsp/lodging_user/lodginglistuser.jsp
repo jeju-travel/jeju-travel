@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ΌχΌÒ Έ®½ΊΖ®</title>
+    <title>μ™μ† λ¦¬μ¤νΈ</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -52,35 +52,28 @@
 <body>
 <div class="lodginglist">
  
-        <!-- ΐΜΊΞΊΠΐΊ Ύξ¶»°Τ °΅Α®ΏΓ °ΝΐΞΑφ »ύ°Ά ΘΔ valueΏ΅ °΅Α®Ώΐ΄Β ΔΪµε ΐΤ·Β -->
-        <table class="dateselect">
-        	<tr>
-        		<th><input type="date">~</th>
-        		<th><input type="date" style="margin-right:20px;"> </th>
-        		<th><h3 style="margin-right:10px;">ΌΊΐΞ : </h3></th>
-        		<th>
-        			<select>
-        				<option value="one">1Έν</option>
-        				<option value="two">2Έν</option>
-        				<option value="three">3Έν</option>
-        				<option value="four">4Έν</option>
-        			</select>
-        		</th>
-        		<th><h3 style="margin-left:10px;">ΎξΈ°ΐΜ : </h3></th>
-        		<th>
-        			<select style="margin-left:10px;">
-        				<option value="one">1Έν</option>
-        				<option value="two">2Έν</option>
-        				<option value="three">3Έν</option>
-        				<option value="four">4Έν</option>
-        			</select>
-        		</th>
-        		
-        		<th><input class="btn btn-primary" type="submit" style="margin-left:10px;" value="°Λ»φ"></th>
-        	</tr>
-        </table>
+        <!-- μ΄λ¶€λ¶„μ€ μ–΄λ–»κ² κ°€μ Έμ¬ κ²ƒμΈμ§€ μƒκ° ν›„ valueμ— κ°€μ Έμ¤λ” μ½”λ“ μ…λ ¥ -->
+     	<form method="post" action="lodging_search">
+        	<table class="dateselect">
+        		<tr>
+        			<th><input type="date" name="start_day" value="${startDay}" readonly>~</th>
+        			<th><input type="date" name="end_day" value="${endDay}" readonly></th>
+        		</tr>
+        		<tr>
+        			<td>
+        				μ™μ† κ²€μƒ‰ : 
+        			</td>
+        			<td>
+        				<input type="text" name="lodging_name">
+        			</td>
+        			<td>
+        				<input class="btn btn-primary" type="submit" style="margin-left:10px;" value="κ²€μƒ‰">
+        			</td>
+        		</tr>
+        	</table>
+        </form>
         
-        <h1 style="margin-left:30px;">ΌχΌÒ Έ®½ΊΖ®</h1>
+        <h1 style="margin-left:30px;">μ™μ† λ¦¬μ¤νΈ</h1>
         
         <hr>
         <c:if test="${!empty lodgingList}">
@@ -100,15 +93,15 @@
                  
                   <td>
                   
-                  <p>Ί°Α΅ ΊΈΏ©ΑΦ±β</p>	
-                  <input type="button" value="ΏΉΎΰΗΟ±β"  onClick="location.href='detail_room?roomNo=${list.lodging_no}'">
+                  <p>λ³„μ  λ³΄μ—¬μ£ΌκΈ°</p>	
+                  <input type="button" value="μμ•½ν•κΈ°"  onClick="location.href='detail_room?roomNo=${list.lodging_no}'">
         
                   </td>
                </tr>
             </c:forEach>
         </table>
         </c:if>
-        <c:if test="${empty lodgingList }">µξ·ΟµΘ ΌχΌÒ°΅ Ύψ½ΐ΄Ο΄Ω.</c:if>
+        <c:if test="${empty lodgingList }">λ“±λ΅λ μ™μ†κ°€ μ—†μµλ‹λ‹¤.</c:if>
 </div>
 </body>
 </html>

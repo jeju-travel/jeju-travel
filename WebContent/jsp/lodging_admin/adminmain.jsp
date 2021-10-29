@@ -124,9 +124,7 @@ a {
         	<li>관리자님 환영합니다</li>
             <li><a href="logout">로그아웃</a></li>
            
-        </ul>
-        
-
+      </ul>
 
     </header>
         </c:if>
