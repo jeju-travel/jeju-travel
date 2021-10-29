@@ -177,7 +177,9 @@ public class AirController extends HttpServlet{
 			req.setAttribute("airlineNo", airlineNo);
 			
 		}else if(action.equals("reviewSave_air")) {
-			String writer = "abc"; //수정해야할 부분
+			HttpSession session = req.getSession();
+			
+			String writer = (String) session.getAttribute("member");
 			String content = req.getParameter("content");
 			double airHoroscope = Integer.parseInt(req.getParameter("horoscope"));
 			int airNo = Integer.parseInt(req.getParameter("airlineNo"));
