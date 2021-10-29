@@ -27,6 +27,7 @@ import dao.reserve.ReserveDaoImpl;
 import model.air.AirReserve;
 import model.air.Airline;
 import model.manager.Member;
+import model.manager.Reservation;
 
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
@@ -139,13 +140,17 @@ public class AirController extends HttpServlet{
 			AirlineDao dao = new AirlineDaoImpl();
 			Airline airline = dao.selectByNo(airNo);
 			
-			AirReserveDao reserveDao = new AirReserveDaoImpl();
-			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
+			AirReserve airRes = new AirReserve();
+			airRes.setTakeOff(airline.getTakeOff());
+			airRes.setLanding(airline.getTakeOff());
+			airRes.setPersonnel(personnel);
+			airRes.setAirNo(airNo);
 			
-			int airResNo = reserveDao.recentAirReserve();
+			//int airResNo = reserveDao.recentAirReserve();
 			int resNo = (int) session.getAttribute("resNo");
 			
-			reserveDao.updateReservation(resNo, airResNo);
+			//reserveDao.updateReservation(resNo, airResNo);
+			
 			//int airReserve = reserveDao.recentAirReserve();
 			
 			/*session.removeAttribute("sDay");
@@ -200,11 +205,13 @@ public class AirController extends HttpServlet{
 				MemberDao memberDao = new MemberDaoImpl();
 				Member member = memberDao.selectById((String) session.getAttribute("member"));
 				
-				ReserveDao reserveDao = new ReserveDaoImpl();
-				reserveDao.insert(member.getNo(), startDay, endDay, 0);
-				int resNo = reserveDao.recentReservation();
+				Reservation reservation = new Reservation();
+				reservation.setMemNo(member.getNo());
+				reservation.setStartDay(startDay);
+				reservation.setEndDay(endDay);
+				reservation.setPrice(0);
 				
-				session.setAttribute("resNo", resNo);
+				session.setAttribute("reserve", reservation);
 			}
 		}
 		/*
