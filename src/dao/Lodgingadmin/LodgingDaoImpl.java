@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import dao.Lodgingadmin.Sql;
 import model.Lodging.Lodgingadmin;
 import util.JDBCUtil;
@@ -124,33 +123,34 @@ public class LodgingDaoImpl implements LodgingDao{
 
 	   }
 	
-	   @Override
-	   public Lodgingadmin selectBylodging_no(int lodging_no) {   
-		
-		Lodgingadmin lodgingadmin = null;
+	@Override
+	public List<Lodgingadmin> lodging_name(String lodging_name) {
+	      List<Lodgingadmin> lodgingList = new ArrayList<>();
 	      
 	      Connection connection = null;
 	      PreparedStatement pStatement = null;
 	      ResultSet resultset = null;
+	      
 	      try {
 	         connection = JDBCUtil.getConnection();
-	         pStatement = connection.prepareStatement(Sql.Lodging_SELECT_BY_LODGING_NO_ALL);
+	         pStatement = connection.prepareStatement(Sql.Lodging_SELECT_BY_LODGING_NAME_ALL);
 	         
-	         pStatement.setInt(1, lodging_no);
+	         pStatement.setString(1, "%"+lodging_name+"%");
 	         
-	         resultset = pStatement.executeQuery();       
+	         resultset = pStatement.executeQuery();            
 	         
-	         if(resultset.next()) {   
-	        	 lodgingadmin = new Lodgingadmin();
+	         while(resultset.next()) {            
+	            Lodgingadmin lodgingadmin = new Lodgingadmin();
 	            
-	        	 lodgingadmin.setLodging_no(resultset.getInt("lodging_no"));
-	        	 lodgingadmin.setLodging_name(resultset.getString("lodging_name"));
-	        	 lodgingadmin.setLodging_loc(resultset.getString("lodging_loc"));
-	        	 lodgingadmin.setLodging_phone(resultset.getString("lodging_phone"));
-	        	 lodgingadmin.setLodging_price(resultset.getInt("lodging_price"));
-	        	 lodgingadmin.setLodging_image(resultset.getString("lodging_image"));
+	            lodgingadmin.setLodging_no(resultset.getInt("lodging_no"));
+	            lodgingadmin.setLodging_name(resultset.getString("lodging_name"));
+	            lodgingadmin.setLodging_loc(resultset.getString("lodging_loc"));
+	            lodgingadmin.setLodging_phone(resultset.getString("lodging_phone"));
+	            lodgingadmin.setLodging_price(resultset.getInt("lodging_price"));
+	            lodgingadmin.setLodging_image(resultset.getString("lodging_image"));
 	            
-	         }         
+	            lodgingList.add(lodgingadmin);
+	         }
 	         
 	         
 	      } catch (Exception e) {
@@ -158,7 +158,9 @@ public class LodgingDaoImpl implements LodgingDao{
 	      } finally {
 	         JDBCUtil.close(resultset, pStatement, connection);
 	      }
-	      return lodgingadmin;
+	      
+	      return lodgingList;
 	   }
+	   
 	
 }

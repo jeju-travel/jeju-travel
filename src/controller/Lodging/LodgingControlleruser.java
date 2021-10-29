@@ -18,6 +18,7 @@ import dao.reserve.ReserveDaoImpl;
 import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 
+
 @WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging", "/detail_room"})
 public class LodgingControlleruser extends HttpServlet{
 	
@@ -40,9 +41,9 @@ public class LodgingControlleruser extends HttpServlet{
 		int lastIndex = uri.lastIndexOf("/");
 		String action = uri.substring(lastIndex+1);
 		
-		//·ÎÁ÷
+		//ë¡œì§
 		if(action.equals("lodging_list_user")) {
-			System.out.println("list µµÂøÇÏ¿´½À´Ï´Ù.");
+			System.out.println("list ë„ì°©í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			
 			LodgingDao lodgingDao = new LodgingDaoImpl();
 			List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
@@ -50,6 +51,7 @@ public class LodgingControlleruser extends HttpServlet{
 				System.out.println(lodgingadmin.toString());
 			}
 			req.setAttribute("lodgingList", lodgingList);
+      
 		}else if(action.equals("detail_room")) {
 			HttpSession session = req.getSession();
 			int resNo = (int)session.getAttribute("resNo");
@@ -70,17 +72,19 @@ public class LodgingControlleruser extends HttpServlet{
 		}
 		
 		
-		//È­¸é±¸¼º
+		//í™”ë©´êµ¬ì„±
 		String dispatcherUrl = null;
 		
 		if(action.equals("lodging_list_user")) {
 			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
+		}else if(action.equals("lodging_list_detail")) {
+			dispatcherUrl = "/jsp/lodging_user/lodginglistdetail.jsp";
 		}else if(action.equals("main_lodging")) {
 			dispatcherUrl = "/jsp/main/lodging.jsp";
 		}else if(action.equals("detail_room")) {
 			dispatcherUrl = "/jsp/lodging_user/lodging_detail.jsp";
 		}
-		
+				
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 	    dispatcher.forward(req, resp);
 	}
