@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import util.JDBCUtil;
 import dao.Lodgingadmin.Sql;
 import model.Lodging.Lodgingadmin;
 

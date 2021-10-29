@@ -41,7 +41,7 @@
     }
     .lodgingbutton input{
     	width:300px;
-    	margin-right:13.5%;
+    	margin-right:10%;
     }
     .listmove{
     	text-align: center;

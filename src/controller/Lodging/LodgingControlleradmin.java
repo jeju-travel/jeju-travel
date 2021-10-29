@@ -74,7 +74,7 @@ public class LodgingControlleradmin extends HttpServlet{
 			//getParameter할때 jsp의 name이랑 동일한지 꼭 확인
 			int lodging_no = Integer.parseInt(req.getParameter("lodging_no"));
 			String lodging_name = req.getParameter("lodging_name");
-			String lodging_loc = req.getParameter("lod	ging_loc");
+			String lodging_loc = req.getParameter("lodging_loc");
 			String lodging_phone = req.getParameter("lodging_phone");
 			int lodging_price = Integer.parseInt(req.getParameter("lodging_price"));
 			String lodging_image = req.getParameter("lodging_image");
