@@ -15,7 +15,7 @@
 <h3>항공사 리스트</h3>
 <hr>
 <div class="container mt-3">
-<table class="table">
+<table class="table table-hover">
 	<c:forEach var="airline" items="${airlineList}">
 		<tr>
 			<td><a href="updateAirline?airNo=${airline.airNo}">${airline.airName}</a></td>
