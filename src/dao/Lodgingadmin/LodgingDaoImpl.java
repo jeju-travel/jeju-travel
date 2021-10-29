@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import dao.Lodgingadmin.Sql;
 import model.Lodging.Lodgingadmin;
 import util.JDBCUtil;
@@ -122,6 +123,43 @@ public class LodgingDaoImpl implements LodgingDao{
 		      }
 
 	   }
+	
+	@Override
+    public Lodgingadmin selectBylodging_no(int lodging_no) {
+
+     Lodgingadmin lodgingadmin = null;
+
+       Connection connection = null;
+       PreparedStatement pStatement = null;
+       ResultSet resultset = null;
+       try {
+          connection = JDBCUtil.getConnection();
+          pStatement = connection.prepareStatement(Sql.Lodging_SELECT_BY_LODGING_NO_ALL);
+
+          pStatement.setInt(1, lodging_no);
+
+          resultset = pStatement.executeQuery();
+
+          if(resultset.next()) {
+              lodgingadmin = new Lodgingadmin();
+
+              lodgingadmin.setLodging_no(resultset.getInt("lodging_no"));
+              lodgingadmin.setLodging_name(resultset.getString("lodging_name"));
+              lodgingadmin.setLodging_loc(resultset.getString("lodging_loc"));
+              lodgingadmin.setLodging_phone(resultset.getString("lodging_phone"));
+              lodgingadmin.setLodging_price(resultset.getInt("lodging_price"));
+              lodgingadmin.setLodging_image(resultset.getString("lodging_image"));
+
+          }
+
+
+       } catch (Exception e) {
+          e.printStackTrace();
+       } finally {
+          JDBCUtil.close(resultset, pStatement, connection);
+       }
+       return lodgingadmin;
+    }
 	
 	@Override
 	public List<Lodgingadmin> lodging_name(String lodging_name) {

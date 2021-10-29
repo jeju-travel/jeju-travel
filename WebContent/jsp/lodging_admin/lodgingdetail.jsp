@@ -17,20 +17,16 @@
   		body{
   			margin-top:30px;
   		}
-  		.detailupdatedelete{
-  			display:block;
-  		}
   		.titleupdatedelete{
   			text-align:center;
   		}
-  		.detailupdatedelete input{
-  			display:block;
-  			/* margin-top:10px; */
-  		}
   		.detailupdatedelete{
-  			width:600px;
+  			margin-top:30px;
   		}
-  		
+  		input{
+  			margin-top:10px;
+  			margin-left:10px;
+  		}
   	</style>
 </head>
 <body>
@@ -56,15 +52,22 @@
       			<td><input type="text" name="lodging_phone" value="${lodging.lodging_phone}"/></td>
       		</tr>
       		<tr>
-      			<td>이미지 :</td>
-      			<td><input type="text" name="lodging_image" value="${lodging.lodging_image}"/></td>
+      			<td>가격 :</td>
+      			<td><input type="text" name="lodging_price" value="${lodging.lodging_price}"/></td>
       		</tr>
       		<tr>
-      			<td><input class="btn btn-primary" type="submit" value ="수정"/></td>
-                <td><button type="button" onclick="location.href='lodging_delete?lodging_no=${lodging.lodging_no}'" class="btn btn-primary">삭제</button></td>
-      			<!-- <a class="btn btn-primary" href="lodging_delete?lodging_no=${lodging.lodging_no}">삭제</a> -->
+      			<td>이미지 경로:</td>
+      			<td><input type="text" name="lodging_image" value="${lodging.lodging_image}"/></td>
       		</tr>
       	</table>
+      	<div class="btnclass">
+      		<input class="btn btn-primary" type="submit" value ="수정" 
+      				style="width:300px; margin-top:10px; margin-left:30%;"/></td>
+        	<button type="button" onclick="location.href='lodging_delete?lodging_no=${lodging.lodging_no}'" 
+        			class="btn btn-primary" style="width:300px; margin-top:10px;">삭제</button><br>
+        	<a class="btn btn-primary" href="lodging_list"
+        		style="margin-left:40%; margin-top:20px; width:300px;">이전</a>
+      	</div>
    </form>
    
 </div>

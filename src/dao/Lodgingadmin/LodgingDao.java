@@ -13,6 +13,9 @@ public interface LodgingDao {
 	void update(Lodgingadmin lodgingadmin);
 	//삭제
 	void delete(int lodging_no);
+	
+	Lodgingadmin selectBylodging_no(int lodging_no);
+	
 	//이름검색
 	List<Lodgingadmin> lodging_name(String lodging_name);
 	
