@@ -1,4 +1,4 @@
-package controller.Lodging;
+package dao.Lodginguser;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +37,7 @@ public class LodgingControlleruser extends HttpServlet{
 		String action = uri.substring(lastIndex+1);
 		
 		//로직
-		if(action.equals("lodging_list_user")) {
+		if(action.equals("lodging_list")) {
 			System.out.println("list 도착하였습니다.");
 			
 			LodgingDao lodgingDao = new LodgingDaoImpl();

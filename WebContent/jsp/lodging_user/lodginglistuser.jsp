@@ -25,6 +25,12 @@
     	hr{
     		background-color:black;
     	}
+    	.lodgingimage{
+    		width:100px;
+      		height: auto;
+      		background-size:cover;
+      		background: no-repeat;
+    	}
   	</style>
 </head>
 <body>
@@ -69,7 +75,7 @@
                   <td>${list.lodging_loc}</td>
                   <td>${list.lodging_phone}</td>
                   <td>${list.lodging_price}</td>
-                  <td>${list.lodging_image}</td>
+                  <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
                </tr>
             </c:forEach>
         </table>
