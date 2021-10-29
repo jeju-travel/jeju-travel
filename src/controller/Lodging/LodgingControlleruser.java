@@ -14,7 +14,7 @@ import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
 import model.Lodging.Lodgingadmin;
 
-@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging"})
+@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user","/lodging_list_detail","/lodging_search","/main_lodging"})
 public class LodgingControlleruser extends HttpServlet{
 	
 	@Override
@@ -46,6 +46,16 @@ public class LodgingControlleruser extends HttpServlet{
 				System.out.println(lodgingadmin.toString());
 			}
 			req.setAttribute("lodgingList", lodgingList);
+			
+		}else if(action.equals("lodging_search")) {
+			System.out.println("검색 도착하였습니다.");
+			
+			String lodging_name = req.getParameter("lodging_name");
+			
+			LodgingDao lodgingDaouser = new LodgingDaoImpl();
+			List<Lodgingadmin> lodgingList = lodgingDaouser.lodging_name(lodging_name);
+			
+			req.setAttribute("lodgingList", lodgingList);
 		}
 		
 		
@@ -54,10 +64,14 @@ public class LodgingControlleruser extends HttpServlet{
 		
 		if(action.equals("lodging_list_user")) {
 			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
+		}else if(action.equals("lodging_list_detail")) {
+			dispatcherUrl = "/jsp/lodging_user/lodginglistdetail.jsp";
 		}else if(action.equals("main_lodging")) {
 			dispatcherUrl = "/jsp/main/lodging.jsp";
+		}else if(action.equals("lodging_search")) {
+			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
 		}
-		
+				
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 	    dispatcher.forward(req, resp);
 	}

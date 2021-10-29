@@ -22,8 +22,8 @@ public class test {
 		}
 		System.out.println("출력되었습니다.");
 		
-		lodgingadmin = lodgingDao.selectBylodging_no(2);
-		System.out.println(lodgingadmin.toString());
+		/*lodgingadmin = lodgingDao.lodging_name();
+		System.out.println(lodgingadmin.toString());*/
 		
 		JDBCUtil.close(null, null, connection);
 	}

@@ -37,25 +37,32 @@
 <div class="lodginglist">
         <h5>경로 표시</h5>
         <!-- 이부분은 어떻게 가져올 것인지 생각 후 value에 가져오는 코드 입력 -->
-     	<form method="post" action="lodging_search">
-        	<table class="dateselect">
-        		<tr>
-        			<th><input type="date" name="start_day" value="${startDay}" readonly>~</th>
-        			<th><input type="date" name="end_day" value="${endDay}" readonly></th>
-        		</tr>
-        		<tr>
-        			<td>
-        				숙소 검색 : 
-        			</td>
-        			<td>
-        				<input type="text" name="lodging_name">
-        			</td>
-        			<td>
-        				<input class="btn btn-primary" type="submit" style="margin-left:10px;" value="검색">
-        			</td>
-        		</tr>
-        	</table>
-        </form>
+        <table class="dateselect">
+        	<tr>
+        		<th><input type="date">~</th>
+        		<th><input type="date" style="margin-right:20px;"> </th>
+        		<th><h3 style="margin-right:10px;">성인 : </h3></th>
+        		<th>
+        			<select>
+        				<option value="one">1명</option>
+        				<option value="two">2명</option>
+        				<option value="three">3명</option>
+        				<option value="four">4명</option>
+        			</select>
+        		</th>
+        		<th><h3 style="margin-left:10px;">어린이 : </h3></th>
+        		<th>
+        			<select style="margin-left:10px;">
+        				<option value="one">1명</option>
+        				<option value="two">2명</option>
+        				<option value="three">3명</option>
+        				<option value="four">4명</option>
+        			</select>
+        		</th>
+        		
+        		<th><input class="btn btn-primary" type="submit" style="margin-left:10px;" value="검색"></th>
+        	</tr>
+        </table>
         
         <h1 style="margin-left:30px;">숙소 리스트</h1>
         
@@ -69,7 +76,7 @@
                   <td>${list.lodging_phone}</td>
                   <td>${list.lodging_price}</td>
                   <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
-                  <td><a class="btn btn-primary" href="lodging_list_detail">둘러보기</a>
+                  <td><a class="btn btn-primary" href=""></a>
                </tr>
             </c:forEach>
         </table>

@@ -11,4 +11,6 @@ public class Sql {
 			"delete from lodging where lodging_no=?";
 	public static final String Lodging_SELECT_BY_LODGING_NO_ALL=
 			"select lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image from lodging where lodging_no=?";
+	public static final String Lodging_SELECT_BY_LODGING_NAME_ALL=
+			"select * from lodging where lodging_name Like ?";
 }
