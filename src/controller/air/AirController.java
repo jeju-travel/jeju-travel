@@ -146,9 +146,10 @@ public class AirController extends HttpServlet{
 			airRes.setPersonnel(personnel);
 			airRes.setAirNo(airNo);
 			
-			//int airResNo = reserveDao.recentAirReserve();
-			int resNo = (int) session.getAttribute("resNo");
+			session.setAttribute("airRes", airRes);
 			
+
+			//int airResNo = reserveDao.recentAirReserve();
 			//reserveDao.updateReservation(resNo, airResNo);
 			
 			//int airReserve = reserveDao.recentAirReserve();
