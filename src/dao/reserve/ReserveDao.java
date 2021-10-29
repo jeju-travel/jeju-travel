@@ -49,4 +49,14 @@ public interface ReserveDao {
 	public void insert(int memberNo, String startDay, String endDay, int totalPrice);
 	
 	public int recentReservation();
+	
+	//update
+	public void updateAirResNo(int airResNo, int resNo);
+	public void updateRoomResNo(int roomResNo, int resNo);
+	public void updateCarResNo(int carResNo, int resNo);
+	
+	public void insertRoomRes(Lodging_reserve room);
+	
+	//최신상태
+	int selectByNo();
 }

@@ -1,52 +1,58 @@
---°ü¸®ÀÚ
+--ê´€ë¦¬ì
 insert into RESERVE_ADMIN values(1,'root','root','1234')
 
---½ÃÄö½º
+--ì‹œí€€ìŠ¤
 create sequence mem_seq;
 create sequence res_seq;
 create sequence airlineSeq;
 create sequence airReserveSeq;
 create sequence airReviewSeq;
 create sequence seq_car_no;
-create sequence seq_car_reserve_no
-create sequence seq_car_review_no
+create sequence seq_car_reserve_no;
+create sequence seq_car_review_no;
 create sequence seqlodging_no;
+create sequence seqlodging_res_no;
+drop sequence seqlodging__res_no;
 
---Ç×°ø µ¥ÀÌÅÍ
-insert into airline values(airlineSeq.nextval, '´ëÇÑÇ×°ø', 50000, '¼­¿ï', '¿ÀÀü', 'img/air/korea.jpg');
-insert into airline values(airlineSeq.nextval, '¾Æ½Ã¾Æ³ªÇ×°ø', 48000, 'ÀÎÃµ', '¿ÀÀü', 'img/air/asiana.png');
-insert into airline values(airlineSeq.nextval, 'ºÎ»êÇ×°ø', 45000, 'ºÎ»ê', '¿ÀÀü', 'img/air/busan.png');
-insert into airline values(airlineSeq.nextval, 'Á¦ÁÖÇ×°ø', 50000, '±èÆ÷', '¿ÀÀü', 'img/air/jeju.jpg');
-insert into airline values(airlineSeq.nextval, '¿¡¾îºÎ»ê', 50000, '±èÇØ', '¿ÀÀü', 'img/air/busan.png');
-insert into airline values(airlineSeq.nextval, '¿¡¾îÆ÷Ç×', 50000, 'Æ÷Ç×', '¿ÀÀü', 'img/air/airpohang.png');
-insert into airline values(airlineSeq.nextval, 'Áø¿¡¾î', 50000, 'ÀÎÃµ', '¿ÀÀü', 'img/air/jinair.jpg');
-insert into airline values(airlineSeq.nextval, 'Æ¼¿şÀÌÇ×°ø', 50000, '±èÆ÷', '¿ÀÀü', 'img/air/tway.png');
-insert into airline values(airlineSeq.nextval, 'ÀÌ½ºÅ¸', 50000, 'Ã»ÁÖ', '¿ÀÀü', 'img/air/estar.png');
 
---¼÷¹Ú µ¥ÀÌÅÍ
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'¸®Á¨Æ®¸¶¸°','Á¦ÁÖµµ','032-2222-3333',3000,'img/lodging/RegentMarine.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'±×·£µåÇÏ¾æÆ®Á¦ÁÖ','Á¦ÁÖµµ ¼­±ÍÆ÷','032-1111-2222',9000,'img/lodging/GrandHyattJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'Å½¶ó½ºÅ×ÀÌÈ£ÅÚÁ¦ÁÖ','Á¦ÁÖµµ ¼­±ÍÆ÷','032-2222-3333',10000,'img/lodging/TamnaStayHotelJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'À¯Å¾À¯ºí·¹½ºÈ£ÅÚ','Á¦ÁÖµµ Á¦ÁÖ','032-2222-3333',3000,'img/lodging/GrandHyattJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'È£ÅÚÀ§µåÁ¦ÁÖ','Á¦ÁÖµµ Á¦ÁÖ','032-2222-3333',1000,'img/lodging/HotelwithJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'´ÙÀÎ¿À¼¼¾Æ³ëÈ£ÅÚ','Á¦ÁÖµµ¼­±ÍÆ÷','032-3333-3333',90000,'img/lodging/DyneOcenanoHotel.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'À¯´ÏÈ£ÅÚÁ¦ÁÖ','Á¦ÁÖµµ Á¦ÁÖ','032-2222-7777',7000,'img/lodging/UniHotelJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'¾Æ½ºÅ¸È£µ¨','Á¦ÁÖµµ Á¦ÁÖ','032-1111-3333',1000,'img/lodging/HotelwithJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'Á¦ÁÖÄ®È£ÅÚ','Á¦ÁÖµµ Á¦ÁÖ','032-2222-3333',2000,'img/lodging/KalHotelJeju.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'Á¦ÁÖ¸¶·¹º¸¸®Á¶Æ®','Á¦ÁÖµµ ¾Ö¿ù','032-2222-3333',1000,'img/lodging/JejuMarevoResort.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'¿ìµµ»ç¶ûÃ¤¹Î¹Ú','¿ìµµ','032-2222-3333',1000,'img/lodging/UdoLovehousePension.jpg');
-insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'½ºÄ«ÀÌ¸®´õ½ºÈ£ÅÚ','Á¦ÁÖµµ Á¦ÁÖ ','032-2222-3333',1000,'img/lodging/SkyLeadersHotel.jpg');
+--í•­ê³µ ë°ì´í„°
+insert into airline values(airlineSeq.nextval, 'ëŒ€í•œí•­ê³µ', 50000, 'ì„œìš¸', 'ì˜¤ì „', 'img/air/korea.jpg');
+insert into airline values(airlineSeq.nextval, 'ì•„ì‹œì•„ë‚˜í•­ê³µ', 48000, 'ì¸ì²œ', 'ì˜¤ì „', 'img/air/asiana.png');
+insert into airline values(airlineSeq.nextval, 'ë¶€ì‚°í•­ê³µ', 45000, 'ë¶€ì‚°', 'ì˜¤ì „', 'img/air/busan.png');
+insert into airline values(airlineSeq.nextval, 'ì œì£¼í•­ê³µ', 50000, 'ê¹€í¬', 'ì˜¤ì „', 'img/air/jeju.jpg');
+insert into airline values(airlineSeq.nextval, 'ì—ì–´ë¶€ì‚°', 50000, 'ê¹€í•´', 'ì˜¤ì „', 'img/air/busan.png');
+insert into airline values(airlineSeq.nextval, 'ì—ì–´í¬í•­', 50000, 'í¬í•­', 'ì˜¤ì „', 'img/air/airpohang.png');
+insert into airline values(airlineSeq.nextval, 'ì§„ì—ì–´', 50000, 'ì¸ì²œ', 'ì˜¤ì „', 'img/air/jinair.jpg');
+insert into airline values(airlineSeq.nextval, 'í‹°ì›¨ì´í•­ê³µ', 50000, 'ê¹€í¬', 'ì˜¤ì „', 'img/air/tway.png');
+insert into airline values(airlineSeq.nextval, 'ì´ìŠ¤íƒ€', 50000, 'ì²­ì£¼', 'ì˜¤ì „', 'img/air/estar.png');
 
---·»Æ®Ä« µ¥ÀÌÅÍ
-insert into car values(seq_car_no.nextval,'¸¶Æ¼Áî','°æÂ÷',20000,4,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/matiz.png');
-insert into car values(seq_car_no.nextval,'·¹ÀÌ','°æÂ÷',21000,4,'°æÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/ray.png');
-insert into car values(seq_car_no.nextval,'k3','ÁßÇüÂ÷',23000,5,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/k3.png');
-insert into car values(seq_car_no.nextval,'k5','ÁßÇüÂ÷',25000,5,'°¡¼Ö¸°','Á¦¼º1±æ 62,3Ãş','img/car/k5.png');
-insert into car values(seq_car_no.nextval,'k7','ÁßÇüÂ÷',27000,5,'Àü±â','Á¦¼º1±æ 62,3Ãş','img/car/k7.png');
-insert into car values(seq_car_no.nextval,'±×·»Á®','ÁßÇüÂ÷',30000,5,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/grandeur.png');
-insert into car values(seq_car_no.nextval,'¾Æ¹İ¶¼','ÁßÇüÂ÷',25000,5,'Àü±â','Á¦¼º1±æ 62,3Ãş','img/car/avante.png');
-insert into car values(seq_car_no.nextval,'¾Æ¿ìµğ','ÁßÇüÂ÷',33000,5,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/audi.png');
-insert into car values(seq_car_no.nextval,'suv','ÁßÇüÂ÷',31000,5,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/suv.png');
-insert into car values(seq_car_no.nextval,'¼Ò³ªÅ¸','ÁßÇüÂ÷',24000,5,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/sonata.jpg');
-insert into car values(seq_car_no.nextval,'Ä«´Ï¹ß','´ëÇüÂ÷',36000,9,'°æÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/carnival.png');
-insert into car values(seq_car_no.nextval,'½ºÅ¸·º½º','´ëÇüÂ÷',35000,9,'ÈÖ¹ßÀ¯','Á¦¼º1±æ 62,3Ãş','img/car/starex.png');
+delete LODGING
+--ìˆ™ë°• ë°ì´í„°
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ë¦¬ì  íŠ¸ë§ˆë¦°','ì œì£¼ë„','032-2222-3333',3000,'img/lodging/RegentMarine.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ê·¸ëœë“œí•˜ì–íŠ¸ì œì£¼','ì œì£¼ë„ ì„œê·€í¬','032-1111-2222',9000,'img/lodging/GrandHyattJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'íƒë¼ìŠ¤í…Œì´í˜¸í…”ì œì£¼','ì œì£¼ë„ ì„œê·€í¬','032-2222-3333',10000,'img/lodging/TamnaStayHotelJeju.jpg');
+
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ìœ íƒ‘ìœ ë¸”ë ˆìŠ¤í˜¸í…”','ì œì£¼ë„ ì œì£¼','032-2222-3333',3000,'img/lodging/GrandHyattJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'í˜¸í…”ìœ„ë“œì œì£¼','ì œì£¼ë„ ì œì£¼','032-2222-3333',1000,'img/lodging/HotelwithJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ë‹¤ì¸ì˜¤ì„¸ì•„ë…¸í˜¸í…”','ì œì£¼ë„ì„œê·€í¬','032-3333-3333',90000,'img/lodging/DyneOcenanoHotel.jpg');
+
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ìœ ë‹ˆí˜¸í…”ì œì£¼','ì œì£¼ë„ ì œì£¼','032-2222-7777',7000,'img/lodging/UniHotelJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ì•„ìŠ¤íƒ€í˜¸ë¸','ì œì£¼ë„ ì œì£¼','032-1111-3333',1000,'img/lodging/HotelwithJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ì œì£¼ì¹¼í˜¸í…”','ì œì£¼ë„ ì œì£¼','032-2222-3333',2000,'img/lodging/KalHotelJeju.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ì œì£¼ë§ˆë ˆë³´ë¦¬ì¡°íŠ¸','ì œì£¼ë„ ì• ì›”','032-2222-3333',1000,'img/lodging/JejuMarevoResort.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ìš°ë„ì‚¬ë‘ì±„ë¯¼ë°•','ìš°ë„','032-2222-3333',1000,'img/lodging/UdoLovehousePension.jpg');
+insert into lodging (lodging_no, lodging_name, lodging_loc, lodging_phone, lodging_price, lodging_image) values(seqlodging_no.nextval,'ìŠ¤ì¹´ì´ë¦¬ë”ìŠ¤í˜¸í…”','ì œì£¼ë„ ì œì£¼ ','032-2222-3333',1000,'img/lodging/SkyLeadersHotel.jpg');
+
+--ë ŒíŠ¸ì¹´ ë°ì´í„°
+insert into car values(seq_car_no.nextval,'ë§ˆí‹°ì¦ˆ','ê²½ì°¨',20000,4,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/matiz.png');
+insert into car values(seq_car_no.nextval,'ë ˆì´','ê²½ì°¨',21000,4,'ê²½ìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/ray.png');
+insert into car values(seq_car_no.nextval,'k3','ì¤‘í˜•ì°¨',23000,5,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/k3.png');
+insert into car values(seq_car_no.nextval,'k5','ì¤‘í˜•ì°¨',25000,5,'ê°€ì†”ë¦°','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/k5.png');
+insert into car values(seq_car_no.nextval,'k7','ì¤‘í˜•ì°¨',27000,5,'ì „ê¸°','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/k7.png');
+insert into car values(seq_car_no.nextval,'ê·¸ë Œì ¸','ì¤‘í˜•ì°¨',30000,5,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/grandeur.png');
+insert into car values(seq_car_no.nextval,'ì•„ë°˜ë–¼','ì¤‘í˜•ì°¨',25000,5,'ì „ê¸°','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/avante.png');
+insert into car values(seq_car_no.nextval,'ì•„ìš°ë””','ì¤‘í˜•ì°¨',33000,5,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/audi.png');
+insert into car values(seq_car_no.nextval,'suv','ì¤‘í˜•ì°¨',31000,5,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/suv.png');
+insert into car values(seq_car_no.nextval,'ì†Œë‚˜íƒ€','ì¤‘í˜•ì°¨',24000,5,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/sonata.jpg');
+insert into car values(seq_car_no.nextval,'ì¹´ë‹ˆë°œ','ëŒ€í˜•ì°¨',36000,9,'ê²½ìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/carnival.png');
+insert into car values(seq_car_no.nextval,'ìŠ¤íƒ€ë ‰ìŠ¤','ëŒ€í˜•ì°¨',35000,9,'íœ˜ë°œìœ ','ì œì„±1ê¸¸ 62,3ì¸µ','img/car/starex.png');

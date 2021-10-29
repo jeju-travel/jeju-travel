@@ -72,7 +72,9 @@ input, select{
 	<br>
 	<select name="hint">
 		<option value="food">본인이 가장 좋아하는 음식은?</option>
+		<option value="love">첫사랑 이름은?</option>
 		<option value="color">본인이 가장 좋아하는 색깔은?</option>
+		<option value="animal">본인이 가장 좋아하는 동물은?</option>
 		<option value="school">본인이 졸업한 초등학교는?</option>
 		<option value="city">본인이 태어난 도시는?</option>
 	</select>

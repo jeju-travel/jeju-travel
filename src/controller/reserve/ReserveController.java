@@ -62,17 +62,18 @@ public class ReserveController extends HttpServlet {
 		
 			Lodging_reserve roomRes = dao.selectRoomResByResNo(res.getroomResNo());
 
+			System.out.println(roomRes.toString());
 			CarReserve carRes = dao.selectCarResByResNo(res.getcarResNo());
 	
 			
 			Airline air = dao.selectAirByResNo(res.getairResNo());
 			Lodgingadmin room = dao.selectRoomByResNo(res.getroomResNo());
+			System.out.println(room.toString());
 			Car car = dao.selectCarByResNo(res.getcarResNo());
 			
 			
 			
-			//LodgingDao roomDao = new LodgingDaoImpl();
-			//Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
+			
 			
 			//req.setAttribute("resNo", resNo);
 			req.setAttribute("air", air);

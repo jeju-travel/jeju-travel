@@ -95,7 +95,7 @@
 				var result = eval(result_text);
 
 				if (result) {
-					$(".console").html('<h6 style="color:green;">사용 가능한할수  아이디 입니다.</h6>');
+					$(".console").html('<h6 style="color:green;">사용 가능한  아이디 입니다.</h6>');
 				} else {
 					$(".console").html('<h6 style="color:red">중복된 아이디 입니다.</h6>');
 
@@ -186,9 +186,12 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="email
 		</div>
 		<div>
 			<label>비밀번호 힌트</label> <select name="hint">
-				<option value="school">본인이 졸업한 초등학교는?</option>
-				<option value="city">본인이 태어난 도시는?</option>
-				<option value="food">본인이 가장 좋아하는 음식은?</option>
+			<option value="food">본인이 가장 좋아하는 음식은?</option>
+			<option value="love">첫사랑 이름은?</option>
+			<option value="color">본인이 가장 좋아하는 색깔은?</option>
+			<option value="animal">본인이 가장 좋아하는 동물은?</option>
+			<option value="school">본인이 졸업한 초등학교는?</option>
+			<option value="city">본인이 태어난 도시는?</option>
 			</select>
 		</div>
 		<div>

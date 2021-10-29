@@ -9,12 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
+import dao.reserve.ReserveDao;
+import dao.reserve.ReserveDaoImpl;
+import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 
-@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging"})
+@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging", "/detail_room"})
 public class LodgingControlleruser extends HttpServlet{
 	
 	@Override
@@ -46,6 +50,23 @@ public class LodgingControlleruser extends HttpServlet{
 				System.out.println(lodgingadmin.toString());
 			}
 			req.setAttribute("lodgingList", lodgingList);
+		}else if(action.equals("detail_room")) {
+			HttpSession session = req.getSession();
+			int resNo = (int)session.getAttribute("resNo");
+			
+		
+				
+				
+			int lodgingNo = Integer.parseInt(req.getParameter("roomNo"));
+			System.out.println("roomNo: " + lodgingNo);
+			ReserveDao resDao = new ReserveDaoImpl();
+			
+			LodgingDao roomDao = new LodgingDaoImpl();
+			
+			
+			Lodgingadmin room = roomDao.selectBylodging_no(lodgingNo);
+			
+			req.setAttribute("room", room);
 		}
 		
 		
@@ -56,6 +77,8 @@ public class LodgingControlleruser extends HttpServlet{
 			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
 		}else if(action.equals("main_lodging")) {
 			dispatcherUrl = "/jsp/main/lodging.jsp";
+		}else if(action.equals("detail_room")) {
+			dispatcherUrl = "/jsp/lodging_user/lodging_detail.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);

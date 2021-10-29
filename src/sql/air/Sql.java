@@ -19,7 +19,6 @@ public class Sql {
 			"select * from airline";
 	
 	
-	
 	//AIR_RESERVE
 	public static final String AIR_RESERVE_INSERT = 
 			"insert into air_reserve values(airReserveSeq.nextval, ?, ?, ?, ?)";

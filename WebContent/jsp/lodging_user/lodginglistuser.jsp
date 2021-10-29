@@ -10,6 +10,8 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  	<script src="https://kit.fontawesome.com/d42fd504d6.js"
+	crossorigin="anonymous"></script>
   	<style>
   		*{ 
         	margin: auto;
@@ -31,11 +33,25 @@
       		background-size:cover;
       		background: no-repeat;
     	}
+    	
+    		.box{
+		display:flex;
+		
+		align-items: center;
+	}
+	
+	.backImg{
+		width:300px;
+		height: auto;
+		background-size:cover;
+		background: no-repeat;
+	}
+	
   	</style>
 </head>
 <body>
 <div class="lodginglist">
-        <h5>경로 표시</h5>
+ 
         <!-- 이부분은 어떻게 가져올 것인지 생각 후 value에 가져오는 코드 입력 -->
         <table class="dateselect">
         	<tr>
@@ -68,14 +84,26 @@
         
         <hr>
         <c:if test="${!empty lodgingList}">
-        <table>
+        
+        <table class="table">
         	<c:forEach var="list" items="${lodgingList}">
                <tr>
-                  <td>${list.lodging_name}</td>
-                  <td>${list.lodging_loc}</td>
-                  <td>${list.lodging_phone}</td>
-                  <td>${list.lodging_price}</td>
-                  <td><div class="lodgingimage"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div></td>
+               	  <td>
+               	  	<div class="box">
+               	  		<div class="backImg"><img src="${list.lodging_image}" style="max-width: 100%; height: auto;"></div>	
+               	  	</div>
+               	  </td>
+               	  <td><div><p><font size="5"><b>${list.lodging_name}</b></font></p style="color:#bbb">
+               	  <p><i class="fas fa-map-marker-alt"></i>  ${list.lodging_loc}</p></td>
+               
+               	  <td><p><i class="fas fa-phone-alt"></i>  ${list.lodging_phone}</p><p><i class="fas fa-won-sign"></i> ${list.lodging_price}</p></td>
+                 
+                  <td>
+                  
+                  <p>별점 보여주기</p>	
+                  <input type="button" value="예약하기"  onClick="location.href='detail_room?roomNo=${list.lodging_no}'">
+        
+                  </td>
                </tr>
             </c:forEach>
         </table>
