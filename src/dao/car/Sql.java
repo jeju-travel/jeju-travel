@@ -35,6 +35,12 @@ public class Sql {
 	//·»Æ®Ä« ¿¹¾à
 	public static final String CAR_RESERVE_INSERT_SQL=
 			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?)";
+	
+	public static final String RECENT_CAR_RESERVE =		
+			"select max(car_reserve_no) as num from CAR_RESERVE";
+	
+	public static final String RESERVATION_CAR_UPDATE_RESERVE =		
+			"update RESERVATION set car_reserve_no = ? where reserve_no = ?";
 	//·»Æ®Ä« ¸®ºä
 	public static final String CAR_REVIEW_INSERT_SQL=
 			"insert into car_review values(seq_car_review_no.nextval,?,?,?,?)";	
@@ -44,17 +50,7 @@ public class Sql {
 			"from car car, car_review car_review\r\n" + 
 			"where car.car_no = car_review.car_no\r\n" + 
 			"group by car.car_no";
-			
-	/*public static final String CUSTOMER_CNT_SQL=
-			"select count(*) as cnt from Login where id=?";	
-	public static final String CUSTOMER_LOGIN_SQL=
-			"select * from Login where id = ? and password = ?";
-	public static final String CUSTOMER_SELECT_BY_ID_SQL=
-			"select customerseq,id,name,password,postcode,address,address2,phone,email "
-			+ "from Login where customerseq= ?";	
-	public static final String CUSTOMER_UPDATE_SQL=
-			"update Login set id=? ,name =? ,password =?,postcode=?,address=?,address2=?,phone=?,email=? "
-			+ "where customerseq=?";	
-*/
+	
+	
 	
 }

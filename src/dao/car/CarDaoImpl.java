@@ -469,4 +469,47 @@ public class CarDaoImpl implements CarDao {
 		return cha;
 	}
 	
+	@Override
+	public int getNum(String sql) {		
+		int num = 0;
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultset = null;
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(sql);			
+			
+			resultset = pStatement.executeQuery(); 		
+			
+			while(resultset.next()) {            
+	               num = resultset.getInt("num");
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultset, pStatement, connection);
+		}
+		return num;
+	}
+	
+	@Override
+	public void resNo(int num,int resNo) {
+		Connection connection =null;
+		PreparedStatement pStatement = null;
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.RESERVATION_CAR_UPDATE_RESERVE);				
+			
+			pStatement.setInt(1, num);
+			pStatement.setInt(2, resNo);
+			
+			
+			pStatement.executeUpdate();			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+	}
 }

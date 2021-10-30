@@ -1,6 +1,7 @@
 package controller.car;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
+import dao.car.Sql;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
 import form.car.CarForm;
@@ -190,18 +192,23 @@ public class CarController extends HttpServlet {
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
 			req.setAttribute("cha", cha);
-	    }else if(action.equals("car_reserve")) {	    		
+	    }else if(action.equals("car_reserve")) {	
+	    	HttpSession session = req.getSession();
 			String borrow_car = req.getParameter("borrow_car");	
 			String return_car = req.getParameter("return_car");	
 			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			
-			CarReserve carReserve = new CarReserve(borrow_car,return_car,car_no);			
+			CarReserve carRes = new CarReserve(borrow_car,return_car,car_no);			
+			session.setAttribute("carReserve",carRes);
 			
-			CarDao dao = new CarDaoImpl();
-			dao.CarReserve(carReserve);
+			//CarDao dao = new CarDaoImpl();
+			//dao.CarReserve(carReserve);	
+			
+			//int resNo = (int)session.getAttribute("resNo");			
+			//dao.resNo(num, resNo);
 	    }else if(action.equals("main_car")) {
-	    	
 	    	HttpSession session = req.getSession();
+	    	
 	    	int resNo = (int)session.getAttribute("resNo");
 	   
 	    	int roomNo = Integer.parseInt(req.getParameter("roomNo"));
@@ -245,17 +252,31 @@ public class CarController extends HttpServlet {
 		}else if(action.equals("car_delete")) {
 			dispatcherUrl = "car_search";	
 			
-	    }else if(action.equals("main_car")) {
+	    }else if(action.equals("main_car")) {	    	
 	    	dispatcherUrl = "/jsp/main/car.jsp";
-	    	
+
 	    }else if(action.equals("carlist")) {
-	    	dispatcherUrl = "/jsp/car/carlist.jsp";
+	    	HttpSession session = req.getSession();
+	    	String air = (String) session.getAttribute("airReserve");
+	    	String lodging = (String) session.getAttribute("lodgingReserve");		
+	    	String check = req.getParameter("check");
 	    	
+	    	if (air.isEmpty() || air == null && lodging.isEmpty() || lodging == null && check=="0") {
+	    		resp.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter writer = resp.getWriter(); 
+				writer.println("<script>alert('아무것도 예약하지 않았습니다'); location.href='index.jsp';</script>");
+				writer.close();
+	    	}else if(check=="1") {
+	    		dispatcherUrl = "/jsp/car/carlist.jsp";
+	    	}else {
+	    		dispatcherUrl = "shopping_cart";
+	    	}	    	
+			
 	    }else if(action.equals("car_select")) {
 	    	dispatcherUrl = "jsp/car/carlist.jsp";
 	    	
 	    }else if(action.equals("car_reserve")) {
-	    	dispatcherUrl = "/jsp/reserve/shoppingbasket.jsp"; 
+	    	dispatcherUrl = "shopping_cart"; 
 	    	
 	    }
 		
