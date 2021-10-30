@@ -494,14 +494,14 @@ public class CarDaoImpl implements CarDao {
 	}
 	
 	@Override
-	public void resNo(int num,int resNo) {
+	public void updateCarResNo(int car_no,int resNo) {
 		Connection connection =null;
 		PreparedStatement pStatement = null;
 		try {
 			connection = JDBCUtil.getConnection();
 			pStatement = connection.prepareStatement(Sql.RESERVATION_CAR_UPDATE_RESERVE);				
 			
-			pStatement.setInt(1, num);
+			pStatement.setInt(1, car_no);
 			pStatement.setInt(2, resNo);
 			
 			

@@ -200,6 +200,7 @@ $(document).ready(function() {
 		<c:if test="${pageGroupResult.beforePage}">
 			<li class="page-item">
 				<form action="car_select?reqPage=${pageGroupResult.groupStartNumber-1}" method="post">
+					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
 					<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
 					<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
@@ -217,6 +218,7 @@ $(document).ready(function() {
 				<c:when test="${pageGroupResult.selectPageNumber==index}">
 					<li class="page-item active">
 						<form action="car_select?reqPage=${index}" method="post">
+							<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 							<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
 							<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
 							<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
@@ -231,6 +233,7 @@ $(document).ready(function() {
 				<c:otherwise>
 					<li class="page-item">
 						<form action="car_select?reqPage=${index}" method="post"> 
+							<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 							<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
 							<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
 							<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
@@ -247,6 +250,7 @@ $(document).ready(function() {
 		<c:if test="${pageGroupResult.afterPage}">
 			<li class="page-item">
 				<form action="car_select?reqPage=${pageGroupResult.groupEndNumber+1}" method="post">
+					<input type="text" name="car_no" value="${car.car_no}" hidden="hidden"/> 
 					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
 					<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
 					<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>

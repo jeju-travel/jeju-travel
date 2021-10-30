@@ -208,15 +208,17 @@ public class CarController extends HttpServlet {
 	    	HttpSession session = req.getSession();
 			String borrow_car = req.getParameter("borrow_car");	
 			String return_car = req.getParameter("return_car");	
-			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			int rental_day = (int) session.getAttribute("rental_day");
-			CarReserve carRes = new CarReserve(borrow_car,return_car,car_no,rental_day);			
-			session.setAttribute("carReserve",carRes);			
+			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			
+			CarReserve carRes = new CarReserve(borrow_car,return_car,rental_day,car_no);			
+			session.setAttribute("carReserve",carRes);	
+			System.out.println(carRes.getBorrow_car());
+			System.out.println(carRes.getCar_no());
 			//여기부터 테스트(화면출력할때 session.받아와서 req.set어트리뷰트로 화면에 뿌려준다)
-			CarReserve carReserve=  (CarReserve) session.getAttribute("carReserve");
+			//CarReserve carReserve=  (CarReserve) session.getAttribute("carReserve");
 			
-			req.setAttribute("carReserve", carReserve);  //이걸로 ReserveController에서 화면에 뿌려준다.	
+			//req.setAttribute("carReserve", carReserve);  //이걸로 ReserveController에서 화면에 뿌려준다.	
 			
 			//if(세션 != null) 일때	
 			/*if(session.getAttribute("carReserve")!=null) {
@@ -224,9 +226,10 @@ public class CarController extends HttpServlet {
 				
 				CarReserve car=  (CarReserve) session.getAttribute("carReserve");
 				dao.CarReserve(car);  //CAR_RESERVE에 예약 
-				int num = car.getCar_no();
+				int car_no = car.getCar_no();
 				int resNo = (int)session.getAttribute("resNo"); //예약번호를 알아내서			
-				dao.resNo(num, resNo);	//예약번호에 맞게 렌트카 자동차 시퀀스를 업데이트
+				dao.updateCarResNo(car_no, resNo);	//예약번호에 맞게 렌트카 자동차 시퀀스를 업데이트
+				
 			}*/
 				
 			
