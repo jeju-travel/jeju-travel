@@ -148,12 +148,6 @@ public class AirController extends HttpServlet{
 			
 			session.setAttribute("airRes", airRes);
 			
-
-			//int airResNo = reserveDao.recentAirReserve();
-			//reserveDao.updateReservation(resNo, airResNo);
-			
-			//int airReserve = reserveDao.recentAirReserve();
-			
 			/*session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
 			session.removeAttribute("reserveAirline");
@@ -215,14 +209,16 @@ public class AirController extends HttpServlet{
 				session.setAttribute("reserve", reservation);
 			}
 		}
-		/*
-		 * int resNo = session.getSession("resNo");
-		 * ReserveDao reserveDao = new ReserveDaoImpl();
-		 * Reservation res = reserveDao.selectByResNo(resNo);
-		 * if(res.getAirResNo() == null && res.getCarResNo() == null && res.getRoomResNo() == null){
-		 * 		reserveDao.delete(res.getResNo());
-		 * }
-		 * */
+		
+		/* 예약을 생성할 부분
+		AirReserveDao airResDao = new AirReserveDaoImpl();
+		HttpSession session = req.getSession();
+		AirReserve airRes = (AirReserve) session.getAttribute("airRes");
+		airResDao.insert(airRes);
+		int airResNo = airResDao.recentAirReserve();
+		int resNo = 0;//최근 생성된 예약번호 받아오기;
+		airResDao.updateReservation(resNo, airResNo);
+		*/
 		
 		String dispatcherUrl = null;
 		
