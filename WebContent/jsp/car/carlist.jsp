@@ -173,7 +173,7 @@ $(document).ready(function() {
 						<tr>
 							<td><div class="carimage"><img src="${car.car_image}" style="max-width: 100%; height: auto;"></div></td>
 							<td>${car.car_name}</td>
-							<td>${car.car_price*cha}</td>
+							<td>${car.car_price*rental_day}</td>
 							<td>${car.capacity}</td>
 							<td>${car.car_type}</td>
 							<td>${car.car_fuel}</td>

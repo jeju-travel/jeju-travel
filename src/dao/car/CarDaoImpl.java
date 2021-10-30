@@ -59,7 +59,8 @@ public class CarDaoImpl implements CarDao {
 			
 			pStatement.setString(1, carreserve.getBorrow_car());
 			pStatement.setString(2, carreserve.getReturn_car());
-			pStatement.setInt(3, carreserve.getCar_no());			
+			pStatement.setInt(3, carreserve.getrental_day());			
+			pStatement.setInt(4, carreserve.getCar_no());
 			
 			pStatement.executeUpdate();			
 			
