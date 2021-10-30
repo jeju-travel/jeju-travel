@@ -1,6 +1,7 @@
 package controller.car;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -251,24 +252,26 @@ public class CarController extends HttpServlet {
 		}else if(action.equals("car_delete")) {
 			dispatcherUrl = "car_search";	
 			
-	    }else if(action.equals("main_car")) {
+	    }else if(action.equals("main_car")) {	    	
+	    	dispatcherUrl = "/jsp/main/car.jsp";
+
+	    }else if(action.equals("carlist")) {
 	    	HttpSession session = req.getSession();
 	    	String air = (String) session.getAttribute("airReserve");
 	    	String lodging = (String) session.getAttribute("lodgingReserve");		
 	    	String check = req.getParameter("check");
 	    	
 	    	if (air.isEmpty() || air == null && lodging.isEmpty() || lodging == null && check=="0") {
-	    		dispatcherUrl = "/index.jsp";
+	    		resp.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter writer = resp.getWriter(); 
+				writer.println("<script>alert('아무것도 예약하지 않았습니다'); location.href='index.jsp';</script>");
+				writer.close();
 	    	}else if(check=="1") {
-	    		dispatcherUrl = "/jsp/main/car.jsp";
+	    		dispatcherUrl = "/jsp/car/carlist.jsp";
 	    	}else {
 	    		dispatcherUrl = "shopping_cart";
-	    	}
-	    	
-	    	
-	    }else if(action.equals("carlist")) {
-	    	dispatcherUrl = "/jsp/car/carlist.jsp";
-	    	
+	    	}	    	
+			
 	    }else if(action.equals("car_select")) {
 	    	dispatcherUrl = "jsp/car/carlist.jsp";
 	    	
