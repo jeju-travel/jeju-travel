@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
+import dao.car.Sql;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
 import form.car.CarForm;
@@ -190,18 +191,23 @@ public class CarController extends HttpServlet {
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
 			req.setAttribute("cha", cha);
-	    }else if(action.equals("car_reserve")) {	    		
+	    }else if(action.equals("car_reserve")) {	
+	    	HttpSession session = req.getSession();
 			String borrow_car = req.getParameter("borrow_car");	
 			String return_car = req.getParameter("return_car");	
 			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			
-			CarReserve carReserve = new CarReserve(borrow_car,return_car,car_no);			
+			CarReserve carRes = new CarReserve(borrow_car,return_car,car_no);			
+			session.setAttribute("carReserve",carRes);
 			
-			CarDao dao = new CarDaoImpl();
-			dao.CarReserve(carReserve);
+			//CarDao dao = new CarDaoImpl();
+			//dao.CarReserve(carReserve);	
+			
+			//int resNo = (int)session.getAttribute("resNo");			
+			//dao.resNo(num, resNo);
 	    }else if(action.equals("main_car")) {
-	    	
 	    	HttpSession session = req.getSession();
+	    	
 	    	int resNo = (int)session.getAttribute("resNo");
 	   
 	    	int roomNo = Integer.parseInt(req.getParameter("roomNo"));
@@ -246,7 +252,19 @@ public class CarController extends HttpServlet {
 			dispatcherUrl = "car_search";	
 			
 	    }else if(action.equals("main_car")) {
-	    	dispatcherUrl = "/jsp/main/car.jsp";
+	    	HttpSession session = req.getSession();
+	    	String air = (String) session.getAttribute("airReserve");
+	    	String lodging = (String) session.getAttribute("lodgingReserve");		
+	    	String check = req.getParameter("check");
+	    	
+	    	if (air.isEmpty() || air == null && lodging.isEmpty() || lodging == null && check=="0") {
+	    		dispatcherUrl = "/index.jsp";
+	    	}else if(check=="1") {
+	    		dispatcherUrl = "/jsp/main/car.jsp";
+	    	}else {
+	    		dispatcherUrl = "shopping_cart";
+	    	}
+	    	
 	    	
 	    }else if(action.equals("carlist")) {
 	    	dispatcherUrl = "/jsp/car/carlist.jsp";
@@ -255,7 +273,7 @@ public class CarController extends HttpServlet {
 	    	dispatcherUrl = "jsp/car/carlist.jsp";
 	    	
 	    }else if(action.equals("car_reserve")) {
-	    	dispatcherUrl = "/jsp/reserve/shoppingbasket.jsp"; 
+	    	dispatcherUrl = "shopping_cart"; 
 	    	
 	    }
 		
