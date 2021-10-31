@@ -48,6 +48,14 @@ $(document).ready(function(){
 	});
 });
 </script>
+<style type="text/css">
+body {
+	margin: 15px;
+}
+td {
+	padding: 10px;
+}
+</style>
 </head>
 <body>
 <h3>항공등록</h3>
@@ -95,8 +103,8 @@ $(document).ready(function(){
 	</td>
 </tr>
 </table>
-<input type="submit" value="수정하기">
-<input type="button" id="delete" value="삭제하기">
+<input class="btn btn-primary" type="submit" value="수정하기">
+<input class="btn btn-primary" type="button" id="delete" value="삭제하기">
 </form>
 </body>
 </html>
