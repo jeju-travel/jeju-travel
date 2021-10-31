@@ -79,9 +79,7 @@ label{
 			type="password" name="pw" placeholder="비밀번호" /><br> <input
 			type="submit" value="로그인" class="btn btn_p" id="btn" />
 			<p>${message}</p>
-		<div>
-			<input type="checkbox"><label> 아이디 저장</label>
-		</div>
+		
 	</form>
 	<hr>
 	<div>

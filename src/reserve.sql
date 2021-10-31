@@ -3,11 +3,17 @@ select * from reservation where member_no = 1
 create sequence airReviewSeq
 create sequence Seq
 
+select * from RESERVation
+
 select * from RESERVATION
 select * from LODGING
-select * from LODGING_RESERVE
-
-update RESERVATION set room_reserve_no = 8 where reserve_no = 48
+select * from LODGING_RESER
+update RESERVATION set total_state = '예약확인' where reserve_no = 213
+select * from CAR_RESERVE where car_reserve_no = 75
+select * from car where car_no = 1
+select * from car
+delete RESERVATION where reserve_no = 212
+select * 
 
 select max(room_reserve_no) as num from lodging_reserve
 

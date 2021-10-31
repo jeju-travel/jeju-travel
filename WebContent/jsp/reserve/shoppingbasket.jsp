@@ -66,7 +66,7 @@ table{
 </head>
 
 <body>
-<h3>최종 예약 확인 (${res.startDay} ~ ${res.endDay})</h3>
+<h3>장바구니 (${reserve.startDay} ~ ${reserve.endDay})</h3>
 <hr>
 <form action="reserve">
 
