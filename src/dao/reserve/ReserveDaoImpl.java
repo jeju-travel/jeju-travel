@@ -492,9 +492,21 @@ public class ReserveDaoImpl implements ReserveDao{
 	         pStatement.setString(2, startDay);
 	         pStatement.setString(3, endDay);
 	         pStatement.setInt(4, totalPrice);
-	         pStatement.setInt(5, airNo);
-	         pStatement.setInt(6, roomNo);
-	         pStatement.setInt(7, carNo);
+	         if(airNo != 0) {
+	        	 pStatement.setInt(5, airNo);
+	         }else {
+	        	 pStatement.setString(5, null);
+	         }
+	         if(roomNo != 0) {
+	        	 pStatement.setInt(6, roomNo);
+	         }else {
+	        	 pStatement.setString(6, null);
+	         }
+	         if(carNo != 0) {
+	        	 pStatement.setInt(7, carNo);
+	         }else {
+	        	 pStatement.setString(7, null);
+	         }
 	         
 	         pStatement.executeQuery();
 	         

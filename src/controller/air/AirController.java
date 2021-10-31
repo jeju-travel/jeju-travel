@@ -213,12 +213,16 @@ public class AirController extends HttpServlet{
 		}
 		
 		/* 예약을 생성할 부분
-		AirReserveDao airResDao = new AirReserveDaoImpl();
 		HttpSession session = req.getSession();
+		
+		AirReserveDao airResDao = new AirReserveDaoImpl();
 		AirReserve airRes = (AirReserve) session.getAttribute("airRes");
 		airResDao.insert(airRes);
 		int airResNo = airResDao.recentAirReserve();
-		int resNo = 0;//최근 생성된 예약번호 받아오기;
+		
+		ReserveDao reserveDao = new ReserveDaoImpl();
+		int resNo = reserveDao.recentReservation();
+		
 		airResDao.updateReservation(resNo, airResNo);
 		session.removeAttribute("airRes");
 		*/
@@ -269,8 +273,11 @@ public class AirController extends HttpServlet{
 			if(session.getAttribute("member") != null) {
 				dispatcherUrl = "/jsp/main/air.jsp";
 			}else {				
-				req.setAttribute("message", "로그인을 해주세요");
-	    		dispatcherUrl = "index.jsp";
+				resp.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter writer = resp.getWriter(); 
+				writer.println("<script>alert('로그인을 해주세요'); location.href='index.jsp';</script>");
+				writer.close();
+
 			}
 			
 		}//

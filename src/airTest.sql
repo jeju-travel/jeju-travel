@@ -12,7 +12,7 @@ insert into airline values(airlineSeq.nextval, '에어포항', 50000, '포항', '오전'
 insert into airline values(airlineSeq.nextval, '진에어', 50000, '인천', '오전', 'img/air/jinair.jpg');
 insert into airline values(airlineSeq.nextval, '티웨이항공', 50000, '김포', '오전', 'img/air/tway.png');
 insert into airline values(airlineSeq.nextval, '이스타', 50000, '청주', '오전', 'img/air/estar.png');
-
+select * from car_reserve
 select * from airline;
 select * from air_review;
 select * from air_reserve;

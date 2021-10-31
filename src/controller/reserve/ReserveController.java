@@ -64,19 +64,13 @@ public class ReserveController extends HttpServlet {
 			System.out.println(res.toString());
 			
 			AirReserve airRes = dao.selectAirResByResNo(res.getairResNo());
+			Airline air = dao.selectAirByResNo(res.getairResNo());
 		
 			Lodging_reserve roomRes = dao.selectRoomResByResNo(res.getroomResNo());
-
-			System.out.println(roomRes.toString());
-			CarReserve carRes = dao.selectCarResByResNo(res.getcarResNo());
-	
-			
-			Airline air = dao.selectAirByResNo(res.getairResNo());
 			Lodgingadmin room = dao.selectRoomByResNo(res.getroomResNo());
-			System.out.println(room.toString());
+
+			CarReserve carRes = dao.selectCarResByResNo(res.getcarResNo());
 			Car car = dao.selectCarByResNo(res.getcarResNo());
-			
-			
 			
 			
 			
@@ -102,15 +96,26 @@ public class ReserveController extends HttpServlet {
 			//Reservation res = dao.selectByResNo(resNo);
 			//System.out.println(res.toString());
 
-			AirReserve airRes = (AirReserve) session.getAttribute("airRes");
-			Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
-			CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-
-
-			Airline air = dao.selectAirByNo(airRes.getAirNo());
-			Lodgingadmin room = dao.selectRoomByNo(roomRes.getLodging_no());
-			Car car = dao.selectCarByNo(carRes.getCar_no());						
+			if(session.getAttribute("airRes") != null) {
+				AirReserve airRes = (AirReserve) session.getAttribute("airRes");
+				Airline air = dao.selectAirByNo(airRes.getAirNo());
+				req.setAttribute("air", air);
+				req.setAttribute("airRes", airRes);
+			}
 			
+			if(session.getAttribute("lodgingReserve") != null) {
+				Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
+				Lodgingadmin room = dao.selectRoomByNo(roomRes.getLodging_no());
+				req.setAttribute("room", room);
+				req.setAttribute("roomRes", roomRes);
+			}
+			
+			if(session.getAttribute("carReserve") != null) {
+				CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
+				Car car = dao.selectCarByNo(carRes.getCar_no());		
+				req.setAttribute("car", car);
+				req.setAttribute("carRes", carRes);				
+			}
 			
 			//LodgingDao roomDao = new LodgingDaoImpl();
 			//Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
@@ -118,12 +123,6 @@ public class ReserveController extends HttpServlet {
 			//req.setAttribute("resNo", resNo);
 		
 		
-			req.setAttribute("air", air);
-			req.setAttribute("car", car);
-			req.setAttribute("airRes", airRes);
-			req.setAttribute("carRes", carRes);
-			req.setAttribute("roomRes", roomRes);
-			req.setAttribute("room", room);
 			//req.setAttribute("res", res);
 		} else if(action.equals("reserve")) {
 	         HttpSession session = req.getSession();
