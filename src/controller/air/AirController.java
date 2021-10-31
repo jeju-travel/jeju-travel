@@ -208,7 +208,7 @@ public class AirController extends HttpServlet{
 				reservation.setStartDay(startDay);
 				reservation.setEndDay(endDay);
 				reservation.setPrice(0);
-				session.setAttribute("reserve", reservation);//
+				session.setAttribute("reserve", reservation);
 			}
 		}
 		
