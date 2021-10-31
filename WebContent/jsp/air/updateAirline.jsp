@@ -19,6 +19,33 @@ $(document).ready(function(){
 			$(location).attr('href','deleteFromAirline?airNum='+no);
 		}
 	);
+	
+	$("input[type='submit']").click(function(){
+		
+		var air_Name = $("input[name='airName']").val();
+		var air_Price = $("input[name='price']").val();
+		var air_Loc = $("input[name='airLoc']").val();
+		var air_TakeOff = $("input[name='takeOff']").val();
+		
+		if(!air_Name){
+			alert("항공사명을 입력하세요.");
+			$("input[name='airName']").focus();
+			return false;
+		}else if(!air_Price){
+			alert("가격을 입력하세요.");
+			$("input[name='price']").focus();
+			return false;
+		}else if(!air_Loc){
+			alert("항공사 위치를 입력하세요.");
+			$("input[name='airLoc']").focus();
+			return false;
+		}else if(!air_TakeOff){
+			alert("출발시간을 입력하세요.");
+			$("input[name='takeOff']").focus();
+			return false;
+		}
+		
+	});
 });
 </script>
 </head>
