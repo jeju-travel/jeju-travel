@@ -57,8 +57,8 @@ public class ReserveDaoImpl implements ReserveDao{
 				res.setPrice(resultSet.getInt("total_price"));
 				res.setResNo(resultSet.getInt("reserve_no"));
 				res.setairResNo(resultSet.getInt("air_reserve_no"));
-				res.setcarResNo(resultSet.getInt("room_reserve_no"));
-				res.setroomResNo(resultSet.getInt("car_reserve_no"));
+				res.setroomResNo(resultSet.getInt("room_reserve_no"));
+				res.setcarResNo(resultSet.getInt("car_reserve_no"));
 
 				
 				System.out.println(res.toString());

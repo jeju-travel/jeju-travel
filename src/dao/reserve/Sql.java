@@ -4,7 +4,7 @@ public class Sql {
 
 	public static final String RES_SELECT_BY_MEM_NO = 
 			"select reserve_no, member_no, TO_CHAR(start_day, 'YY.MM.DD') AS start_day,"
-					+ " TO_CHAR(end_day, 'YY.MM.DD') AS end_day, total_price, total_state,  air_reserve_no, room_reserve_no, car_reserve_no from RESERVATION where member_no = ?" + 
+					+ " TO_CHAR(end_day, 'YY.MM.DD') AS end_day, total_price, total_state,  air_reserve_no, room_reserve_no, car_reserve_no from RESERVATION where member_no = ? order by reserve_no desc" + 
 					"";
 
 	public static final String RES_SELECT_ITEM_NO_BY_RES_NO = 

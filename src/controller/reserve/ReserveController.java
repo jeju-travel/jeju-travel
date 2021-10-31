@@ -138,38 +138,52 @@ public class ReserveController extends HttpServlet {
 			
 			//세션 정보 받아오기
 			Reservation res = (Reservation)session.getAttribute("res");
-			
+			//항공,숙박,렌트카
 			AirReserve airRes = (AirReserve) session.getAttribute("airReserve");
 			Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
 			CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-			
+			//회원
 			String id = (String)session.getAttribute("member");
-			
+			//예약일
+			String startDay = (String)session.getAttribute("startDay");
+			String endDay = (String)session.getAttribute("endDay");
 			MemberDao memDao = new MemberDaoImpl();
 			Member member = memDao.selectById(id);
 			
-	
+			int airNo = 0;
+			int roomNo = 0;
+			int carNo = 0;
+			int totalPrice = 0 ;
 			
 			if(airRes != null) {
 				AirReserveDao dao = new AirReserveDaoImpl();
 				dao.insert(airRes.getTakeOff(), airRes.getLanding(), airRes.getPersonnel(), airRes.getAirNo());
+				airNo = airRes.getAirNo();
 				
 			}
 			
 			if(roomRes != null) {
 				ReserveDao dao = new ReserveDaoImpl();
 				dao.insertRoomRes(roomRes);
+				roomNo = roomRes.getLodging_no();
 			}
 			
+			System.out.println("carRes");
+			System.out.println(carRes.toString());
 			if(carRes != null) {
 				CarDao dao = new CarDaoImpl();
 				dao.CarReserve(carRes);
+				carNo = carRes.getCar_no();
 			}
 			
+			System.out.println("-----------------------------------------");
+			//System.out.println(res.toString());
+			System.out.println("-----------------------------------------");
 			
-
+			System.out.println("airNo : " + airNo + " roomNo : " + roomNo + "carNo: " + carNo );
+			
 			ReserveDao dao = new ReserveDaoImpl();
-			dao.insert(member.getNo(), res.getStartDay(), res.getEndDay(), res.getPrice(), airRes.getAirNo(), roomRes.getLodging_no(), carRes.getCar_no());
+			dao.insert(member.getNo(), startDay, endDay, totalPrice, airNo, roomNo, carNo);
 			
 			
 			session.removeAttribute("resNo");
