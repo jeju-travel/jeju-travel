@@ -31,7 +31,7 @@ import model.manager.Reservation;
 
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
-		, "/goAddAirline", "/updateAirline", "/showAirline", "/updateSetAirline"
+		, "/air_input", "/updateAirline", "/air_list", "/updateSetAirline"
 		, "/deleteFromAirline", "/basketAirline", "/reserveAll", "/writeAirReview"
 		, "/saveAirReview", "/reviewSave_air", "/main_air"})
 public class AirController extends HttpServlet{
@@ -85,7 +85,7 @@ public class AirController extends HttpServlet{
 			
 			dao.insert(airline);
 			
-		}else if(action.equals("showAirline")) {
+		}else if(action.equals("air_list")) {
 			
 			AirlineDao dao = new AirlineDaoImpl();
 			List<Airline> airlineList = dao.selectAll();
@@ -208,7 +208,7 @@ public class AirController extends HttpServlet{
 				reservation.setStartDay(startDay);
 				reservation.setEndDay(endDay);
 				reservation.setPrice(0);
-				session.setAttribute("reserve", reservation);//
+				session.setAttribute("reserve", reservation);
 			}
 		}
 		
@@ -231,16 +231,16 @@ public class AirController extends HttpServlet{
 		}else if(action.equals("reserveAirline")) {
 			dispatcherUrl = "/jsp/air/airReserveList.jsp";
 			
-		}else if(action.equals("goAddAirline")) {
+		}else if(action.equals("air_input")) {
 			dispatcherUrl = "/jsp/air/addAirline.jsp";
 			
 		}else if(action.equals("addAirline")) {
-			dispatcherUrl = "/mainTemp.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/adminmain.jsp";
 			
 		}else if(action.equals("updateAirline")) {
 			dispatcherUrl = "/jsp/air/updateAirline.jsp";
 			
-		}else if(action.equals("showAirline")) {
+		}else if(action.equals("air_list")) {
 			dispatcherUrl = "/jsp/air/showAirline.jsp";
 			
 		}else if(action.equals("updateSetAirline")) {
