@@ -1,5 +1,7 @@
 select * from reservation where member_no = 1
 
+insert into car_review values(seq_car_review_no.nextval,?,?,?,?)
+
 create sequence airReviewSeq
 create sequence Seq
 

@@ -201,7 +201,7 @@ public class AirController extends HttpServlet{
 				Member member = memberDao.selectById((String) session.getAttribute("member"));
 				
 				ReserveDao reserveDao = new ReserveDaoImpl();
-				reserveDao.insert(member.getNo(), startDay, endDay, 0);
+				reserveDao.insert(member.getNo(), startDay, endDay, 0,0, 0, 0);
 				int resNo = reserveDao.recentReservation();
 				
 				session.setAttribute("resNo", resNo);

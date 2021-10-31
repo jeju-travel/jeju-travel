@@ -38,7 +38,7 @@ public class Sql {
 	
 	public static final String SELECT_ROOM_RES_BY_RESNO = "select * from lodging_reserve where room_reserve_no = ?";
 	
-	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
+	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', ?, ?, ?)";
 	
 	public static final String RECENT_RESERVATION = "select max(reserve_no) as num from RESERVATION";
 
