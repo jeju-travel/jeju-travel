@@ -87,7 +87,7 @@ public class MemberController extends HttpServlet {
 			MemberDao dao = new MemberDaoImpl();
 
 			dao.insert(member);
-		}else if (action.equals("mypage")) {
+		} else if (action.equals("mypage")) {
 
 	         HttpSession session = req.getSession();
 	         String memId = (String) session.getAttribute("member");
@@ -99,15 +99,16 @@ public class MemberController extends HttpServlet {
 	         ReserveDao dao = new ReserveDaoImpl();
 	         Member member = m_dao.selectById(memId);
 	         reslist = dao.selectByMemNo(member.getNo());
-
+	         
+	      
 	         //
-	         //try {
+	         try {
 	            for (Reservation res : reslist) {
 	               // 예약 날짜 지날시 예약 상태를 예약 확인으로 수정
 	               SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 	               Date currentTime = new Date();
 
-	               /*String date = format.format(currentTime);
+	               String date = format.format(currentTime);
 	               String endDay = res.getEndDay();
 
 	               Date endDate = format.parse(endDay);
@@ -124,7 +125,7 @@ public class MemberController extends HttpServlet {
 	                  ReserveDao resDao = new ReserveDaoImpl();
 	                  resDao.updateResState(res.getResNo());
 	                  res.setState("예약확인");
-	               }*/
+	               }
 	               // 예약 항목 뽑아오기
 	               String items = "";
 	               if (res.getairResNo() != 0) {// 예약번호
@@ -144,8 +145,10 @@ public class MemberController extends HttpServlet {
 
 	               // select car_name from car_reserve ar inner join car a on a.car_no = ar.car_no
 	               if (res.getcarResNo() != 0) {
+	            	  
 	                  ReserveDao cardao = new ReserveDaoImpl();
 	                  String carName = cardao.selectNameCarResNo(res.getcarResNo());
+	                  System.out.println("자동차예약번호1234자동"+res.getcarResNo());
 	                  items += "\t" + carName + "\t";
 	               }
 
@@ -155,14 +158,10 @@ public class MemberController extends HttpServlet {
 
 	            }
 	            req.setAttribute("reslist", reslist);
-	         //} 
-//	         catch (Exception pe) {
-//	            System.out.println("parseException 발생");
-//	         }
-//	         // ------------------------
-	         
-
-	      } else if (action.equals("detail")) {
+	         } catch (Exception pe) {
+	            System.out.println("parseException 발생");
+	         }
+		} else if (action.equals("detail")) {
 
 			HttpSession session = req.getSession();
 			String mem_id = (String) (session.getAttribute("member"));

@@ -100,7 +100,7 @@
 
     <div class="mainadmincar">
         <a href="car_input">렌트카 추가</a>
-        <a href="car_list">렌트카 리스트</a>
+        <a href="car_search">렌트카 리스트</a>
     </div>
     <!-- </center> -->
 	</form>

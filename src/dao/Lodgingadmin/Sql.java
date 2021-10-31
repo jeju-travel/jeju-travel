@@ -3,6 +3,8 @@ package dao.Lodgingadmin;
 public class Sql {
 	public static final String Lodging_INSERT_SQL=
 			"insert into LODGING values(seqlodging_no.nextval,?,?,?,?,?)";
+	public static final String LODGING_RESERVE_INSERT_SQL=
+			"insert into LODGING_RESERVE values(seqlodging_res_no.nextval,?,?,?)";
 	public static final String Lodging_SELECT_All=
 			"select lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image from LODGING order by lodging_no asc" ;
 	public static final String Lodging_UPDATE_All=
@@ -13,4 +15,6 @@ public class Sql {
 			"select lodging_no,lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image from lodging where lodging_no=?";
 	public static final String Lodging_SELECT_BY_LODGING_NAME_ALL=
 			"select * from lodging where lodging_name Like ?";
+	public static final String RECENT_LODGING_RESERVE= 
+			"select max(room_reserve_no) as num from LODGING_RESERVE";
 }

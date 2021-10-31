@@ -24,11 +24,14 @@ public interface ReserveDao {
 	
 	public String selectNameCarResNo(int carResNo);
 	
-	public String selectNameRoomResNo(int roomResNo);
+	public String selectNameRoomResNo(int roomResNo);	
+	
 	
 	public AirReserve selectAirResByResNo(int resNo);
 	public CarReserve selectCarResByResNo(int resNo);
 	public Lodging_reserve selectRoomResByResNo(int resNo);
+	
+	
 	//public Room_reserve selectRoomResByResNo(int resNo);
 	
 	public Airline selectAirByResNo(int resNo);
@@ -36,6 +39,12 @@ public interface ReserveDao {
 	public Car selectCarByResNo(int resNo);
 	
 	public Lodgingadmin selectRoomByResNo(int resNo);
+	
+	public Airline selectAirByNo(int resNo);
+	
+	public Car selectCarByNo(int resNo);
+	
+	public Lodgingadmin selectRoomByNo(int resNo);
 	
 	public void updateResState(int resNo);
 
@@ -46,7 +55,7 @@ public interface ReserveDao {
 	public void deleteCarRes(int carResNo);
 	public void deleteRes(int resNo);
 	
-	public void insert(int memberNo, String startDay, String endDay, int totalPrice);
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice ,int airNo, int roomNo, int carNo);
 	
 	public int recentReservation();
 	
@@ -59,4 +68,6 @@ public interface ReserveDao {
 	
 	//최신상태
 	int selectByNo();
+	
+	int selectByCarNo();
 }

@@ -133,7 +133,7 @@ form{
 		</div>
 	</c:if>
 	<!-- 결과 존재시 -->
-	<c:if test=" ${!empty roomRes}">
+	<c:if test="${!empty roomRes}">
 	<table  class="table table-hover">
 	
 		<thead>

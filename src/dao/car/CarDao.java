@@ -33,4 +33,6 @@ public interface CarDao {
 	int getNum(String sql);		
 	
 	void resNo(int num,int resNo);
+	
+	int recentcarReserve();
 }

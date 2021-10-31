@@ -26,6 +26,10 @@ public class Sql {
 	public static final String SELECT_CAR_BY_RESNO = "select * from car_reserve ar inner join car a on a.car_no = ar.car_no where car_reserve_no = ?";
 	public static final String SELECT_ROOM_BY_RESNO = "select * from lodging_reserve ar inner join lodging a on a.lodging_no = ar.lodging_no where room_reserve_no = ?";
 	
+	public static final String SELECT_AIR_BY_NO = "select * from AIRLINE where air_no=?";
+	public static final String SELECT_CAR_BY_NO = "select * from car where car_no=?";
+	public static final String SELECT_ROOM_BY_NO = "select * from lodging where lodging_no=?";
+	
 	public static final String UPDATE_RES_STATE = "update RESERVATION set total_state = '예약확인' where reserve_no = ?";
 	
 	public static final String RES_SELECT_AIRNAME_BY_RESNO = "select air_name from air_reserve ar inner join airline a on a.air_no = ar.air_no where air_reserve_no = ?";
@@ -38,7 +42,7 @@ public class Sql {
 	
 	public static final String SELECT_ROOM_RES_BY_RESNO = "select * from lodging_reserve where room_reserve_no = ?";
 	
-	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
+	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', ?, ?, ?)";
 	
 	public static final String RECENT_RESERVATION = "select max(reserve_no) as num from RESERVATION";
 
@@ -58,4 +62,8 @@ public class Sql {
 		//
 		public static final String RECENT_LODGING_RESERVE = 
 				"select max(room_reserve_no) as num from lodging_reserve";
+		
+		public static final String RECENT_CAR_RESERVE = 
+	            "select max(car_reserve_no) as num from car_reserve";
+		
 }

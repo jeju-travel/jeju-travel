@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import dao.Lodgingadmin.Sql;
+import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 import util.JDBCUtil;
 
@@ -41,6 +42,29 @@ public class LodgingDaoImpl implements LodgingDao{
 		}
 	}
 	
+	@Override
+	public void Reserveroominsert(Lodging_reserve lodging_reserve) {
+		Connection connection = null;
+		//insert하기 위해 필요한 것
+		PreparedStatement pStatement = null;
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.LODGING_RESERVE_INSERT_SQL);
+			
+			pStatement.setString(1, lodging_reserve.getCheck_in());
+			pStatement.setString(2, lodging_reserve.getCheck_out());
+			pStatement.setInt(3, lodging_reserve.getLodging_no());
+			pStatement.executeUpdate();
+			
+			JDBCUtil.close(null, pStatement, connection);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		//finally는 try에서 문제가 생겨도 finally에서 실행이 되게끔 한다.
+		} finally {
+			JDBCUtil.close(null, pStatement, connection);
+		}
+	}
 	@Override
 	public List<Lodgingadmin> selectAll() {
 	      List<Lodgingadmin> lodgingList = new ArrayList<>();
@@ -199,6 +223,35 @@ public class LodgingDaoImpl implements LodgingDao{
 	      
 	      return lodgingList;
 	   }
-	   
+	@Override
+	   public int recentlodgingReserve() {
+	      int number = 0;
+	      
+	      Connection connection = null;
+	      PreparedStatement pStatement = null;
+	      ResultSet resultSet = null;
+	      
+	      try {
+	         connection = JDBCUtil.getConnection();
+	         
+	         pStatement = connection.prepareStatement(Sql.RECENT_LODGING_RESERVE);
+	         
+	         resultSet = pStatement.executeQuery();
+	         
+	         if(resultSet.next()) { //다음값으로 이동, null이라면 false
+	            
+	            number = resultSet.getInt("num");
+	            
+	         }
+	      
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         
+	      } finally {
+	         JDBCUtil.close(resultSet, pStatement, connection);
+	      }
+	      
+	      return number;
+	   }   
 	
 }

@@ -12,7 +12,7 @@ import util.JDBCUtil;
 public class AirReserveDaoImpl implements AirReserveDao {
 
 	@Override
-	public void insert(AirReserve airRes) {
+	public void insert(String takeOff, String landing, int personnel, int airNo) {
 
 		Connection connection = null;
 		PreparedStatement pStatement = null;
@@ -21,10 +21,10 @@ public class AirReserveDaoImpl implements AirReserveDao {
 			connection = JDBCUtil.getConnection();
 			pStatement = connection.prepareStatement(Sql.AIR_RESERVE_INSERT);
 			
-			pStatement.setString(1, airRes.getTakeOff());
-			pStatement.setString(2, airRes.getLanding());
-			pStatement.setInt(3, airRes.getPersonnel());
-			pStatement.setInt(4, airRes.getAirNo());
+			pStatement.setString(1, takeOff);
+			pStatement.setString(2, landing);
+			pStatement.setInt(3, personnel);
+			pStatement.setInt(4, airNo);
 			
 			pStatement.executeQuery();
 			

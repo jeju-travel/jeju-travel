@@ -2,11 +2,13 @@ package dao.Lodgingadmin;
 
 import java.util.List;
 
+import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 
 public interface LodgingDao {
 	//추가
 	void insert(Lodgingadmin lodgingadmin);
+	void Reserveroominsert(Lodging_reserve lodging_reserve);
 	//리스트
 	List<Lodgingadmin> selectAll();
 	//수정
@@ -19,4 +21,5 @@ public interface LodgingDao {
 	//이름검색
 	List<Lodgingadmin> lodging_name(String lodging_name);
 	
+	int recentlodgingReserve();
 }
