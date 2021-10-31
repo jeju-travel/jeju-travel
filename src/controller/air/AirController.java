@@ -214,7 +214,7 @@ public class AirController extends HttpServlet{
 		
 		/* 예약을 생성할 부분
 		HttpSession session = req.getSession();
-		
+		//
 		AirReserveDao airResDao = new AirReserveDaoImpl();
 		AirReserve airRes = (AirReserve) session.getAttribute("airRes");
 		airResDao.insert(airRes);
