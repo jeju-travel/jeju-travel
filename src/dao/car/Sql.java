@@ -34,7 +34,7 @@ public class Sql {
 	
 	//·»Æ®Ä« ¿¹¾à
 	public static final String CAR_RESERVE_INSERT_SQL=
-			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?)";
+			"insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?,?)";
 	
 	public static final String RECENT_CAR_RESERVE =		
 			"select max(car_reserve_no) as num from CAR_RESERVE";

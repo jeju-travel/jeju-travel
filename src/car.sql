@@ -45,6 +45,7 @@ create sequence seq_car_reserve_no
 drop sequence seq_car_reserve_no
 insert into CAR_RESERVE values(seq_car_reserve_no.nextval,'오전','오후',2);
 select max(car_reserve_no) as num from CAR_RESERVE
+alter table CAR_RESERVE add rental_day number not null;
 ------------------------------------------------------------------------------
 ------------------------------------렌트 후기 리뷰-------------------------------
 create table car_review(
@@ -79,7 +80,11 @@ create table RESERVATION(
 	member_no number references MEMBER(member_no),
 	start_day date not null,
 	end_day date not null,
-	state VARCHAR2(10) not null
+	total_price number,
+	total_state VARCHAR2(30) not null
+	air_reserve_no
+	room_reserve_no
+	car_reserve_no
 );
 drop table RESERVATION
 insert into RESERVATION values(1,1,sysdate,sysdate,'예약');

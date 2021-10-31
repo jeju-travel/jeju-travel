@@ -162,6 +162,7 @@ public class CarController extends HttpServlet {
 	        
 	          	       
 	    }else if(action.equals("car_select")) {	
+	    	int requestPage = Integer.parseInt(req.getParameter("reqPage"));
 	    	String start_day = req.getParameter("start_day");
 	    	String end_day = req.getParameter("end_day");	
 	    	
@@ -171,12 +172,23 @@ public class CarController extends HttpServlet {
 	    	String car_fuel= req.getParameter("car_fuel");
 	    	CarDao dao = new CarDaoImpl();
 	    	
-	    	int cha =dao.cha(end_day,start_day);	    	
+	    	HttpSession session = req.getSession();
+	    	int rental_day =dao.cha(end_day,start_day);
+	    	session.setAttribute("rental_day", rental_day);
 	    	List<Carhoroscope> carhoroscopeList = dao.Carhoroscope();
 	    	
 	    	if(car_type.equals("전체") && car_fuel.equals("전체")) {	    		
-	    		List<Car> carList = dao.CarselectAllprice();
+	    		List<Car> carList = dao.selectAll(requestPage);
+	    		PageDao pageDao = new PageDaoImpl();
+				
+	    		int cnt = pageDao.getCount(PageSql.CAR_COUNT_SQL);
+				
+				PageManager pm =new PageManager(requestPage);
+				PageGroupResult pgr = pm.getPageGroupResult(cnt);
+	    		
 	    		req.setAttribute("carList", carList);
+	    		req.setAttribute("pageGroupResult", pgr);
+	    		req.setAttribute("check", "check");
 	    	}else if(car_type.equals("전체")) {
 	    		List<Car> carList = dao.Carfuel(car_fuel);	    		
 	    		req.setAttribute("carList", carList);
@@ -191,23 +203,39 @@ public class CarController extends HttpServlet {
 			req.setAttribute("carhoroscopeList", carhoroscopeList);	
 			req.setAttribute("borrow_car", borrow_car);
 			req.setAttribute("return_car", return_car);
-			req.setAttribute("cha", cha);
+			req.setAttribute("rental_day", rental_day);			
 	    }else if(action.equals("car_reserve")) {	
 	    	HttpSession session = req.getSession();
 			String borrow_car = req.getParameter("borrow_car");	
 			String return_car = req.getParameter("return_car");	
+			int rental_day = (int) session.getAttribute("rental_day");
 			int car_no = Integer.parseInt(req.getParameter("car_no"));
 			
-			CarReserve carRes = new CarReserve(borrow_car,return_car,car_no);			
-			session.setAttribute("carReserve",carRes);
+			CarReserve carRes = new CarReserve(borrow_car,return_car,rental_day,car_no);			
+			session.setAttribute("carReserve",carRes);	
+			System.out.println(carRes.getBorrow_car());
+			System.out.println(carRes.getCar_no());
+			//여기부터 테스트(화면출력할때 session.받아와서 req.set어트리뷰트로 화면에 뿌려준다)
+			//CarReserve carReserve=  (CarReserve) session.getAttribute("carReserve");
 			
-			//CarDao dao = new CarDaoImpl();
-			//dao.CarReserve(carReserve);	
+			//req.setAttribute("carReserve", carReserve);  //이걸로 ReserveController에서 화면에 뿌려준다.	
 			
-			//int resNo = (int)session.getAttribute("resNo");			
-			//dao.resNo(num, resNo);
+			//if(세션 != null) 일때	
+			/*if(session.getAttribute("carReserve")!=null) {
+				HttpSession session = req.getSession();
+				
+				CarReserve car=  (CarReserve) session.getAttribute("carReserve");
+				dao.CarReserve(car);  //CAR_RESERVE에 예약 
+				int car_no = car.getCar_no();
+				int resNo = (int)session.getAttribute("resNo"); //예약번호를 알아내서			
+				dao.updateCarResNo(car_no, resNo);	//예약번호에 맞게 렌트카 자동차 시퀀스를 업데이트
+				
+			}*/
+				
+			
+			
 	    }else if(action.equals("main_car")) {
-	    	HttpSession session = req.getSession();
+	    	/*HttpSession session = req.getSession();
 	    	
 	    	int resNo = (int)session.getAttribute("resNo");
 	   
@@ -229,7 +257,7 @@ public class CarController extends HttpServlet {
 	    	
 	    	//roomResNo, resNo
 	    	dao.updateRoomResNo(lodgingResNo, resNo);
-	    	
+	    	*/
 	    }
 		
 		String dispatcherUrl = null;
@@ -254,32 +282,27 @@ public class CarController extends HttpServlet {
 			
 	    }else if(action.equals("main_car")) {	    	
 	    	dispatcherUrl = "/jsp/main/car.jsp";
-
+	    	
 	    }else if(action.equals("carlist")) {
-	    	HttpSession session = req.getSession();
-	    	String air = (String) session.getAttribute("airReserve");
-	    	String lodging = (String) session.getAttribute("lodgingReserve");		
+	    	HttpSession session = req.getSession();	    		
 	    	String check = req.getParameter("check");
 	    	
-	    	if (air.isEmpty() || air == null && lodging.isEmpty() || lodging == null && check=="0") {
-	    		resp.setContentType("text/html; charset=UTF-8"); 
-				PrintWriter writer = resp.getWriter(); 
-				writer.println("<script>alert('아무것도 예약하지 않았습니다'); location.href='index.jsp';</script>");
-				writer.close();
-	    	}else if(check=="1") {
+	    	if (session.getAttribute("airReserve") ==null && session.getAttribute("lodgingReserve") ==null && check.equals("0")) {	    		
+	    		req.setAttribute("message", "아무것도 예약하지 않았습니다");
+	    		dispatcherUrl = "index.jsp";
+	    	}else if(check.equals("1")) {
 	    		dispatcherUrl = "/jsp/car/carlist.jsp";
 	    	}else {
 	    		dispatcherUrl = "shopping_cart";
 	    	}	    	
-			
+	    	
 	    }else if(action.equals("car_select")) {
 	    	dispatcherUrl = "jsp/car/carlist.jsp";
 	    	
 	    }else if(action.equals("car_reserve")) {
 	    	dispatcherUrl = "shopping_cart"; 
 	    	
-	    }
-		
+	    }		
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
 		dispatcher.forward(req, resp);
 	}
