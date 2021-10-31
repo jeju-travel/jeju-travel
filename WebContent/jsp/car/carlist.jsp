@@ -11,41 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="default.css">
     <title>렌트카 검색 리스트</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
-<script type="text/javascript">
-
-$(document).ready(function() {	
-	var car_type = "${car_type}";
-	$('#car_type option').each(function(){
-		if(car_type==$(this).val()){
-			$(this).attr('selected', 'selected');
-		}
-	});
-	var car_fuel = "${car_fuel}";
-	$('#car_fuel option').each(function(){
-		if(car_fuel==$(this).val()){
-			$(this).attr('selected', 'selected');
-		}
-	});
-	
-	var borrow_car = "${borrow_car}";
-	$('#borrow_car option').each(function(){
-		if(borrow_car==$(this).val()){
-			$(this).attr('selected', 'selected');
-		}
-	});
-	
-	var return_car = "${return_car}";
-	$('#return_car option').each(function(){
-		if(return_car==$(this).val()){
-			$(this).attr('selected', 'selected');
-		}
-	});
-	
-});
-
-</script>  
-
 </head>
 <style>
     body{
@@ -86,11 +51,9 @@ $(document).ready(function() {
         background-size:cover;
         background: no-repeat;
     }
-    ul{
-		display:flex;
-		align-items: center;
-		justify-content: center;
-	}  
+    /* .car_select{
+    	text-align:center;
+    } */
 </style>
 <body>
     <header class="header_nav">
@@ -104,18 +67,16 @@ $(document).ready(function() {
         <div class="date_main">
             <div class="date_side1">            
          	 <input type="text" name="reqPage" value="1" hidden="hidden">
-         	
-         	 
                 대여일<br/>
                 <input type="date" name="start_day" value="${startDay}" readonly>
-                <select id="borrow_car" name="borrow_car">
+                <select name="borrow_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
                 </select>
                 <br/>
                 
                 차종 <br/>               
-                <select id="car_type" name="car_type">
+                <select name="car_type">
                     <option value="전체">전체</option>
                     <option value="경차">경차</option>
                     <option value="중형차">중형차</option>
@@ -126,13 +87,13 @@ $(document).ready(function() {
             <div class="date_side2">
                 반납일<br/>
                <input type="date" name="end_day" value="${endDay}" readonly>
-                <select id="return_car" name="return_car">
+                <select name="return_car">
                     <option value="오전">오전</option>
                     <option value="오후">오후</option>                    
                 </select>
                 <br/>
                 연료<br/>
-               <select id="car_fuel" name="car_fuel">	
+               <select name="car_fuel">	
                		<option value="전체">전체</option>				
 					<option value="휘발유">휘발유</option>
 					<option value="경유">경유</option>
@@ -191,24 +152,12 @@ $(document).ready(function() {
 			</table>
 		</c:if>
 		<c:if test="${empty carList }">렌트카를 검색하지 못했습니다.</c:if>		
-		 <!-- 링크표시하기 [이전] [다음] -->
-	<c:if test="${!empty check}">
+		<%-- <!-- 링크표시하기 [이전] [다음] -->
 	<div class="paging">
 	<ul class="pagination">
-					
 		<!-- 계속 true로 나오다가 페이지매니저에 false가 걸려서 조건이 달라지면   -->
 		<c:if test="${pageGroupResult.beforePage}">
-			<li class="page-item">
-				<form action="car_select?reqPage=${pageGroupResult.groupStartNumber-1}" method="post">
-					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
-					<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
-					<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
-					<input type="text" name="end_day" value="${endDay}" hidden="hidden"/>
-					<input type="text" name="car_type" value="전체" hidden="hidden"/>
-					<input type="text" name="car_fuel" value="전체" hidden="hidden"/>
-					<input type="submit" class="page-link" value="[이전]">
-				</form>
-			</li>
+			<li class="page-item"><a class="page-link" href="carlist?reqPage=${pageGroupResult.groupStartNumber-1}">[이전]</a></li>
 		</c:if>
 		
 		<c:forEach var="index" begin="${pageGroupResult.groupStartNumber}" end="${pageGroupResult.groupEndNumber}">
@@ -216,50 +165,24 @@ $(document).ready(function() {
 			<c:choose>
 				<c:when test="${pageGroupResult.selectPageNumber==index}">
 					<li class="page-item active">
-						<form action="car_select?reqPage=${index}" method="post">
-							<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
-							<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
-							<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
-							<input type="text" name="end_day" value="${endDay}" hidden="hidden"/>
-							<input type="text" name="car_type" value="전체" hidden="hidden"/>
-							<input type="text" name="car_fuel" value="전체" hidden="hidden"/>
-							<input type="submit" class="page-link" value="${index}">
-						</form>						
+						<a class="page-link" href="carlist?reqPage=${index}">${index}</a>
 					</li>
 				</c:when>
 				
 				<c:otherwise>
 					<li class="page-item">
-						<form action="car_select?reqPage=${index}" method="post"> 
-							<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
-							<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
-							<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
-							<input type="text" name="end_day" value="${endDay}" hidden="hidden"/>
-							<input type="text" name="car_type" value="전체" hidden="hidden"/>
-							<input type="text" name="car_fuel" value="전체" hidden="hidden"/>
-							<input type="submit" class="page-link" value="${index}">
-						</form>						
+						<a class="page-link" href="carlist?reqPage=${index}">${index}</a>
 					</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageGroupResult.afterPage}">
-			<li class="page-item">
-				<form action="car_select?reqPage=${pageGroupResult.groupEndNumber+1}" method="post">
-					<input type="text" name="borrow_car" value="${borrow_car}" hidden="hidden"/> 
-					<input type="text" name="return_car" value="${return_car}" hidden="hidden"/> 
-					<input type="text" name="start_day" value="${startDay}" hidden="hidden"/>
-					<input type="text" name="end_day" value="${endDay}" hidden="hidden"/>
-					<input type="text" name="car_type" value="전체" hidden="hidden"/>
-					<input type="text" name="car_fuel" value="전체" hidden="hidden"/>
-					<input type="submit" class="page-link" value="[다음]">
-				</form>				
-			</li>
+			<li class="page-item"><a class="page-link" href="carlist?reqPage=${pageGroupResult.groupEndNumber+1}">[다음]</a></li>
 		</c:if>
 	</ul>
-	</div> 
-	</c:if>
+	</div> --%>
+			
 	</div>
 	
 </body>
