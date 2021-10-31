@@ -61,14 +61,13 @@ public class LodgingControlleradmin extends HttpServlet{
 			List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
 			req.setAttribute("lodgingList", lodgingList);
 			
-			/*}else if(action.equals("lodging_detail")) {
-			String lodging_name = 
-			LodgingDao lodgingDao = new LodgingDaoImpl();
-			Lodgingadmin lodging = lodgingDao.lodging_name(lodging_name);
-			System.out.println(lodging);
-			req.setAttribute("lodging", lodging);	*/
-		
-		}else if(action.equals("lodging_update")) {
+		}else if(action.equals("lodging_detail")) {
+	        int lodging_no = Integer.parseInt(req.getParameter("lodging_no"));
+	        LodgingDao lodgingDao = new LodgingDaoImpl();
+	        Lodgingadmin lodging = lodgingDao.selectBylodging_no(lodging_no);
+	        System.out.println(lodging);
+	        req.setAttribute("lodging", lodging);
+	    }else if(action.equals("lodging_update")) {
 			System.out.println("update 도착하였습니다.");
 			
 			//getParameter할때 jsp의 name이랑 동일한지 꼭 확인

@@ -38,6 +38,10 @@
       		background-size:cover;
       		background: no-repeat;
     	}
+    	td{
+    		line-height:70px;
+    	}
+    	
   	</style>
 </head>
 <body>

@@ -9,8 +9,6 @@ public class Lodging_review {
 	
 	public Lodging_review() {}
 	
-	
-	
 	public Lodging_review(int lodging_review_no, String lodging_content, double lodging_horoscope, int lodging_no,
 			String writer) {
 		super();

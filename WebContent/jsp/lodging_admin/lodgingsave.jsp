@@ -51,7 +51,7 @@
 </head>
 <body>
 	<form method="post" action="lodging_save">
-		<h1>숙소 추가(관리자)</h1>
+		<h1>숙소 추가<관리자모드></h1>
         <table class="inserttable">
             <tr>
                 <td class="lodgingtext"> 숙소 이름 : </td>
@@ -64,6 +64,10 @@
             <tr>
                 <td class="lodgingtext"> 숙소 전화번호 : </td>
                 <td><input type="text" size="60px" name="lodgingphone" placeholder=" 숙소 전화번호를 입력해 주세요!"></td>
+            </tr>
+            <tr>
+                <td class="lodgingtext"> 숙소 가격 : </td>
+                <td><input type="text" size="60px" name="lodgingprice" placeholder=" 숙소 가격을 입력해 주세요!"></td>
             </tr>
             <tr>
             	<td class="lodgingtext"> 숙소 이미지 : </td>

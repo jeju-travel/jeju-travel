@@ -9,17 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
-import dao.reserve.ReserveDao;
-import dao.reserve.ReserveDaoImpl;
-import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
 
-
-@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging", "/detail_room"})
+@WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user","/detail_room","/lodging_search","/main_lodging"})
 public class LodgingControlleruser extends HttpServlet{
 	
 	@Override
@@ -51,24 +46,16 @@ public class LodgingControlleruser extends HttpServlet{
 				System.out.println(lodgingadmin.toString());
 			}
 			req.setAttribute("lodgingList", lodgingList);
-      
-		}else if(action.equals("detail_room")) {
-			HttpSession session = req.getSession();
-			int resNo = (int)session.getAttribute("resNo");
 			
-		
-				
-				
-			int lodgingNo = Integer.parseInt(req.getParameter("roomNo"));
-			System.out.println("roomNo: " + lodgingNo);
-			ReserveDao resDao = new ReserveDaoImpl();
+		}else if(action.equals("lodging_search")) {
+			System.out.println("검색 도착하였습니다.");
 			
-			LodgingDao roomDao = new LodgingDaoImpl();
+			String lodging_name = req.getParameter("lodging_name");
 			
+			LodgingDao lodgingDaouser = new LodgingDaoImpl();
+			List<Lodgingadmin> lodgingList = lodgingDaouser.lodging_name(lodging_name);
 			
-			Lodgingadmin room = roomDao.selectBylodging_no(lodgingNo);
-			
-			req.setAttribute("room", room);
+			req.setAttribute("lodgingList", lodgingList);
 		}
 		
 		
@@ -81,8 +68,8 @@ public class LodgingControlleruser extends HttpServlet{
 			dispatcherUrl = "/jsp/lodging_user/lodginglistdetail.jsp";
 		}else if(action.equals("main_lodging")) {
 			dispatcherUrl = "/jsp/main/lodging.jsp";
-		}else if(action.equals("detail_room")) {
-			dispatcherUrl = "/jsp/lodging_user/lodging_detail.jsp";
+		}else if(action.equals("lodging_search")) {
+			dispatcherUrl = "/jsp/lodging_user/lodginglistuser.jsp";
 		}
 				
 		RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
