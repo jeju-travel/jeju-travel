@@ -57,8 +57,8 @@ public class ReserveDaoImpl implements ReserveDao{
 				res.setPrice(resultSet.getInt("total_price"));
 				res.setResNo(resultSet.getInt("reserve_no"));
 				res.setairResNo(resultSet.getInt("air_reserve_no"));
-				res.setcarResNo(resultSet.getInt("room_reserve_no"));
-				res.setroomResNo(resultSet.getInt("car_reserve_no"));
+				res.setroomResNo(resultSet.getInt("room_reserve_no"));
+				res.setcarResNo(resultSet.getInt("car_reserve_no"));
 
 				
 				System.out.println(res.toString());
@@ -478,7 +478,7 @@ public class ReserveDaoImpl implements ReserveDao{
 	}
 
 	@Override
-	public void insert(int memberNo, String startDay, String endDay, int totalPrice) {
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice, int airNo, int roomNo, int carNo) {
 		
 		Connection connection = null;
 		PreparedStatement pStatement = null;
@@ -491,6 +491,9 @@ public class ReserveDaoImpl implements ReserveDao{
 			pStatement.setString(2, startDay);
 			pStatement.setString(3, endDay);
 			pStatement.setInt(4, totalPrice);
+			pStatement.setInt(5, airNo);
+			pStatement.setInt(6, roomNo);
+			pStatement.setInt(7, carNo);
 			
 			pStatement.executeQuery();
 			

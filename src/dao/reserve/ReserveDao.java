@@ -46,7 +46,7 @@ public interface ReserveDao {
 	public void deleteCarRes(int carResNo);
 	public void deleteRes(int resNo);
 	
-	public void insert(int memberNo, String startDay, String endDay, int totalPrice);
+	public void insert(int memberNo, String startDay, String endDay, int totalPrice ,int airNo, int roomNo, int carNo);
 	
 	public int recentReservation();
 	
