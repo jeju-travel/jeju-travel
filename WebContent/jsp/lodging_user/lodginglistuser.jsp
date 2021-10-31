@@ -93,13 +93,17 @@ hr {
                         </div>
                      </div>
                   </td>
-                  <td><div>
+                  <td>
+                     <div>
                         <p>
                            <font size="5"><b>${list.lodging_name}</b></font>
                         </p style="color:#bbb">
                         <p>
                            <i class="fas fa-map-marker-alt"></i> ${list.lodging_loc}
-                        </p></td>
+                        </p>
+                    </div>
+                  </td>
+                    
 
                   <td><p>
                         <i class="fas fa-phone-alt"></i> ${list.lodging_phone}

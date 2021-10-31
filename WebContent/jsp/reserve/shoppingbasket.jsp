@@ -108,7 +108,7 @@ table{
 				<td>${airRes.takeOff}</td>
 				<td>${airRes.landing}</td>
 
-				<td>${air.price}</td>
+				<td>${air.price*airRes.personnel}</td>
 
 		</tbody>
 	</table>
@@ -175,6 +175,7 @@ table{
 			<th>차종</th>
 			<th>출발 시간</th>
 			<th>반납 시간</th>
+			<th>총대여일</th>
 			<th>금액</th>
 
 		</thead>
@@ -192,7 +193,8 @@ table{
 				<td>${car.car_name}</td>
 				<td>${carRes.borrow_car}</td>
 				<td>${carRes.return_car}</td>
-				<td>${car.car_price}</td>
+				<td>${carRes.rental_day}</td>
+				<td>${car.car_price*carRes.rental_day}</td>
 
 
 		</tbody>
@@ -200,7 +202,7 @@ table{
 	</c:if>
 
 <div>
-	<p>최종 합계 : ${air.price + car.car_price}
+	<p>최종 합계 : ${(air.price*airRes.personnel)  + room.lodging_price + (car.car_price*carRes.rental_day)}
 </div>
 <input type="submit" value="결제하기" class="btn btn_p">
 <input type="button" value="취소하기" class="btn btn_cancle">

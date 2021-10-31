@@ -269,11 +269,8 @@ public class AirController extends HttpServlet{
 			if(session.getAttribute("member") != null) {
 				dispatcherUrl = "/jsp/main/air.jsp";
 			}else {				
-				resp.setContentType("text/html; charset=UTF-8"); 
-				PrintWriter writer = resp.getWriter(); 
-				writer.println("<script>alert('로그인을 해주세요'); location.href='index.jsp';</script>");
-				writer.close();
-
+				req.setAttribute("message", "로그인을 해주세요");
+	    		dispatcherUrl = "index.jsp";
 			}
 			
 		}//

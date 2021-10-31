@@ -59,7 +59,8 @@ public class CarDaoImpl implements CarDao {
 			
 			pStatement.setString(1, carreserve.getBorrow_car());
 			pStatement.setString(2, carreserve.getReturn_car());
-			pStatement.setInt(3, carreserve.getCar_no());			
+			pStatement.setInt(3, carreserve.getrental_day());			
+			pStatement.setInt(4, carreserve.getCar_no());
 			
 			pStatement.executeUpdate();			
 			
@@ -512,4 +513,35 @@ public class CarDaoImpl implements CarDao {
 			JDBCUtil.close(null, pStatement, connection);
 		}
 	}
+	
+	@Override
+	   public int recentcarReserve() {
+	      int number = 0;
+	      
+	      Connection connection = null;
+	      PreparedStatement pStatement = null;
+	      ResultSet resultSet = null;
+	      
+	      try {
+	         connection = JDBCUtil.getConnection();
+	         
+	         pStatement = connection.prepareStatement(Sql.RECENT_CAR_RESERVE);
+	         
+	         resultSet = pStatement.executeQuery();
+	         
+	         if(resultSet.next()) { //다음값으로 이동, null이라면 false
+	            
+	            number = resultSet.getInt("num");
+	            
+	         }
+	      
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         
+	      } finally {
+	         JDBCUtil.close(resultSet, pStatement, connection);
+	      }
+	      
+	      return number;
+	   }
 }

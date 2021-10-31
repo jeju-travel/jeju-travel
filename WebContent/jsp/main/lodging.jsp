@@ -38,7 +38,8 @@
                     </div>
             </form>
             <form action="main_car" method="post">
-                    <div class="main_memu">
+            		<input type="text" name="check" value="0" hidden="hidden">
+                    <div class="main_memu">                    	
                         <input type="submit" class="btn btn-primary" value="숙소예약x">
                     </div>
             </form>   

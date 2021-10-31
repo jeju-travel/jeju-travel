@@ -57,8 +57,8 @@ public class ReserveDaoImpl implements ReserveDao{
 				res.setPrice(resultSet.getInt("total_price"));
 				res.setResNo(resultSet.getInt("reserve_no"));
 				res.setairResNo(resultSet.getInt("air_reserve_no"));
-				res.setcarResNo(resultSet.getInt("room_reserve_no"));
-				res.setroomResNo(resultSet.getInt("car_reserve_no"));
+				res.setcarResNo(resultSet.getInt("car_reserve_no"));
+				res.setroomResNo(resultSet.getInt("room_reserve_no"));
 
 				
 				System.out.println(res.toString());
@@ -464,6 +464,7 @@ public class ReserveDaoImpl implements ReserveDao{
 				room.setLodging_loc(resultSet.getString("lodging_loc"));
 				room.setLodging_name(resultSet.getString("lodging_name"));
 				room.setLodging_no(resultSet.getInt("lodging_no"));
+				room.setLodging_price(resultSet.getInt("lodging_price"));
 				room.setLodging_phone(resultSet.getString("lodging_phone"));
 			}
 		
@@ -478,32 +479,35 @@ public class ReserveDaoImpl implements ReserveDao{
 	}
 
 	@Override
-	public void insert(int memberNo, String startDay, String endDay, int totalPrice) {
-		
-		Connection connection = null;
-		PreparedStatement pStatement = null;
-		
-		try {
-			connection = JDBCUtil.getConnection();
-			pStatement = connection.prepareStatement(Sql.INSERT_RESERVATION);
-			
-			pStatement.setInt(1, memberNo);
-			pStatement.setString(2, startDay);
-			pStatement.setString(3, endDay);
-			pStatement.setInt(4, totalPrice);
-			
-			pStatement.executeQuery();
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		} finally {
-			
-			JDBCUtil.close(null, pStatement, connection);
-		}
-		
-	}
+	   public void insert(int memberNo, String startDay, String endDay, int totalPrice, int airNo, int roomNo, int carNo) {
+	      
+	      Connection connection = null;
+	      PreparedStatement pStatement = null;
+	      
+	      try {
+	         connection = JDBCUtil.getConnection();
+	         pStatement = connection.prepareStatement(Sql.INSERT_RESERVATION);
+	         
+	         pStatement.setInt(1, memberNo);
+	         pStatement.setString(2, startDay);
+	         pStatement.setString(3, endDay);
+	         pStatement.setInt(4, totalPrice);
+	         pStatement.setInt(5, airNo);
+	         pStatement.setInt(6, roomNo);
+	         pStatement.setInt(7, carNo);
+	         
+	         pStatement.executeQuery();
+	         
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         
+	      } finally {
+	         
+	         JDBCUtil.close(null, pStatement, connection);
+	      }
+	      
+	   }
 
 	@Override
 	public int recentReservation() {
@@ -837,7 +841,158 @@ public class ReserveDaoImpl implements ReserveDao{
 		return lodgingRes.getLodging_reserve_no();
 	}
 	
+	@Override
+	public int selectByCarNo() {
+	      CarReserve car = null;
+	      
+	      Connection connection = null;
+	      PreparedStatement pStatement = null;
+	      ResultSet resultSet = null;
+	      
+	      try {
+	         connection = JDBCUtil.getConnection();
+	         
+	         pStatement = connection.prepareStatement(Sql.RECENT_CAR_RESERVE);
+	      
+	         
+	         resultSet = pStatement.executeQuery();
+	         
+	         if(resultSet.next()) { //다음값으로 이동, null이라면 false.
+	            car = new CarReserve();
+
+	            car.setCar_reserve_no(resultSet.getInt("num"));
+	            
+	   
+	            
+	         }
+	      
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         
+	      } finally {
+	         JDBCUtil.close(resultSet, pStatement, connection);
+	      }
+	      
+	      return car.getCar_reserve_no();
+	   }
 	
+	@Override
+	public Airline selectAirByNo(int resNo) {
+		Airline air =null;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.SELECT_AIR_BY_NO);
+			pStatement.setInt(1, resNo);
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				air = new Airline();
+				
+				air.setAirNo(resultSet.getInt("air_no"));
+				air.setAirName(resultSet.getString("air_name"));
+				air.setAirLoc(resultSet.getString("air_loc"));
+				air.setPrice(resultSet.getInt("price"));
+				air.setTakeOff(resultSet.getString("take_off"));
+				air.setAirImage(resultSet.getString("air_image"));
+	
+				
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return air;
+	}
+
+	@Override
+	public Car selectCarByNo(int resNo) {
+		Car car =null;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.SELECT_CAR_BY_NO);
+			pStatement.setInt(1, resNo);
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				car = new Car();
+				
+				
+				car.setCapacity(resultSet.getInt("capacity"));
+				car.setCar_fuel(resultSet.getString("car_fuel"));
+				car.setCar_image(resultSet.getString("car_image"));
+				car.setCar_loc(resultSet.getString("car_loc"));
+				car.setCar_name(resultSet.getString("car_name"));
+				car.setCar_no(resultSet.getInt("car_no"));
+				car.setCar_price(resultSet.getInt("car_price"));
+				car.setCar_type(resultSet.getString("car_type"));
+				
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return car;
+	}
+
+	@Override
+	public Lodgingadmin selectRoomByNo(int resNo) {
+		
+		Lodgingadmin room =null;
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.SELECT_ROOM_BY_NO);
+			pStatement.setInt(1, resNo);
+			
+			resultSet = pStatement.executeQuery();
+			
+			if(resultSet.next()) { //다음값으로 이동, null이라면 false
+				room = new Lodgingadmin();
+				
+				room.setLodging_image(resultSet.getString("lodging_image"));
+				room.setLodging_loc(resultSet.getString("lodging_loc"));
+				room.setLodging_name(resultSet.getString("lodging_name"));
+				room.setLodging_no(resultSet.getInt("lodging_no"));
+				room.setLodging_price(resultSet.getInt("lodging_price"));
+				room.setLodging_phone(resultSet.getString("lodging_phone"));
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+		}
+		
+		return room;
+	}
 
 	
 }
