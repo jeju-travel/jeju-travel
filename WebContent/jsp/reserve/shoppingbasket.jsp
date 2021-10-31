@@ -200,7 +200,7 @@ table{
 	</c:if>
 
 <div>
-	<p>최종 합계 : ${air.price + car.car_price + room.lodging_price}
+	<p>최종 합계 : ${air.price + car.car_price}
 </div>
 <input type="submit" value="결제하기" class="btn btn_p">
 <input type="button" value="취소하기" class="btn btn_cancle">

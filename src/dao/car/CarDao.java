@@ -32,5 +32,5 @@ public interface CarDao {
 	
 	int getNum(String sql);		
 	
-	void updateCarResNo(int car_no,int resNo);
+	void resNo(int num,int resNo);
 }

@@ -1,28 +1,8 @@
 select * from reservation where member_no = 1
 
-insert into car_review values(seq_car_review_no.nextval,?,?,?,?)
-
-insert into CAR_RESERVE values(seq_car_reserve_no.nextval,?,?,?,?)
-select * from CAR_RESERVE
-
-
-select * from RESERVATION where member_no = 7 order by reserve_no desc
-
-
-select * from RESERVATION order by reserve_no desc
-
-select * from car where car_no = 8
-update RESERVATION set total_state = '예약확인' where reserve_no = 95
-
 create sequence airReviewSeq
 create sequence Seq
 
-alter table car_reserve add rental_day number;
-alter table [테이블명] add rental_day number; 
-
-출처: https://mcpaint.tistory.com/194 [MC빼인트와 함께]
-
-delete RESERVATION
 select * from RESERVATION
 select * from LODGING
 select * from LODGING_RESERVE

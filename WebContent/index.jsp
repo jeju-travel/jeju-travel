@@ -23,14 +23,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>메인화면</title>
 </head>
-
-<c:if test="${!empty message}">
-<script type="text/javascript">
-	var message = "${message}";	
-		alert(message);
-</script>
-</c:if>
-
 <style>
     body{
         margin: auto;

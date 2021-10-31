@@ -13,15 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
-import dao.air.AirReserveDao;
-import dao.air.AirReserveDaoImpl;
-import dao.air.AirReviewDao;
 import dao.air.AirlineDao;
 import dao.air.AirlineDaoImpl;
 import dao.car.CarDao;
 import dao.car.CarDaoImpl;
-import dao.member.MemberDao;
-import dao.member.MemberDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
 import model.Lodging.Lodgingadmin;
@@ -29,7 +24,6 @@ import model.air.AirReserve;
 import model.air.Airline;
 import model.car.Car;
 import model.car.CarReserve;
-import model.manager.Member;
 import model.manager.Reservation;
 
 @WebServlet(name = "ReserveController", urlPatterns = {"/res_detail",  "/shopping_cart", "/reserve", "/reserve_delete"})
@@ -95,97 +89,42 @@ public class ReserveController extends HttpServlet {
 			
 			HttpSession session = req.getSession();
 			
-			
-			//세션 정보 받아오기
-			Reservation res = (Reservation)session.getAttribute("res");
-			
-			AirReserve airRes = (AirReserve) session.getAttribute("airReserve");
-			Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
-			CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-			
-			Airline air =null;
-			Lodgingadmin room = null;
-			Car car = null;
-			
-			if(airRes != null) {
-				AirlineDao dao = new AirlineDaoImpl();
-				air = dao.selectByNo(airRes.getAirNo());
-			}
-			
-			if(roomRes != null) {
-				LodgingDao dao = new LodgingDaoImpl();
-				room = dao.selectBylodging_no(roomRes.getLodging_no());
-			}
-			
-			if(carRes != null) {
-				
-				CarDao dao = new CarDaoImpl();
-				car = dao.selectByCarno(carRes.getCar_no());
-			}
-			
-			
-			req.setAttribute("air", air);
-			req.setAttribute("airRes", airRes);
-			req.setAttribute("room", room);
-			req.setAttribute("roomRes", roomRes);
-			req.setAttribute("car", car);
-			req.setAttribute("carRes", carRes);
-			
-			req.setAttribute("res", res);
+			int resNo = (int)session.getAttribute("resNo");
+
+			System.out.println("예약번호" + resNo);
+
+			ReserveDao dao = new ReserveDaoImpl();
+			Reservation res = dao.selectByResNo(resNo);
+			System.out.println(res.toString());
+
+			AirReserve airRes = dao.selectAirResByResNo(res.getairResNo());
+			Lodging_reserve roomRes = dao.selectRoomResByResNo(res.getroomResNo());
+			CarReserve carRes = dao.selectCarResByResNo(res.getcarResNo());
+
+
+			Airline air = dao.selectAirByResNo(res.getairResNo());
+			Lodgingadmin room = dao.selectRoomByResNo(res.getroomResNo());
+			Car car = dao.selectCarByResNo(res.getcarResNo());
+
+
+
+			//LodgingDao roomDao = new LodgingDaoImpl();
+			//Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
+
+			//req.setAttribute("resNo", resNo);
 		
+		
+			req.setAttribute("air", air);
+			req.setAttribute("car", car);
+			req.setAttribute("airRes", airRes);
+			req.setAttribute("carRes", carRes);
+			req.setAttribute("roomRes", roomRes);
+			req.setAttribute("room", room);
+			req.setAttribute("res", res);
 		} else if(action.equals("reserve")) {
 			HttpSession session = req.getSession();
-			
-			//세션 정보 받아오기
-			Reservation res = (Reservation)session.getAttribute("res");
-			//항공,숙박,렌트카
-			AirReserve airRes = (AirReserve) session.getAttribute("airReserve");
-			Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
-			CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-			//회원
-			String id = (String)session.getAttribute("member");
-			//예약일
-			String startDay = (String)session.getAttribute("startDay");
-			String endDay = (String)session.getAttribute("endDay");
-			MemberDao memDao = new MemberDaoImpl();
-			Member member = memDao.selectById(id);
-			
-			int airNo = 0;
-			int roomNo = 0;
-			int carNo = 0;
-			int totalPrice = 0 ;
-			
-			if(airRes != null) {
-				AirReserveDao dao = new AirReserveDaoImpl();
-				dao.insert(airRes.getTakeOff(), airRes.getLanding(), airRes.getPersonnel(), airRes.getAirNo());
-				airNo = airRes.getAirNo();
-				
-			}
-			
-			if(roomRes != null) {
-				ReserveDao dao = new ReserveDaoImpl();
-				dao.insertRoomRes(roomRes);
-				roomNo = roomRes.getLodging_no();
-			}
-			
-			System.out.println("carRes");
-			System.out.println(carRes.toString());
-			if(carRes != null) {
-				CarDao dao = new CarDaoImpl();
-				dao.CarReserve(carRes);
-				carNo = carRes.getCar_no();
-			}
-			
-			System.out.println("-----------------------------------------");
-			//System.out.println(res.toString());
-			System.out.println("-----------------------------------------");
-			
-			System.out.println("airNo : " + airNo + " roomNo : " + roomNo + "carNo: " + carNo );
-			
-			ReserveDao dao = new ReserveDaoImpl();
-			dao.insert(member.getNo(), startDay, endDay, totalPrice, airNo, roomNo, carNo);
-			
-			
+
+
 			session.removeAttribute("resNo");
 		} else if(action.equals("reserve_delete")) {
 

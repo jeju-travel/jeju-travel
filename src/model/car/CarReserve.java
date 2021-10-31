@@ -4,7 +4,6 @@ public class CarReserve {
 	private int car_reserve_no;
 	private String borrow_car;
 	private String return_car;
-	private int rental_day;
 	private int car_no;
 	
 	
@@ -19,11 +18,11 @@ public class CarReserve {
 		this.car_no = car_no;
 	}
 
-	public CarReserve(String borrow_car, String return_car, int rental_day, int car_no) {
+
+	public CarReserve(String borrow_car, String return_car, int car_no) {
 		super();
 		this.borrow_car = borrow_car;
 		this.return_car = return_car;
-		this.rental_day = rental_day;
 		this.car_no = car_no;
 	}
 
@@ -67,13 +66,14 @@ public class CarReserve {
 		this.car_no = car_no;
 	}
 
-	public int getrental_day() {
-		return rental_day;
-	}
 
-
-	public void setrental_day(int rental_day) {
-		this.rental_day = rental_day;
-	}
-
+	@Override
+	public String toString() {
+		return "CarReserve [car_reserve_no=" + car_reserve_no + ", borrow_car=" + borrow_car + ", return_car="
+				+ return_car + ", car_no=" + car_no + "]";
+	}	
+	
+	
+	
+	
 }

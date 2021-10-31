@@ -4,7 +4,7 @@ public class Sql {
 
 	public static final String RES_SELECT_BY_MEM_NO = 
 			"select reserve_no, member_no, TO_CHAR(start_day, 'YY.MM.DD') AS start_day,"
-					+ " TO_CHAR(end_day, 'YY.MM.DD') AS end_day, total_price, total_state,  air_reserve_no, room_reserve_no, car_reserve_no from RESERVATION where member_no = ? order by reserve_no desc" + 
+					+ " TO_CHAR(end_day, 'YY.MM.DD') AS end_day, total_price, total_state,  air_reserve_no, room_reserve_no, car_reserve_no from RESERVATION where member_no = ?" + 
 					"";
 
 	public static final String RES_SELECT_ITEM_NO_BY_RES_NO = 
@@ -38,7 +38,7 @@ public class Sql {
 	
 	public static final String SELECT_ROOM_RES_BY_RESNO = "select * from lodging_reserve where room_reserve_no = ?";
 	
-	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', ?, ?, ?)";
+	public static final String INSERT_RESERVATION = "insert into RESERVATION values (res_seq.nextval, ?, ?, ?, ?, '예약', null, null, null)";
 	
 	public static final String RECENT_RESERVATION = "select max(reserve_no) as num from RESERVATION";
 

@@ -87,81 +87,82 @@ public class MemberController extends HttpServlet {
 			MemberDao dao = new MemberDaoImpl();
 
 			dao.insert(member);
-		} else if (action.equals("mypage")) {
+		}else if (action.equals("mypage")) {
 
-			HttpSession session = req.getSession();
-			String memId = (String) session.getAttribute("member");
+	         HttpSession session = req.getSession();
+	         String memId = (String) session.getAttribute("member");
 
-			System.out.println("memno:" + memId);
+	         System.out.println("memno:" + memId);
 
-			List<Reservation> reslist = null;
-			MemberDao m_dao = new MemberDaoImpl();
-			ReserveDao dao = new ReserveDaoImpl();
-			Member member = m_dao.selectById(memId);
-			reslist = dao.selectByMemNo(member.getNo());
+	         List<Reservation> reslist = null;
+	         MemberDao m_dao = new MemberDaoImpl();
+	         ReserveDao dao = new ReserveDaoImpl();
+	         Member member = m_dao.selectById(memId);
+	         reslist = dao.selectByMemNo(member.getNo());
 
-			//
-			try {
-				for (Reservation res : reslist) {
-					// 예약 날짜 지날시 예약 상태를 예약 확인으로 수정
-					SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
-					Date currentTime = new Date();
+	         //
+	         //try {
+	            for (Reservation res : reslist) {
+	               // 예약 날짜 지날시 예약 상태를 예약 확인으로 수정
+	               SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
+	               Date currentTime = new Date();
 
-					String date = format.format(currentTime);
-					String endDay = res.getEndDay();
+	               /*String date = format.format(currentTime);
+	               String endDay = res.getEndDay();
 
-					Date endDate = format.parse(endDay);
-					Date todate = format.parse(date);
+	               Date endDate = format.parse(endDay);
+	               Date todate = format.parse(date);
 
-					System.out.println("endDate:" + endDate);
-					System.out.println("todate:" + todate);
-					int compare = endDate.compareTo(todate);
+	               System.out.println("endDate:" + endDate);
+	               System.out.println("todate:" + todate);
+	               int compare = endDate.compareTo(todate);
 
-					System.out.println("compare:" + compare);
+	               System.out.println("compare:" + compare);
 
-					if (compare < 0) {
-						System.out.println("예약 상태 예약 확인으로 수정");
-						ReserveDao resDao = new ReserveDaoImpl();
-						resDao.updateResState(res.getResNo());
-						res.setState("예약확인");
-					}
-					// 예약 항목 뽑아오기
-					String items = "";
-					if (res.getairResNo() != 0) {// 예약번호
-						ReserveDao airdao = new ReserveDaoImpl();
-						String airName = dao.selectNameAirResNo(res.getairResNo());
+	               if (compare < 0) {
+	                  System.out.println("예약 상태 예약 확인으로 수정");
+	                  ReserveDao resDao = new ReserveDaoImpl();
+	                  resDao.updateResState(res.getResNo());
+	                  res.setState("예약확인");
+	               }*/
+	               // 예약 항목 뽑아오기
+	               String items = "";
+	               if (res.getairResNo() != 0) {// 예약번호
+	                  ReserveDao airdao = new ReserveDaoImpl();
+	                  String airName = dao.selectNameAirResNo(res.getairResNo());
 
-						items += airName + "\t";
-					}
+	                  items += airName + "\t";
+	               }
 
-					// select loadging_name from lodging_reserve ar inner join lodging a on
-					// a.lodging_no = ar.lodging_no
-					if (res.getroomResNo() != 0) {
-						ReserveDao roomdao = new ReserveDaoImpl();
-						String room = roomdao.selectNameRoomResNo(res.getroomResNo());
-						items += "\t" + room + "\t";
-					}
+	               // select loadging_name from lodging_reserve ar inner join lodging a on
+	               // a.lodging_no = ar.lodging_no
+	               if (res.getroomResNo() != 0) {
+	                  ReserveDao roomdao = new ReserveDaoImpl();
+	                  String room = roomdao.selectNameRoomResNo(res.getroomResNo());
+	                  items += "\t" + room + "\t";
+	               }
 
-					// select car_name from car_reserve ar inner join car a on a.car_no = ar.car_no
-					if (res.getcarResNo() != 0) {
-						ReserveDao cardao = new ReserveDaoImpl();
-						String carName = cardao.selectNameCarResNo(res.getcarResNo());
-						items += "\t" + carName + "\t";
-					}
+	               // select car_name from car_reserve ar inner join car a on a.car_no = ar.car_no
+	               if (res.getcarResNo() != 0) {
+	                  ReserveDao cardao = new ReserveDaoImpl();
+	                  String carName = cardao.selectNameCarResNo(res.getcarResNo());
+	                  items += "\t" + carName + "\t";
+	               }
 
-					res.setItems(items);
-					System.out.println("예약 번호: " + res.getResNo() + " 예약항목: " + res.getairResNo() + ", "
-							+ res.getroomResNo() + ", " + res.getcarResNo() + " -> " + res.getItems());
+	               res.setItems(items);
+	               System.out.println("예약 번호: " + res.getResNo() + " 예약항목: " + res.getairResNo() + ", "
+	                     + res.getroomResNo() + ", " + res.getcarResNo() + " -> " + res.getItems());
 
-				}
-				req.setAttribute("reslist", reslist);
-			} catch (Exception pe) {
-				System.out.println("parseException 발생");
-			}
-			// ------------------------
-			
+	            }
+	            req.setAttribute("reslist", reslist);
+	         //} 
+//	         catch (Exception pe) {
+//	            System.out.println("parseException 발생");
+//	         }
+//	         // ------------------------
+	         
 
-		} else if (action.equals("detail")) {
+	      } else if (action.equals("detail")) {
 
 			HttpSession session = req.getSession();
 			String mem_id = (String) (session.getAttribute("member"));

@@ -123,7 +123,7 @@ body{
 	</div>
 	<div>
 	<div class="star-rating space-x-4 mx-auto">
-	<input type="radio" id="air5-stars" name="air_star" value="5" checked = "true" v-model="ratings"/>
+	<input type="radio" id="air5-stars" name="air_star" value="5" v-model="ratings"/>
 	<label for="air5-stars" class="star pr-4">★</label>
 	<input type="radio" id="air4-stars" name="air_star" value="4" v-model="ratings"/>
 	<label for="air4-stars" class="star">★</label>
@@ -152,7 +152,7 @@ body{
 	
 	<div>
 		<div class="star-rating space-x-4 mx-auto">
-	<input type="radio" id="room5-stars" name="room_star" checked = "true" value="5" v-model="ratings"/>
+	<input type="radio" id="room5-stars" name="room_star" value="5" v-model="ratings"/>
 	<label for="room5-stars" class="star pr-4">★</label>
 	<input type="radio" id="room4-stars" name="room_star" value="4" v-model="ratings"/>
 	<label for="room4-stars" class="star">★</label>
@@ -179,7 +179,7 @@ body{
 	<div>
 	
 	<div class="star-rating space-x-4 mx-auto">
-	<input type="radio" id="car5-stars" name="car_star" checked = "true" value="5" v-model="ratings"/>
+	<input type="radio" id="car5-stars" name="car_star" value="5" v-model="ratings"/>
 	<label for="car5-stars" class="star pr-4">★</label>
 	<input type="radio" id="car4-stars" name="car_star" value="4" v-model="ratings"/>
 	<label for="car4-stars" class="star">★</label>

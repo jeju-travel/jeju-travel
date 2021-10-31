@@ -27,6 +27,7 @@ import dao.reserve.ReserveDaoImpl;
 import model.air.AirReserve;
 import model.air.Airline;
 import model.manager.Member;
+import model.manager.Reservation;
 
 @WebServlet(name="CustomerController", 
 urlPatterns= {"/reserveAirlineCheck", "/reserveAirline", "/addAirline"
@@ -139,14 +140,16 @@ public class AirController extends HttpServlet{
 			AirlineDao dao = new AirlineDaoImpl();
 			Airline airline = dao.selectByNo(airNo);
 			
-			AirReserveDao reserveDao = new AirReserveDaoImpl();
-			reserveDao.insert(airline.getTakeOff(), airline.getTakeOff(), personnel, airNo);
+			AirReserve airRes = new AirReserve();
+			airRes.setTakeOff(airline.getTakeOff());
+			airRes.setLanding(airline.getTakeOff());
+			airRes.setPersonnel(personnel);
+			airRes.setAirNo(airNo);
 			
-			int airResNo = reserveDao.recentAirReserve();
-			int resNo = (int) session.getAttribute("resNo");
+			session.setAttribute("airRes", airRes);
 			
-			reserveDao.updateReservation(resNo, airResNo);
-			//int airReserve = reserveDao.recentAirReserve();
+			session.removeAttribute("reserveAirline");
+			session.removeAttribute("airPersonnel");
 			
 			/*session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
@@ -200,21 +203,25 @@ public class AirController extends HttpServlet{
 				MemberDao memberDao = new MemberDaoImpl();
 				Member member = memberDao.selectById((String) session.getAttribute("member"));
 				
-				ReserveDao reserveDao = new ReserveDaoImpl();
-				reserveDao.insert(member.getNo(), startDay, endDay, 0,0, 0, 0);
-				int resNo = reserveDao.recentReservation();
-				
-				session.setAttribute("resNo", resNo);
+				Reservation reservation = new Reservation();
+				reservation.setMemNo(member.getNo());
+				reservation.setStartDay(startDay);
+				reservation.setEndDay(endDay);
+				reservation.setPrice(0);
+				session.setAttribute("reserve", reservation);//
 			}
 		}
-		/*
-		 * int resNo = session.getSession("resNo");
-		 * ReserveDao reserveDao = new ReserveDaoImpl();
-		 * Reservation res = reserveDao.selectByResNo(resNo);
-		 * if(res.getAirResNo() == null && res.getCarResNo() == null && res.getRoomResNo() == null){
-		 * 		reserveDao.delete(res.getResNo());
-		 * }
-		 * */
+		
+		/* 예약을 생성할 부분
+		AirReserveDao airResDao = new AirReserveDaoImpl();
+		HttpSession session = req.getSession();
+		AirReserve airRes = (AirReserve) session.getAttribute("airRes");
+		airResDao.insert(airRes);
+		int airResNo = airResDao.recentAirReserve();
+		int resNo = 0;//최근 생성된 예약번호 받아오기;
+		airResDao.updateReservation(resNo, airResNo);
+		session.removeAttribute("airRes");
+		*/
 		
 		String dispatcherUrl = null;
 		
