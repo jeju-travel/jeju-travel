@@ -148,6 +148,9 @@ public class AirController extends HttpServlet{
 			
 			session.setAttribute("airRes", airRes);
 			
+			session.removeAttribute("reserveAirline");
+			session.removeAttribute("airPersonnel");
+			
 			/*session.removeAttribute("sDay");
 			session.removeAttribute("eDay");
 			session.removeAttribute("reserveAirline");
@@ -205,7 +208,6 @@ public class AirController extends HttpServlet{
 				reservation.setStartDay(startDay);
 				reservation.setEndDay(endDay);
 				reservation.setPrice(0);
-				
 				session.setAttribute("reserve", reservation);
 			}
 		}
@@ -218,6 +220,7 @@ public class AirController extends HttpServlet{
 		int airResNo = airResDao.recentAirReserve();
 		int resNo = 0;//최근 생성된 예약번호 받아오기;
 		airResDao.updateReservation(resNo, airResNo);
+		session.removeAttribute("airRes");
 		*/
 		
 		String dispatcherUrl = null;
