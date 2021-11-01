@@ -56,11 +56,11 @@ public class ReserveController extends HttpServlet {
 		if (action.equals("res_detail")) {
 
 			int resNo = Integer.parseInt(req.getParameter("resNo"));
-			System.out.println("예약번호" + resNo);
+			System.out.println("�삁�빟踰덊샇" + resNo);
 
 			ReserveDao dao = new ReserveDaoImpl();
 			Reservation res = dao.selectByResNo(resNo);
-			System.out.println("안녕하세요");
+			System.out.println("�븞�뀞�븯�꽭�슂");
 			System.out.println(res.toString());
 
 			AirReserve airRes = dao.selectAirResByResNo(res.getairResNo());
@@ -88,7 +88,7 @@ public class ReserveController extends HttpServlet {
 
 			// int resNo = (int)session.getAttribute("resNo");
 
-			// System.out.println("예약번호" + resNo);
+			// System.out.println("�삁�빟踰덊샇" + resNo);
 
 			ReserveDao dao = new ReserveDaoImpl();
 			// Reservation res = dao.selectByResNo(resNo);
@@ -126,15 +126,15 @@ public class ReserveController extends HttpServlet {
 		} else if(action.equals("reserve")) {
 	         HttpSession session = req.getSession();
 	         
-	         //세션 정보 받아오기
+	         //�꽭�뀡 �젙蹂� 諛쏆븘�삤湲�
 	         Reservation res = (Reservation)session.getAttribute("reserve");
-	         //항공,숙박,렌트카
+	         //�빆怨�,�닕諛�,�젋�듃移�
 	        
 	         Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
 	         CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-	         //회원
+	         //�쉶�썝
 	         String id = (String)session.getAttribute("member");
-	         //예약일
+	         //�삁�빟�씪
 	         String startDay = (String)session.getAttribute("startDay");
 	         String endDay = (String)session.getAttribute("endDay");
 	         MemberDao memDao = new MemberDaoImpl();
@@ -150,11 +150,11 @@ public class ReserveController extends HttpServlet {
 	             AirReserveDao dao = new AirReserveDaoImpl();
 	             dao.insert(airRes.getTakeOff(), airRes.getLanding(), airRes.getPersonnel(), airRes.getAirNo());
 	             airResNo = dao.recentAirReserve();	  
-	             System.out.println("비행기예약번호1234비"+airResNo);
+	             System.out.println("鍮꾪뻾湲곗삁�빟踰덊샇1234鍮�"+airResNo);
 	         }
 	         
 	         if(roomRes != null) {
-	        	 //숙소 예약 최신 번호
+	        	 //�닕�냼 �삁�빟 理쒖떊 踰덊샇
 	        	 Lodging_reserve room = (Lodging_reserve) session.getAttribute("lodgingReserve");
 	        	 LodgingDao dao = new LodgingDaoImpl();
 	        	 dao.Reserveroominsert(room);
@@ -167,10 +167,10 @@ public class ReserveController extends HttpServlet {
 	         if(carRes != null) {
 	        	CarReserve car=  (CarReserve) session.getAttribute("carReserve");
 	        	CarDao dao = new CarDaoImpl();
-				dao.CarReserve(car);  //CAR_RESERVE에 예약  
+				dao.CarReserve(car);  //CAR_RESERVE�뿉 �삁�빟  
 	            carResNo = dao.recentcarReserve();
 	           
-	            System.out.println("최신 렌트카 에약 번호 : " + carResNo);
+	            System.out.println("理쒖떊 �젋�듃移� �뿉�빟 踰덊샇 : " + carResNo);
 
 	         }
 	         
@@ -228,10 +228,7 @@ public class ReserveController extends HttpServlet {
 		} 
 
 
-			
-		}
-
-		// 주소 이동
+		//화면구성
 		String dispatchUrl = null;
 		if (action.equals("res_detail")) {
 			dispatchUrl = "/jsp/reserve/res_detail.jsp";

@@ -67,12 +67,6 @@ hr {
                   <th><input type="date" name="end_day" value="${endDay}"
                      readonly></th>
                </tr>
-               <tr>
-                  <td>숙소 검색 :</td>
-                  <td><input type="text" name="lodging_name"></td>
-                  <td><input class="btn btn-primary" type="submit"
-                     style="margin-left: 10px;" value="검색"></td>
-               </tr>
             </table>
          </form>
       </table>
@@ -111,12 +105,16 @@ hr {
                      <p>
                         <i class="fas fa-won-sign"></i> ${list.lodging_price}
                      </p></td>
-
+				<td>
+					<input type="button" value="예약하기" onClick="location.href='detail_room?roomNo=${list.lodging_no}'" class="btn btn-primary">
+				</td>
                   <td>
-
-                     <p>별점 보여주기</p> <input type="button" value="예약하기"
-                     onClick="location.href='detail_room?roomNo=${list.lodging_no}'">
-
+					별점 :
+                     <c:forEach var="lodginghoroscope" items="${lodginghoroscopeList}">                        
+                        <c:if test="${lodginghoroscope.lodging_no eq list.lodging_no}">   
+                           <td>${lodginghoroscope.lodging_horoscope}/5.0</td>   
+                        </c:if>                     
+                     </c:forEach>
                   </td>
                </tr>
             </c:forEach>

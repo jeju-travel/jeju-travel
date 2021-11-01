@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Lodgingadmin.LodgingDao;
 import dao.Lodgingadmin.LodgingDaoImpl;
+import form.lodging.LodgingForm;
+import formerror.lodging.LodgingError;
 import model.Lodging.Lodgingadmin;
+import validator.lodging.Lodgingvalidator;
 
 @WebServlet(name="LodgingControlleradmin", urlPatterns= {"/lodging_input","/lodging_save","/lodging_list","/lodging_detail","/lodging_update","/lodging_delete"})
 public class LodgingControlleradmin extends HttpServlet{
@@ -40,19 +43,45 @@ public class LodgingControlleradmin extends HttpServlet{
 		}else if(action.equals("lodging_save")) {
 			System.out.println("save 도착하였습니다.");
 			
+			
+			
 			//getParameter할때 jsp의 name이랑 동일한지 꼭 확인
 			String lodging_name = req.getParameter("lodgingname");
 			String lodging_loc = req.getParameter("lodgingloc");
 			String lodging_phone = req.getParameter("lodgingphone");
-			int lodging_price = Integer.parseInt(req.getParameter("lodging_price")); 
+			String lodging_price = req.getParameter("lodgingprice"); 
 			String lodging_image = req.getParameter("lodgingimage");
 			
-			Lodgingadmin lodging = new Lodgingadmin(lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image);
+			LodgingForm lodgingForm = new LodgingForm(lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image);
 			
-			LodgingDao lodgingDao = new LodgingDaoImpl();
+			Lodgingvalidator lodgingvalidator = new Lodgingvalidator();
+			
+			LodgingError lodgingError = lodgingvalidator.validate(lodgingForm);
+			//Lodgingadmin lodging = new Lodgingadmin(lodging_name,lodging_loc,lodging_phone,lodging_price,lodging_image);
+			
+			if(!lodgingError.isResult()) { //(!오류가 없으면)
+				Lodgingadmin lodging = new Lodgingadmin();
+				lodging.setLodging_name(lodgingForm.getLodging_name());
+				lodging.setLodging_loc(lodgingForm.getLodging_loc());
+				lodging.setLodging_phone(lodgingForm.getLodging_phone());
+				lodging.setLodging_price(Integer.parseInt(lodgingForm.getLodging_price()));
+				lodging.setLodging_image(lodgingForm.getLodging_image());
+				
+				LodgingDao lodgingdao = new LodgingDaoImpl();
+				
+				lodgingdao.insert(lodging);
+				
+				req.setAttribute("message", "잘 저장 되었습니다.");	
+			}else {
+				req.setAttribute("lodgingError",lodgingError);//오류 보내기			
+				req.setAttribute("lodgingForm", lodgingForm);
+			}
+			
+			/*LodgingDao lodgingDao = new LodgingDaoImpl();
 			lodgingDao.insert(lodging);
 			System.out.println("등록되었습니다.");
-			req.setAttribute("message","등록되었습니다.");
+			req.setAttribute("message","등록되었습니다.");*/
+			
 			
 		}else if(action.equals("lodging_list")) {
 			System.out.println("list 도착하였습니다.");
@@ -99,7 +128,7 @@ public class LodgingControlleradmin extends HttpServlet{
 		if(action.equals("lodging_input")) {
 			dispatcherUrl = "/jsp/lodging_admin/lodgingsave.jsp";
 		}else if(action.equals("lodging_save")) {
-			dispatcherUrl = "/jsp/lodging_admin/result.jsp";
+			dispatcherUrl = "/jsp/lodging_admin/lodgingsave.jsp";
 		}else if(action.equals("lodging_list")) {
 			dispatcherUrl = "/jsp/lodging_admin/lodginglist.jsp";
 		}else if(action.equals("lodging_detail")) {

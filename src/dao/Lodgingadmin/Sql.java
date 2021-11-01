@@ -17,4 +17,9 @@ public class Sql {
 			"select * from lodging where lodging_name Like ?";
 	public static final String RECENT_LODGING_RESERVE= 
 			"select max(room_reserve_no) as num from LODGING_RESERVE";
+	public static final String Lodging_REVIEW_HOROSCOPE =
+			"select lodging.lodging_no,avg(lodging_horoscope) as lodging_horoscope\r\n" + 
+			"from lodging lodging, lodging_review lodging_review\r\n" + 
+			"where lodging.lodging_no = lodging_review.lodging_no\r\n" + 
+			"group by lodging.lodging_no";
 }

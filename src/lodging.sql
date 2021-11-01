@@ -80,6 +80,9 @@ insert into room_reserve values(seqroom_reserve_no.nextval,'오전','오후',21,null
 --숙소예약 테이블 조회--
 select * from room_reserve;
 
+select * from lodging_reserve;
+
+
 --숙소후기 테이블 생성--
 create table lodging_review(
 	lodging_review_no number primary key,
@@ -93,6 +96,12 @@ create sequence seqlodging_review_no;
 insert into lodging_review values(seqlodging_review_no.nextval,'숙소후기',5,1);
 --숙소후기 테이블 조회--
 select * from lodging_review;
+select * from lodging;
+
+--별점--
+insert into lodging_review values(seqlodging_review_no.nextval,'s','내용',2,81);
+insert into lodging_review values(seqlodging_review_no.nextval,'z','내용',3,82);
+insert into lodging_review values(seqlodging_review_no.nextval,'q','내용',2,83);
 
 --예약정보 테이블--
 create table reservation(
