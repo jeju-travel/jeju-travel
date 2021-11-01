@@ -121,19 +121,27 @@ public class AirController extends HttpServlet{
 			dao.delete(airNo);
 			
 		}else if(action.equals("basketAirline")) {
-			AirlineDao dao = new AirlineDaoImpl();
-			AirReviewDao airReview = new AirReviewDaoImpl();
-			
-			int airNo = Integer.parseInt(req.getParameter("airNo"));
-			int personnel = Integer.parseInt(req.getParameter("personnel"));
-			List<AirReview> airReviewList = airReview.writedReview(airNo);
-			
-			Airline airline = dao.selectByNo(airNo);
-			
-			HttpSession session = req.getSession();
-			session.setAttribute("reserveAirline", airline);
-			session.setAttribute("airPersonnel", personnel);
-			req.setAttribute("airReviewList", airReviewList);
+			if(req.getParameter("personnel") != "") {
+				AirlineDao dao = new AirlineDaoImpl();
+				AirReviewDao airReview = new AirReviewDaoImpl();
+				
+				int airNo = Integer.parseInt(req.getParameter("airNo"));
+				int personnel = Integer.parseInt(req.getParameter("personnel"));
+				List<AirReview> airReviewList = airReview.writedReview(airNo);
+				
+				Airline airline = dao.selectByNo(airNo);
+				
+				HttpSession session = req.getSession();
+				session.setAttribute("reserveAirline", airline);
+				session.setAttribute("airPersonnel", personnel);
+				req.setAttribute("airReviewList", airReviewList);
+			}else {
+				action = "backAirReserveList";
+				/*resp.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = resp.getWriter();
+				out.println("<script language='javascript'>alert('탑승인원을 입력하세요');</script>");
+				out.flush();*/
+			}
 			
 		}else if(action.equals("reserveAll")) {
 			
@@ -256,6 +264,9 @@ public class AirController extends HttpServlet{
 			
 		}else if(action.equals("deleteFromAirline")) {
 			dispatcherUrl = "showAirline";
+			
+		}else if(action.equals("backAirReserveList")) {
+			dispatcherUrl = "reserveAirline";
 			
 		}else if(action.equals("basketAirline")) {
 			dispatcherUrl = "/jsp/air/basket.jsp";
