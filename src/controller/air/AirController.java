@@ -25,6 +25,7 @@ import dao.member.MemberDaoImpl;
 import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
 import model.air.AirReserve;
+import model.air.AirReview;
 import model.air.Airline;
 import model.manager.Member;
 import model.manager.Reservation;
@@ -121,15 +122,18 @@ public class AirController extends HttpServlet{
 			
 		}else if(action.equals("basketAirline")) {
 			AirlineDao dao = new AirlineDaoImpl();
+			AirReviewDao airReview = new AirReviewDaoImpl();
 			
 			int airNo = Integer.parseInt(req.getParameter("airNo"));
 			int personnel = Integer.parseInt(req.getParameter("personnel"));
+			List<AirReview> airReviewList = airReview.writedReview(airNo);
 			
 			Airline airline = dao.selectByNo(airNo);
 			
 			HttpSession session = req.getSession();
 			session.setAttribute("reserveAirline", airline);
 			session.setAttribute("airPersonnel", personnel);
+			req.setAttribute("airReviewList", airReviewList);
 			
 		}else if(action.equals("reserveAll")) {
 			

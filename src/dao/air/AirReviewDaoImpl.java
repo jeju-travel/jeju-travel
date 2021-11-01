@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.air.AirReview;
 import model.air.Airline;
 import sql.air.Sql;
 import util.JDBCUtil;
@@ -71,6 +72,47 @@ public class AirReviewDaoImpl implements AirReviewDao {
 		}
 		
 		return airList;
+	}
+	
+	
+
+	@Override
+	public List<AirReview> writedReview(int airNo) {
+		List<AirReview> airReviewList = new ArrayList<>();
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			
+			pStatement = connection.prepareStatement(Sql.AIR_REVIEW_SELECT_BY_AIRNO);
+			pStatement.setInt(1, airNo);
+			
+			resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) { //다음값으로 이동, null이라면 false
+				AirReview airRev = new AirReview();
+				
+				airRev.setAirReviewNo(resultSet.getInt("air_review_no"));
+				airRev.setWriter(resultSet.getString("writer"));
+				airRev.setAirContent(resultSet.getString("air_content"));
+				airRev.setAirHoroscope(resultSet.getDouble("air_horoscope"));
+				airRev.setAirNo(resultSet.getInt("air_no"));
+
+				airReviewList.add(airRev);
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCUtil.close(resultSet, pStatement, connection);
+			
+		}
+		
+		return airReviewList;
 	}
 
 	@Override

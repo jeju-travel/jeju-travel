@@ -16,6 +16,7 @@ select * from car_reserve
 select * from airline;
 select * from air_review;
 select * from air_reserve;
+select * from air_review where air_no = 46;
 
 select air_no, avg(air_horoscope) as horoscope from air_review
 where air_no = 2 group by air_no;
