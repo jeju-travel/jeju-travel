@@ -56,11 +56,11 @@ public class ReserveController extends HttpServlet {
 		if (action.equals("res_detail")) {
 
 			int resNo = Integer.parseInt(req.getParameter("resNo"));
-			System.out.println("¿¹¾à¹øÈ£" + resNo);
+			System.out.println("ì˜ˆì•½ë²ˆí˜¸" + resNo);
 
 			ReserveDao dao = new ReserveDaoImpl();
 			Reservation res = dao.selectByResNo(resNo);
-			System.out.println("¾È³çÇÏ¼¼¿ä");
+			System.out.println("ì•ˆë…•í•˜ì„¸ìš”");
 			System.out.println(res.toString());
 
 			AirReserve airRes = dao.selectAirResByResNo(res.getairResNo());
@@ -88,7 +88,7 @@ public class ReserveController extends HttpServlet {
 
 			// int resNo = (int)session.getAttribute("resNo");
 
-			// System.out.println("¿¹¾à¹øÈ£" + resNo);
+			// System.out.println("ì˜ˆì•½ë²ˆí˜¸" + resNo);
 
 			ReserveDao dao = new ReserveDaoImpl();
 			// Reservation res = dao.selectByResNo(resNo);
@@ -115,83 +115,87 @@ public class ReserveController extends HttpServlet {
 				req.setAttribute("carRes", carRes);
 			}
 
-			// LodgingDao roomDao = new LodgingDaoImpl();
-			// Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
+			
+			//LodgingDao roomDao = new LodgingDaoImpl();
+			//Lodgingadmin room = roomDao.selectBylodging_no(res.getroomResNo());
 
-			// req.setAttribute("resNo", resNo);
+			//req.setAttribute("resNo", resNo);
+		
+		
+			//req.setAttribute("res", res);
+		} else if(action.equals("reserve")) {
+	         HttpSession session = req.getSession();
+	         
+	         //ì„¸ì…˜ ì •ë³´ ë°›ì•„ì˜¤ê¸°
+	         Reservation res = (Reservation)session.getAttribute("reserve");
+	         //í•­ê³µ,ìˆ™ë°•,ë ŒíŠ¸ì¹´
+	        
+	         Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
+	         CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
+	         //íšŒì›
+	         String id = (String)session.getAttribute("member");
+	         //ì˜ˆì•½ì¼
+	         String startDay = (String)session.getAttribute("startDay");
+	         String endDay = (String)session.getAttribute("endDay");
+	         MemberDao memDao = new MemberDaoImpl();
+	         Member member = memDao.selectById(id);
+	         
+	         int airResNo = 0;
+	         int roomResNo = 0;
+	         int carResNo = 0;
+	         int totalPrice = 0 ;
+	        
+	         if(session.getAttribute("airRes") != null) {
+	        	 AirReserve airRes = (AirReserve) session.getAttribute("airRes");
+	             AirReserveDao dao = new AirReserveDaoImpl();
+	             dao.insert(airRes.getTakeOff(), airRes.getLanding(), airRes.getPersonnel(), airRes.getAirNo());
+	             airResNo = dao.recentAirReserve();	  
+	             System.out.println("ë¹„í–‰ê¸°ì˜ˆì•½ë²ˆí˜¸1234ë¹„"+airResNo);
+	         }
+	         
+	         if(roomRes != null) {
+	        	 //ìˆ™ì†Œ ì˜ˆì•½ ìµœì‹  ë²ˆí˜¸
+	        	 Lodging_reserve room = (Lodging_reserve) session.getAttribute("lodgingReserve");
+	        	 LodgingDao dao = new LodgingDaoImpl();
+	        	 dao.Reserveroominsert(room);
+	        	 roomResNo = dao.recentlodgingReserve(); 
+	            
+	         }
+	         
+	         //System.out.println("carRes");
+	         //System.out.println(carRes.toString());
+	         if(carRes != null) {
+	        	CarReserve car=  (CarReserve) session.getAttribute("carReserve");
+	        	CarDao dao = new CarDaoImpl();
+				dao.CarReserve(car);  //CAR_RESERVEì— ì˜ˆì•½  
+	            carResNo = dao.recentcarReserve();
+	           
+	            System.out.println("ìµœì‹  ë ŒíŠ¸ì¹´ ì—ì•½ ë²ˆí˜¸ : " + carResNo);
 
-			// req.setAttribute("res", res);
-		} else if (action.equals("reserve")) {
-			HttpSession session = req.getSession();
-
-			// ¼¼¼Ç Á¤º¸ ¹Ş¾Æ¿À±â
-			Reservation res = (Reservation) session.getAttribute("reserve");
-			// Ç×°ø,¼÷¹Ú,·»Æ®Ä«
-
-			Lodging_reserve roomRes = (Lodging_reserve) session.getAttribute("lodgingReserve");
-			CarReserve carRes = (CarReserve) session.getAttribute("carReserve");
-			// È¸¿ø
-			String id = (String) session.getAttribute("member");
-			// ¿¹¾àÀÏ
-			String startDay = (String) session.getAttribute("startDay");
-			String endDay = (String) session.getAttribute("endDay");
-			MemberDao memDao = new MemberDaoImpl();
-			Member member = memDao.selectById(id);
-
-			int airResNo = 0;
-			int roomResNo = 0;
-			int carResNo = 0;
-			int totalPrice = 0;
-
-			if (session.getAttribute("airRes") != null) {
-				AirReserve airRes = (AirReserve) session.getAttribute("airRes");
-				AirReserveDao dao = new AirReserveDaoImpl();
-				dao.insert(airRes.getTakeOff(), airRes.getLanding(), airRes.getPersonnel(), airRes.getAirNo());
-				airResNo = dao.recentAirReserve();
-				System.out.println("ºñÇà±â¿¹¾à¹øÈ£1234ºñ" + airResNo);
-			}
-
-			if (roomRes != null) {
-				// ¼÷¼Ò ¿¹¾à ÃÖ½Å ¹øÈ£
-				Lodging_reserve room = (Lodging_reserve) session.getAttribute("lodgingReserve");
-				LodgingDao dao = new LodgingDaoImpl();
-				dao.Reserveroominsert(room);
-				roomResNo = dao.recentlodgingReserve();
-
-			}
-
-			// System.out.println("carRes");
-			// System.out.println(carRes.toString());
-			if (carRes != null) {
-				CarReserve car = (CarReserve) session.getAttribute("carReserve");
-				CarDao dao = new CarDaoImpl();
-				dao.CarReserve(car); // CAR_RESERVE¿¡ ¿¹¾à
-				carResNo = dao.recentcarReserve();
-
-				System.out.println("ÃÖ½Å ·»Æ®Ä« ¿¡¾à ¹øÈ£ : " + carResNo);
-
-			}
-
-			System.out.println("-----------------------------------------");
-			// System.out.println(res.toString());
-			System.out.println("-----------------------------------------");
-
-			System.out.println("airNo : " + airResNo + " roomNo : " + roomResNo + "carNo: " + carResNo);
-
-			ReserveDao dao = new ReserveDaoImpl();
-			dao.insert(member.getNo(), startDay, endDay, totalPrice, airResNo, roomResNo, carResNo);
-
-			session.removeAttribute("reserve");
-			session.removeAttribute("res");
-			session.removeAttribute("airReserve");
-			session.removeAttribute("lodgingReserve");
-			session.removeAttribute("carReserve");
-			session.removeAttribute("startDay");
-			session.removeAttribute("endDay");
-
-		} else if (action.equals("reserve_delete")) {
-
-			System.out.println("»èÁ¦µÊ");
+	         }
+	         
+	         System.out.println("-----------------------------------------");
+	         //System.out.println(res.toString());
+	         System.out.println("-----------------------------------------");
+	         
+	         System.out.println("airNo : " + airResNo + " roomNo : " + roomResNo + "carNo: " + carResNo );
+	         
+	         ReserveDao dao = new ReserveDaoImpl();
+	         dao.insert(member.getNo(), startDay, endDay, totalPrice, airResNo, roomResNo, carResNo);
+	         
+	         
+	         
+	         session.removeAttribute("reserve");
+	         session.removeAttribute("res");
+	         session.removeAttribute("airReserve");
+	         session.removeAttribute("lodgingReserve");
+	         session.removeAttribute("carReserve");
+	         session.removeAttribute("startDay");
+	         session.removeAttribute("endDay");
+	         session.removeAttribute("airRes");
+	         
+	      } else if(action.equals("reserve_delete")) {
+	    	  
 
 			int resNo = Integer.parseInt(req.getParameter("resNo"));
 
@@ -221,10 +225,13 @@ public class ReserveController extends HttpServlet {
 			session.removeAttribute("startDay");
 			session.removeAttribute("endDay");
 
+		} 
+
+
 			
 		}
 
-		// ÁÖ¼Ò ÀÌµ¿
+		// ì£¼ì†Œ ì´ë™
 		String dispatchUrl = null;
 		if (action.equals("res_detail")) {
 			dispatchUrl = "/jsp/reserve/res_detail.jsp";

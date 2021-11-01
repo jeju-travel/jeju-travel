@@ -42,6 +42,14 @@
 		});
 	});
 </script>
+<style type="text/css">
+body {
+	margin: 15px;
+}
+td {
+	padding: 10px;
+}
+</style>
 
 <title>항공등록</title>
 </head>

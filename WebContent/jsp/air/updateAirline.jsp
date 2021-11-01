@@ -19,8 +19,43 @@ $(document).ready(function(){
 			$(location).attr('href','deleteFromAirline?airNum='+no);
 		}
 	);
+	
+	$("input[type='submit']").click(function(){
+		
+		var air_Name = $("input[name='airName']").val();
+		var air_Price = $("input[name='price']").val();
+		var air_Loc = $("input[name='airLoc']").val();
+		var air_TakeOff = $("input[name='takeOff']").val();
+		
+		if(!air_Name){
+			alert("항공사명을 입력하세요.");
+			$("input[name='airName']").focus();
+			return false;
+		}else if(!air_Price){
+			alert("가격을 입력하세요.");
+			$("input[name='price']").focus();
+			return false;
+		}else if(!air_Loc){
+			alert("항공사 위치를 입력하세요.");
+			$("input[name='airLoc']").focus();
+			return false;
+		}else if(!air_TakeOff){
+			alert("출발시간을 입력하세요.");
+			$("input[name='takeOff']").focus();
+			return false;
+		}
+		
+	});
 });
 </script>
+<style type="text/css">
+body {
+	margin: 15px;
+}
+td {
+	padding: 10px;
+}
+</style>
 </head>
 <body>
 <h3>항공등록</h3>
@@ -68,8 +103,8 @@ $(document).ready(function(){
 	</td>
 </tr>
 </table>
-<input type="submit" value="수정하기">
-<input type="button" id="delete" value="삭제하기">
+<input class="btn btn-primary" type="submit" value="수정하기">
+<input class="btn btn-primary" type="button" id="delete" value="삭제하기">
 </form>
 </body>
 </html>
