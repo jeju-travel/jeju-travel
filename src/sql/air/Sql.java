@@ -55,6 +55,7 @@ public class Sql {
 			"where air_no = ? group by air_no";
 	
 	
+	
 
 	public static final String CHECK_RESERVE_MEMBER = 
 			"select air_reserve_no from RESERVATION " + 
