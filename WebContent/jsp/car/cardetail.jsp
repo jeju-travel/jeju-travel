@@ -120,9 +120,10 @@ $(document).ready(function() {
 		</c:if> 
 		<hr>
 		<center>
-		<a href="car_search?reqPage=1">리스트로이동</a><br/>
+		<a href="car_search?reqPage=1">리스트로이동</a>/<a href="login">관리자모드</a><br/><br/>
 		${carError.car_nameErr} ${carError.car_priceErr} <br/>
-        ${carError.capacityErr} ${carError.car_locErr} ${carError.car_imageErr}<br/> 
+        ${carError.capacityErr} ${carError.car_locErr}<br/> 
+		 ${carError.car_imgErr}
 		</center>
       </main>	     
    

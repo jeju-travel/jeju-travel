@@ -28,6 +28,12 @@
 			
 			});
 		});
+		
+		$('#btn').on('click', function(){
+			
+			$(location).attr('href','index.jsp');
+		
+		});
 	});
 
 </script>
@@ -66,6 +72,7 @@ body{
 	<hr>
 	<form action="detail">
 		<input type="submit" value="회원정보수정" class="btn btn_p">
+			<input type="button" id="btn" value="메인 화면" class="btn btn_p">
 	</form>
 	<hr>
 	<h3>예약현황</h3>
