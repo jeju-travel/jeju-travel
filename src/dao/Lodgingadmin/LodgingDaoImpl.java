@@ -10,6 +10,7 @@ import java.util.List;
 import dao.Lodgingadmin.Sql;
 import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
+import model.Lodging.Lodginghoroscope;
 import util.JDBCUtil;
 
 public class LodgingDaoImpl implements LodgingDao{
@@ -253,5 +254,37 @@ public class LodgingDaoImpl implements LodgingDao{
 	      
 	      return number;
 	   }   
+	
+	@Override
+	public List<Lodginghoroscope> Lodginghoroscope() {
+		
+		List<Lodginghoroscope> lodginghoroscopeList = new ArrayList<>();
+		
+		Connection connection = null;
+		PreparedStatement pStatement = null;
+		ResultSet resultset = null;
+		
+		try {
+			connection = JDBCUtil.getConnection();
+			pStatement = connection.prepareStatement(Sql.Lodging_REVIEW_HOROSCOPE);
+			resultset = pStatement.executeQuery();				
+			
+			while(resultset.next()) {				
+				
+				Lodginghoroscope lodginghoroscope = new Lodginghoroscope();
+				lodginghoroscope.setLodging_no(resultset.getInt("lodging_no"));
+				lodginghoroscope.setLodging_horoscope(resultset.getDouble("lodging_horoscope"));
+				
+				lodginghoroscopeList.add(lodginghoroscope);
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(resultset, pStatement, connection);
+		}
+		
+		return lodginghoroscopeList;
+	}
 	
 }

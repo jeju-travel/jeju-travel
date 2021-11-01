@@ -19,6 +19,8 @@ import dao.reserve.ReserveDao;
 import dao.reserve.ReserveDaoImpl;
 import model.Lodging.Lodging_reserve;
 import model.Lodging.Lodgingadmin;
+import model.Lodging.Lodginghoroscope;
+import model.car.Carhoroscope;
 
 @WebServlet (name="LodgingControlleruser", urlPatterns= {"/lodging_list_user", "/main_lodging", "/detail_room"})
 public class LodgingControlleruser extends HttpServlet{
@@ -44,13 +46,17 @@ public class LodgingControlleruser extends HttpServlet{
       
       //로직
       if(action.equals("lodging_list_user")) {
-         System.out.println("list 도착하였습니다.");
+         System.out.println("list 도착.");
          
          LodgingDao lodgingDao = new LodgingDaoImpl();
          List<Lodgingadmin> lodgingList = lodgingDao.selectAll();
          for (Lodgingadmin lodgingadmin : lodgingList) {
             System.out.println(lodgingadmin.toString());
          }
+         //별점
+         List<Lodginghoroscope> lodginghoroscopeList = lodgingDao.Lodginghoroscope();
+         req.setAttribute("lodginghoroscopeList", lodginghoroscopeList);
+         
          req.setAttribute("lodgingList", lodgingList);
          
       }else if(action.equals("detail_room")) {
@@ -63,14 +69,13 @@ public class LodgingControlleruser extends HttpServlet{
          
          LodgingDao roomDao = new LodgingDaoImpl();
          
-         
          Lodgingadmin room = roomDao.selectBylodging_no(lodgingNo);
          
          req.setAttribute("room", room);
       }
       
       
-      //화면구성
+      //화면
       String dispatcherUrl = null;
       
       if(action.equals("lodging_list_user")) {
