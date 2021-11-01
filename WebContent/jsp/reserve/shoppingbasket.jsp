@@ -16,7 +16,8 @@ $(document).ready(function(){
 	
 	
 	$('.btn_cancle').on('click',function(){
-		$(location).attr('href','reserve_delete');
+		alert('예약이 취소 되었습니다.');
+		$(location).attr('href','cancle');
 	});
 	
 	$('.btn_p').on('click',function(){
