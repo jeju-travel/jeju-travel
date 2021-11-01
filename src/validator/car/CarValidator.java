@@ -88,6 +88,12 @@ public class CarValidator {
 			carError.setResult(true); //에러가 있는지 체크
 		}
 		
+		String car_image = carForm.getCar_image();		
+		//trim은 빈공간 ->스페이스바누른거 (빈공간지우고 널인지 체크)
+		if(car_image==null || car_image.trim().isEmpty()) {
+			carError.setCar_imgErr("[이미지를 입력해주세요]");
+			carError.setResult(true); //에러가 있는지 체크
+		}
 		return carError;
 	}
 	

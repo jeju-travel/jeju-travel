@@ -75,7 +75,7 @@
                     </tr>
                     <tr>
                         <td>이미지(2차)</td>
-                        <td><input type="text" name="car_image"/></td>
+                        <td><input type="text" name="car_image" value="${carForm.car_image}"/></td>
                     </tr>
                     <tr>
                         <td><input type="reset" value="다시입력" class="btn btn-primary"></td>
@@ -99,7 +99,7 @@
 		<center>
 		<a href="car_search?reqPage=1">리스트로이동</a><br/>
 		${carError.car_nameErr} ${carError.car_priceErr} <br/>
-        ${carError.capacityErr} ${carError.car_locErr}<br/> 
+        ${carError.capacityErr} ${carError.car_locErr} ${carError.car_imageErr}<br/> 
 		</center>
     </main>	
 </body>
