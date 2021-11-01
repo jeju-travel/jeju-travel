@@ -56,7 +56,7 @@ public class MemberController extends HttpServlet {
 		if (action.equals("join")) {
 
 		} else if (action.equals("idcheck")) {
-			// È­¸é¿¡¼­ id °ª ¹Ş¾Æ¿À±â
+			// í™”ë©´ì—ì„œ id ê°’ ë°›ì•„ì˜¤ê¸°
 			String id = req.getParameter("id_value");
 
 			MemberDao memberDao = new MemberDaoImpl();
@@ -65,10 +65,10 @@ public class MemberController extends HttpServlet {
 			int cnt = memberDao.selectCntById(id);
 
 			if (cnt == 0) {
-				System.out.println("»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ");
+				System.out.println("ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë””");
 				req.setAttribute("useTF", true);
 			} else if (cnt == 1) {
-				System.out.println("»ç¿ë ºÒ°¡´ÉÇÑ ¾ÆÀÌµğ");
+				System.out.println("ì‚¬ìš© ë¶ˆê°€ëŠ¥í•œ ì•„ì´ë””");
 				req.setAttribute("useTF", false);
 
 			}
@@ -104,7 +104,7 @@ public class MemberController extends HttpServlet {
 	         //
 	         try {
 	            for (Reservation res : reslist) {
-	               // ¿¹¾à ³¯Â¥ Áö³¯½Ã ¿¹¾à »óÅÂ¸¦ ¿¹¾à È®ÀÎÀ¸·Î ¼öÁ¤
+	               // ì˜ˆì•½ ë‚ ì§œ ì§€ë‚ ì‹œ ì˜ˆì•½ ìƒíƒœë¥¼ ì˜ˆì•½ í™•ì¸ìœ¼ë¡œ ìˆ˜ì •
 	               SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 	               Date currentTime = new Date();
 
@@ -121,14 +121,14 @@ public class MemberController extends HttpServlet {
 	               System.out.println("compare:" + compare);
 
 	               if (compare < 0) {
-	                  System.out.println("¿¹¾à »óÅÂ ¿¹¾à È®ÀÎÀ¸·Î ¼öÁ¤");
+	                  System.out.println("ì˜ˆì•½ ìƒíƒœ ì˜ˆì•½ í™•ì¸ìœ¼ë¡œ ìˆ˜ì •");
 	                  ReserveDao resDao = new ReserveDaoImpl();
 	                  resDao.updateResState(res.getResNo());
-	                  res.setState("¿¹¾àÈ®ÀÎ");
+	                  res.setState("ì˜ˆì•½í™•ì¸");
 	               }
-	               // ¿¹¾à Ç×¸ñ »Ì¾Æ¿À±â
+	               // ì˜ˆì•½ í•­ëª© ë½‘ì•„ì˜¤ê¸°
 	               String items = "";
-	               if (res.getairResNo() != 0) {// ¿¹¾à¹øÈ£
+	               if (res.getairResNo() != 0) {// ì˜ˆì•½ë²ˆí˜¸
 	                  ReserveDao airdao = new ReserveDaoImpl();
 	                  String airName = dao.selectNameAirResNo(res.getairResNo());
 
@@ -148,18 +148,18 @@ public class MemberController extends HttpServlet {
 	            	  
 	                  ReserveDao cardao = new ReserveDaoImpl();
 	                  String carName = cardao.selectNameCarResNo(res.getcarResNo());
-	                  System.out.println("ÀÚµ¿Â÷¿¹¾à¹øÈ£1234ÀÚµ¿"+res.getcarResNo());
+	                  System.out.println("ìë™ì°¨ì˜ˆì•½ë²ˆí˜¸1234ìë™"+res.getcarResNo());
 	                  items += "\t" + carName + "\t";
 	               }
 
 	               res.setItems(items);
-	               System.out.println("¿¹¾à ¹øÈ£: " + res.getResNo() + " ¿¹¾àÇ×¸ñ: " + res.getairResNo() + ", "
+	               System.out.println("ì˜ˆì•½ ë²ˆí˜¸: " + res.getResNo() + " ì˜ˆì•½í•­ëª©: " + res.getairResNo() + ", "
 	                     + res.getroomResNo() + ", " + res.getcarResNo() + " -> " + res.getItems());
 
 	            }
 	            req.setAttribute("reslist", reslist);
 	         } catch (Exception pe) {
-	            System.out.println("parseException ¹ß»ı");
+	            System.out.println("parseException ë°œìƒ");
 	         }
 		} else if (action.equals("detail")) {
 
@@ -197,7 +197,7 @@ public class MemberController extends HttpServlet {
 			session.removeAttribute("member");
 		}
 
-		// ÁÖ¼Ò ÀÌµ¿
+		// ì£¼ì†Œ ì´ë™
 		String dispatchUrl = null;
 		if (action.equals("join")) {
 			dispatchUrl = "/jsp/member/join.jsp";
@@ -205,7 +205,7 @@ public class MemberController extends HttpServlet {
 			dispatchUrl = "/ajax/idcheck.jsp";
 
 		} else if (action.equals("save")) {
-			dispatchUrl = "/index.jsp";
+			dispatchUrl = "login_input";
 		} else if (action.equals("mypage")) {
 			dispatchUrl = "/jsp/member/mypage.jsp";
 		} else if (action.equals("detail")) {
