@@ -56,7 +56,7 @@ public class MemberController extends HttpServlet {
 		if (action.equals("join")) {
 
 		} else if (action.equals("idcheck")) {
-			// 화면에서 id 값 받아오기
+			// �솕硫댁뿉�꽌 id 媛� 諛쏆븘�삤湲�
 			String id = req.getParameter("id_value");
 
 			MemberDao memberDao = new MemberDaoImpl();
@@ -65,10 +65,10 @@ public class MemberController extends HttpServlet {
 			int cnt = memberDao.selectCntById(id);
 
 			if (cnt == 0) {
-				System.out.println("사용 가능한 아이디");
+				System.out.println("�궗�슜 媛��뒫�븳 �븘�씠�뵒");
 				req.setAttribute("useTF", true);
 			} else if (cnt == 1) {
-				System.out.println("사용 불가능한 아이디");
+				System.out.println("�궗�슜 遺덇��뒫�븳 �븘�씠�뵒");
 				req.setAttribute("useTF", false);
 
 			}
@@ -104,7 +104,7 @@ public class MemberController extends HttpServlet {
 	         //
 	         try {
 	            for (Reservation res : reslist) {
-	               // 예약 날짜 지날시 예약 상태를 예약 확인으로 수정
+	               // �삁�빟 �궇吏� 吏��궇�떆 �삁�빟 �긽�깭瑜� �삁�빟 �솗�씤�쑝濡� �닔�젙
 	               SimpleDateFormat format = new SimpleDateFormat("yy.MM.dd");
 	               Date currentTime = new Date();
 
@@ -121,14 +121,14 @@ public class MemberController extends HttpServlet {
 	               System.out.println("compare:" + compare);
 
 	               if (compare < 0) {
-	                  System.out.println("예약 상태 예약 확인으로 수정");
+	                  System.out.println("�삁�빟 �긽�깭 �삁�빟 �솗�씤�쑝濡� �닔�젙");
 	                  ReserveDao resDao = new ReserveDaoImpl();
 	                  resDao.updateResState(res.getResNo());
 	                  res.setState("예약확인");
 	               }
-	               // 예약 항목 뽑아오기
+	               // �삁�빟 �빆紐� 戮묒븘�삤湲�
 	               String items = "";
-	               if (res.getairResNo() != 0) {// 예약번호
+	               if (res.getairResNo() != 0) {// �삁�빟踰덊샇
 	                  ReserveDao airdao = new ReserveDaoImpl();
 	                  String airName = dao.selectNameAirResNo(res.getairResNo());
 
@@ -148,18 +148,18 @@ public class MemberController extends HttpServlet {
 	            	  
 	                  ReserveDao cardao = new ReserveDaoImpl();
 	                  String carName = cardao.selectNameCarResNo(res.getcarResNo());
-	                  System.out.println("자동차예약번호1234자동"+res.getcarResNo());
+	                  System.out.println("�옄�룞李⑥삁�빟踰덊샇1234�옄�룞"+res.getcarResNo());
 	                  items += "\t" + carName + "\t";
 	               }
 
 	               res.setItems(items);
-	               System.out.println("예약 번호: " + res.getResNo() + " 예약항목: " + res.getairResNo() + ", "
+	               System.out.println("�삁�빟 踰덊샇: " + res.getResNo() + " �삁�빟�빆紐�: " + res.getairResNo() + ", "
 	                     + res.getroomResNo() + ", " + res.getcarResNo() + " -> " + res.getItems());
 
 	            }
 	            req.setAttribute("reslist", reslist);
 	         } catch (Exception pe) {
-	            System.out.println("parseException 발생");
+	            System.out.println("parseException 諛쒖깮");
 	         }
 		} else if (action.equals("detail")) {
 
@@ -197,7 +197,7 @@ public class MemberController extends HttpServlet {
 			session.removeAttribute("member");
 		}
 
-		// 주소 이동
+		// 二쇱냼 �씠�룞
 		String dispatchUrl = null;
 		if (action.equals("join")) {
 			dispatchUrl = "/jsp/member/join.jsp";

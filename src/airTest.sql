@@ -2,6 +2,7 @@ create sequence airlineSeq;
 create sequence airReserveSeq;
 create sequence airReviewSeq;
 create sequence mem_seq;
+update airline set air_image='img/air/asiana.jpg' where air_no=42;
 
 insert into airline values(airlineSeq.nextval, '대한항공', 50000, '서울', '오전', 'img/air/korea.jpg');
 insert into airline values(airlineSeq.nextval, '아시아나항공', 48000, '인천', '오전', 'img/air/asiana.png');

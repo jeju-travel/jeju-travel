@@ -81,7 +81,7 @@
         </table>
     <div class="lodgingbutton">
     <!-- 이전버튼 링크 -->
-        <a class="btn btn-primary" href="adminmain.jsp">이전</a>
+        <a class="btn btn-primary" href="login">이전</a>
         <input type="submit" class="btn btn-primary" value="숙소 추가">
         <input type="reset" class="btn btn-primary" value="다시 입력">
     </div>

@@ -81,6 +81,7 @@ td {
 </tr>
 </table>
 <input class="btn btn-primary" type="submit" value="항공 등록하기">
+<input class="btn btn-primary" type="button" onclick="location='login'" value="돌아가기">
 </form>
 </body>
 </html>
