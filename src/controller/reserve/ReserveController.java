@@ -74,7 +74,7 @@ public class ReserveController extends HttpServlet {
 			
 			
 			
-			//req.setAttribute("resNo", resNo);
+			req.setAttribute("resNo", resNo);
 			req.setAttribute("air", air);
 			req.setAttribute("car", car);
 			req.setAttribute("airRes", airRes);
@@ -196,9 +196,8 @@ public class ReserveController extends HttpServlet {
 	         session.removeAttribute("airRes");
 	         
 	      } else if(action.equals("reserve_delete")) {
-
-			HttpSession session = req.getSession();
-			int resNo = (int)session.getAttribute("resNo");
+	    	  
+			int resNo = Integer.parseInt(req.getParameter("resNo"));
 
 			ReserveDao dao = new ReserveDaoImpl();
 			Reservation res = dao.selectByResNo(resNo);
@@ -213,8 +212,6 @@ public class ReserveController extends HttpServlet {
 			}
 
 			dao.deleteRes(res.getResNo());
-
-			session.removeAttribute("resNo");
 
 		} 
 
