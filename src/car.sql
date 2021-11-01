@@ -88,9 +88,11 @@ create sequence seq_reserve_no
 drop sequence seq_reserve_no
 insert into RESERVATION values(seq_reserve_no.nextval,1,sysdate,sysdate,'예약');
 select * from RESERVATION
-
+delete from  where reserve_no =143; 
+update RESERVATION set end_day='2021-10-30' where reserve_no =161; 
 update RESERVATION set car_reserve_no = ? where reserve_no = ?;
-
+select * from lodging
+insert into lodging_review values(seqlodging_review_no.nextval,'s','내용',2,21);
 --------------------------------------------------------------
 -------------------예약 db멤버(테스트용) ------------------
 create table MEMBER(

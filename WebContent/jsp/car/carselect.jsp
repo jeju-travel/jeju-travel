@@ -24,19 +24,18 @@
 		align-items: center;
 		justify-content: center;
 	}
-	
-
-
+	.lo{
+		text-align: right;	
+	}
 
 </style>
 <body>
-	<main>
+	<main>	
 	<div class="container mt-3">
 		<h3>CarList</h3>
-		<c:if test="${!empty carList}">
-			
-
-			<table class="table table-hover">
+		<div class="lo"></div><a href="login">관리자모드</a></div>
+		<c:if test="${!empty carList}">			
+			<table class="table table-hover">				
 				<tr>
 					<th>차량번호</th>
 					<th>차량이름</th>
@@ -59,10 +58,11 @@
 						<td><a href="car_detail?car_no=${car.car_no}">상세보기</a>
 					</tr>
 				</c:forEach>
-			</table>
+			</table>			
 		</c:if>
 		<c:if test="${empty carList }">CarList를 검색하지 못했습니다.</c:if>
 		<!-- 링크표시하기 [이전] [다음] -->
+	<c:if test="${!empty carList}">		
 	<div class="paging">
 	<ul class="pagination">
 		<!-- 계속 true로 나오다가 페이지매니저에 false가 걸려서 조건이 달라지면   -->
@@ -92,6 +92,7 @@
 		</c:if>
 	</ul>
 	</div>
+	</c:if>
 	</div>
 	</main>
 </body>

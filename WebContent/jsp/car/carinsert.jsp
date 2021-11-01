@@ -74,7 +74,7 @@
                         <td><input type="text" name="car_loc" value="${carForm.car_loc}" /></td>
                     </tr>
                     <tr>
-                        <td>이미지(2차)</td>
+                        <td>이미지</td>
                         <td><input type="text" name="car_image" value="${carForm.car_image}"/></td>
                     </tr>
                     <tr>
@@ -97,9 +97,11 @@
 		</c:if> 
 		<hr>
 		<center>
-		<a href="car_search?reqPage=1">리스트로이동</a><br/>
+		<a href="car_search?reqPage=1">리스트로이동</a>/<a href="login">관리자모드</a><br/>
+		
 		${carError.car_nameErr} ${carError.car_priceErr} <br/>
-        ${carError.capacityErr} ${carError.car_locErr} ${carError.car_imageErr}<br/> 
+        ${carError.capacityErr} ${carError.car_locErr}<br/> 
+		${carError.car_imgErr}
 		</center>
     </main>	
 </body>
