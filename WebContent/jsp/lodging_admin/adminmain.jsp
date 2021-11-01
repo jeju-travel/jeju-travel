@@ -78,11 +78,10 @@
             background-color: rgb(36, 34, 182);
             color:white;
             text-decoration: none;
-        }
+        }        
     </style>
 </head>
-<body>
-    <form method="post" action="adminmain">
+<body>    
 		<h1>관리자 모드 <메인></h1>
         
         <!-- a링크 이용하여 이전,삭제 변경 -->
@@ -100,9 +99,9 @@
 
     <div class="mainadmincar">
         <a href="car_input">렌트카 추가</a>
-        <a href="car_search">렌트카 리스트</a>
+        <a href="car_search?reqPage=1">렌트카 리스트</a>
     </div>
     <!-- </center> -->
-	</form>
+	
 </body>
 </html>

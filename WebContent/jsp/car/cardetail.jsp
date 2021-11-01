@@ -97,7 +97,7 @@ $(document).ready(function() {
                         <td><input type="text" name="car_loc" value="${car.car_loc}" /></td>
                     </tr>
                     <tr>
-                        <td>이미지(2차)</td>
+                        <td>이미지</td>
                         <td><input type="text" name="car_image" value="${car.car_image}" /></td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@ $(document).ready(function() {
 		<center>
 		<a href="car_search?reqPage=1">리스트로이동</a><br/>
 		${carError.car_nameErr} ${carError.car_priceErr} <br/>
-        ${carError.capacityErr} ${carError.car_locErr}<br/> 
+        ${carError.capacityErr} ${carError.car_locErr} ${carError.car_imageErr}<br/> 
 		</center>
       </main>	     
    
